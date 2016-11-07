@@ -1,6 +1,7 @@
 package main;
 
 public class Vector2F {
+	//This class collects contains coordinates of an object and can also calculate distances between objects. 
 	public float xpos;
 	public float ypos;
 	

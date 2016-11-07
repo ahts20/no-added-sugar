@@ -35,15 +35,15 @@ public class GameGraphics extends JPanel{
 	}
 	
 	public static void generate(Graphics g){
-		
+		//Generate map from jpeg file.
 		map = null;
-	
+		//Load jpeg
 		try{
 			map = loader.LoadImageFrom("/map.png");
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		
+		//Iterate through each pixel of jpeg and build map in game accordingly.
 		for(int x = 0; x < 50; x++){
 			for(int y = 0; y < 50; y++){
 				int mapColours = map.getRGB(x, y);
