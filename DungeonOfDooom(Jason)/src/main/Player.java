@@ -17,6 +17,8 @@ public class Player implements KeyListener, ImageObserver{
 	public static String direction = "";
 	public static float speed = 20;
 	
+
+	
 //	private BufferedImage image = new BufferedImage(Width, Height, BufferedImage.TYPE_INT_RGB);
 	private BufferedImage spriteSheet = null;
 	private BufferedImage[] p=new BufferedImage[9];
@@ -42,10 +44,11 @@ public class Player implements KeyListener, ImageObserver{
 
 	
 	//Method which takes in the graphics environment and adds the player as a rectangle.
-	public void drawPlayer(Graphics g, int i){
+	public void drawPlayer(Graphics g,int i){
 		
 		g.drawImage(p[i], (int) X, (int) Y, null);
 	}
+	
 	//Run player configuration logic. 
 	public void configure(){
 		//If player reaches the boundaries stop moving.
@@ -109,6 +112,7 @@ public class Player implements KeyListener, ImageObserver{
 		if(key == KeyEvent.VK_S){
 			direction = "DOWN";
 		}
+
 	}
 
 	@Override
