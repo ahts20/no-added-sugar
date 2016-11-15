@@ -1,11 +1,8 @@
 package GameStates;
 
 import java.awt.Graphics;
-
 import java.util.Stack;
-
-import main.Level;
-
+import main.LevelLoader;
 
 public class GameStateManager {
 	
@@ -14,7 +11,7 @@ public class GameStateManager {
 	
 	public GameStateManager() {
 		states = new Stack<GameState>();
-		states.push(new Level(this));
+		states.push(new LevelLoader(this));
 	}
 	
 	public void update(){
