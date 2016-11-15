@@ -23,7 +23,6 @@ public class GameLoop extends JPanel implements Runnable{
 	private int width;
 	private int height;
 	
-	public static double amountOfTicks = 60.0;
 	
 	
 	public GameLoop(int width, int height) {
@@ -47,7 +46,7 @@ public class GameLoop extends JPanel implements Runnable{
 	public void run() {
 		init();
 		long lastTime = System.nanoTime();
-		final double amountOfTicks = 120.0;
+		final double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
 	
 		double delta = 0;
@@ -59,6 +58,8 @@ public class GameLoop extends JPanel implements Runnable{
 
 			//It takes time to get from lastTime to now
 			long now = System.nanoTime();
+			//Sets delta to be the ratio between right now and the total number of frames desired within a second.
+			//Calls update for each of these times.
 			delta += (now - lastTime) / ns;
 			lastTime = now;
 			
@@ -88,7 +89,7 @@ public class GameLoop extends JPanel implements Runnable{
 			//every second just to display
 			if(System.currentTimeMillis() - timer > 1000){
 				timer += 1000;
-				//System.out.println(updates);
+				//System.out.println(frames);
 				updates = 0;
 				frames = 0;
 			}

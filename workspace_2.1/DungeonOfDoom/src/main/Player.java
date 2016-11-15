@@ -19,6 +19,7 @@ public class Player extends Rectangle implements KeyListener{
 	private static float speed = 5;
 	public static String staus = "standing";
 	
+	//Dimensions of Square/Screen following player.
 	private int renderDistanceW = 40;
 	private int renderDistanceH = 40;
 	
@@ -35,11 +36,14 @@ public class Player extends Rectangle implements KeyListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		//Assign animation images to the array p array.
 		SpriteSheet ss = new SpriteSheet(spriteSheet);
 		for (int i=1;i<=8;i++){
 			p[i] = ss.grabImage(i, 1, 145/8, 32);
 		}	
 		
+		//Draw large rectangle following player.
 		render = new Rectangle(
 				(int)X - ((renderDistanceW * 20) / 2), 
 				(int)Y - ((renderDistanceH * 20) / 2), 
@@ -49,6 +53,7 @@ public class Player extends Rectangle implements KeyListener{
 
 	public void update() {
 		
+		//Update the large rectangle coordinates.
 		render = new Rectangle(
 				(int)X - ((renderDistanceW * 20) / 2), 
 				(int)Y - ((renderDistanceH * 20) / 2), 
@@ -70,8 +75,10 @@ public class Player extends Rectangle implements KeyListener{
 //		g.setColor(Color.WHITE);
 //		g.drawRect((int)X, (int)Y, playerWidth, playerHeight);
 		
+		//Draw the player to the graphics object
 		g.drawImage(p[i], (int) X, (int) Y, null);
 		
+		//Draw the rectangle to the graphics object
 		g.drawRect((int)(X) - ((renderDistanceW * 20) / 2), 
 				(int)(Y) - ((renderDistanceH * 20) / 2), 
 				renderDistanceW * 20, 

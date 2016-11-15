@@ -67,7 +67,7 @@ public class LevelLoader extends GameState{
 	}
 	
 	public static void generate(String world_name){
-
+		//Generates the world from the map PNG image.
 		map = null;
 
 		try{
@@ -75,15 +75,17 @@ public class LevelLoader extends GameState{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-
+		//Iterate through each pixel in the image.
 		for(int x = 0; x < 50; x++){
 			for(int y = 0; y < 50; y++){
 				int mapColours = map.getRGB(x, y);
 
 				switch(mapColours & 0xFFFFFF){
+				//If Grey set as floor/RECTANGLE
 				case 0x808080:
 					blocks.add(new Block(x*40,y*40, BlockType.RECTANGLE));
 					break;
+				//If Black set as Wall.
 				case 0x000000:
 					blocks.add(new Block(x*40, y*40, BlockType.WALL));
 					break;
