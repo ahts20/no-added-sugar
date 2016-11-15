@@ -4,43 +4,55 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import main.Block.BlockType;
 import GameStates.GameState;
 import GameStates.GameStateManager;
 
-public class Level extends GameState{
+public class LevelLoader extends GameState{
 
 	public Player player;
 	public Block block;
+
 	private static BufferedImage map;
 	public static loadImage loader; 
-	//Array to hold all blocks in game.
+
 	public static CopyOnWriteArrayList<Block> blocks = new CopyOnWriteArrayList<Block>();
-	public int ScreenX, ScreenY;
-	public Level(GameStateManager gsm) {
+	
+	
+	public LevelLoader(GameStateManager gsm) {
 		super(gsm);
 	}
 
-	@Override
 	public void init() {
-		player = new Player();
-		block = new Block(50,50, "RECTANGLE");
 		loader = new loadImage();
 		generate("map");
+		player = new Player();
+		
 	}
 
-	@Override
 	public void update() {
 		player.update();
+		//POSSIBLE INTERSECTION, GOOD FOR MEMORY MANAGEMENT, NEEDS TO BE DISCUSSED
+//		for(Block i : blocks){
+//			if(Player.render.intersects(i)){
+//				if(!blocks.contains(i)){
+//					blocks.add(i);
+//				}	
+//			} else {
+//				if(blocks.contains(i)){
+//					blocks.remove(i);
+//				}
+//			}
+//		}
 	}
 
-	@Override
 	public void render(Graphics g) {
-		block.render(g);
-		player.render(g);
-		for (Block i : blocks){
-			i.render(g);
+		for(Block i : blocks){
+			i.render(g);	
 		}
+		player.render(g);
 	}
+	
 	public static void generate(String world_name){
 
 		map = null;
@@ -57,14 +69,15 @@ public class Level extends GameState{
 
 				switch(mapColours & 0xFFFFFF){
 				case 0x808080:
-					blocks.add(new Block(x*20,y*20, "RECTANGLE"));
+					blocks.add(new Block(x*40,y*40, BlockType.RECTANGLE));
 					break;
 				case 0x000000:
-					blocks.add(new Block(x*20, y*20, "WALL"));
+					blocks.add(new Block(x*40, y*40, BlockType.WALL));
 					break;
 				}
 			}
-
 		}
 	}
+	
+	
 }
