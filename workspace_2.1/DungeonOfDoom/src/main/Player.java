@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class Player extends Rectangle implements KeyListener{
 
@@ -15,13 +17,29 @@ public class Player extends Rectangle implements KeyListener{
 	private static String Xdirection = "";
 	private static String Ydirection = "";
 	private static float speed = 5;
+	public static String staus = "standing";
 	
 	private int renderDistanceW = 40;
 	private int renderDistanceH = 40;
 	
 	public static Rectangle render;
+	
+	private BufferedImage spriteSheet = null;
+	private BufferedImage[] p=new BufferedImage[9];
 
 	public void init() {
+		loadImage loader = new loadImage();
+		try {
+			spriteSheet = loader.LoadImageFrom("/SpriteSheet1.png");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		SpriteSheet ss = new SpriteSheet(spriteSheet);
+		for (int i=1;i<=8;i++){
+			p[i] = ss.grabImage(i, 1, 145/8, 32);
+		}	
+		
 		render = new Rectangle(
 				(int)X - ((renderDistanceW * 20) / 2), 
 				(int)Y - ((renderDistanceH * 20) / 2), 
@@ -48,9 +66,11 @@ public class Player extends Rectangle implements KeyListener{
 		movePlayer();
 	}
 
-	public void render(Graphics g) {
-		g.setColor(Color.WHITE);
-		g.drawRect((int)X, (int)Y, playerWidth, playerHeight);
+	public void render(Graphics g, int i) {
+//		g.setColor(Color.WHITE);
+//		g.drawRect((int)X, (int)Y, playerWidth, playerHeight);
+		
+		g.drawImage(p[i], (int) X, (int) Y, null);
 		
 		g.drawRect((int)(X) - ((renderDistanceW * 20) / 2), 
 				(int)(Y) - ((renderDistanceH * 20) / 2), 
@@ -64,15 +84,22 @@ public class Player extends Rectangle implements KeyListener{
 		//Make player move in desired direction.
 		if(Xdirection == "RIGHT"){
 			X += speed;
+			staus = "moveright";
 		}
 		if(Xdirection == "LEFT"){
 			X -= speed; 
+			staus = "moveleft";
 		}
 		if(Ydirection == "UP"){
 			Y -= speed;
+			staus = "moveup";
 		}
 		if(Ydirection == "DOWN"){
 			Y += speed; 
+			staus = "movedown";
+		}
+		if ((Xdirection == "") && (Ydirection == "")){
+			staus = "standing";
 		}
 		
 	}

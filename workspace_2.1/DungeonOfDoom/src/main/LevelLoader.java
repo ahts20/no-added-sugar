@@ -12,6 +12,8 @@ public class LevelLoader extends GameState{
 
 	public Player player;
 	public Block block;
+	
+	private int frame=1;
 
 	private static BufferedImage map;
 	public static loadImage loader; 
@@ -27,7 +29,7 @@ public class LevelLoader extends GameState{
 		loader = new loadImage();
 		generate("map");
 		player = new Player();
-		
+		player.init();		
 	}
 
 	public void update() {
@@ -50,7 +52,18 @@ public class LevelLoader extends GameState{
 		for(Block i : blocks){
 			i.render(g);	
 		}
-		player.render(g);
+		
+		if (frame != 8){
+			if (player.staus=="standing"){
+				player.render(g,frame);
+			}else{
+				frame++;
+				player.render(g,frame);
+			}
+		}
+		else{
+			frame=1;
+		}
 	}
 	
 	public static void generate(String world_name){
