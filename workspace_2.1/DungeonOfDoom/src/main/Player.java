@@ -20,8 +20,8 @@ public class Player extends Rectangle implements KeyListener{
 	public static String staus = "standing";
 	
 	//Dimensions of Square/Screen following player.
-	private int renderDistanceW = 40;
-	private int renderDistanceH = 40;
+	private int renderDistanceW = 20;
+	private int renderDistanceH = 20;
 	
 	public static Rectangle render;
 	

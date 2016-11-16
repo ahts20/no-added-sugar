@@ -69,7 +69,8 @@ public class LevelLoader extends GameState{
 	public static void generate(String world_name){
 		//Generates the world from the map PNG image.
 		map = null;
-
+		//Syntactic sugarrrr - match with block height and width to avoid gaps.
+		int blockSize = 25;
 		try{
 			map = loader.LoadImageFrom("/"+world_name+".png");
 		}catch(Exception e){
@@ -83,11 +84,15 @@ public class LevelLoader extends GameState{
 				switch(mapColours & 0xFFFFFF){
 				//If Grey set as floor/RECTANGLE
 				case 0x808080:
-					blocks.add(new Block(x*40,y*40, BlockType.RECTANGLE));
+					blocks.add(new Block(x*blockSize,y*blockSize, blockSize, BlockType.RECTANGLE));
 					break;
 				//If Black set as Wall.
 				case 0x000000:
-					blocks.add(new Block(x*40, y*40, BlockType.WALL));
+					blocks.add(new Block(x*blockSize, y*blockSize, blockSize, BlockType.WALL));
+					break;
+				//If Yellow set as Gold.
+				case 0xffff00:
+					blocks.add(new Block(x*blockSize, y*blockSize, blockSize, BlockType.GOLD));
 					break;
 				}
 			}
