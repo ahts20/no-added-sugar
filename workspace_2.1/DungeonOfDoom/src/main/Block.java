@@ -6,12 +6,12 @@ import java.awt.Rectangle;
 
 public class Block extends Rectangle{
 	private BlockType blocktype;
-	private int x, y;
-	private int width;
-	private int height;
+	public int x, y;
+	public int width;
+	public int height;
 	private boolean isAlive;
 	
-	private boolean rectangle, wall, gold;
+	public boolean rectangle, wall, gold;
 	
 	public Block(int x, int y) {
 		setBounds((int)x, (int)y, width, height);
@@ -20,7 +20,7 @@ public class Block extends Rectangle{
 	}
 	
 	public Block(int x, int y, int blockSize, BlockType blocktype){
-		setBounds((int)x, (int)y, width, width);
+		setBounds((int)x, (int)y, width, height);
 		this.x = x;
 		this.y = y;
 		this.width = blockSize;
@@ -64,12 +64,18 @@ public class Block extends Rectangle{
 		}
 		
 	}
-	
+	public void changeToFloor(){
+		//Changes block type to floor - e.g. when it was gold and gets picked up.
+		this.rectangle = true;
+		this.gold = false;
+		this.wall = false;
+	}
 	public enum BlockType{
 		RECTANGLE,
 		WALL,
 		GOLD
 	}
-
+	
+	
 
 }

@@ -33,7 +33,7 @@ public class LevelLoader extends GameState{
 	}
 
 	public void update() {
-		player.update();
+		player.update(blocks);
 		//POSSIBLE INTERSECTION, GOOD FOR MEMORY MANAGEMENT, NEEDS TO BE DISCUSSED
 //		for(Block i : blocks){
 //			if(Player.render.intersects(i)){

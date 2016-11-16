@@ -7,17 +7,19 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Player extends Rectangle implements KeyListener{
 
 	public static int playerWidth = 40;
 	public static int playerHeight = 40;
-	private static float X = (Main.width / 2)  - (playerWidth / 2);
-	private static float Y = (Main.height / 2) - (playerHeight / 2);
+	private float X = (Main.width / 2)  - (playerWidth / 2);
+	private float Y = (Main.height / 2) - (playerHeight / 2);
 	private static String Xdirection = "";
 	private static String Ydirection = "";
 	private static float speed = 5;
 	public static String staus = "standing";
+	private static int score = 0;
 	
 	//Dimensions of Square/Screen following player.
 	private int renderDistanceW = 20;
@@ -51,7 +53,7 @@ public class Player extends Rectangle implements KeyListener{
 				renderDistanceH * 20);
 	}
 
-	public void update() {
+	public void update(CopyOnWriteArrayList<Block> blocks) {
 		
 		//Update the large rectangle coordinates.
 		render = new Rectangle(
@@ -67,10 +69,39 @@ public class Player extends Rectangle implements KeyListener{
 		if(Y >= Main.height - 100 || Y <= -10){
 			Ydirection = "";
 		}
-		//make player move and refresh screen.
+		//Update player bounds
+		setBounds((int)x, (int)y, width, height);
+		//Check for gold collision and update score and gold.
+		checkGoldTouch(blocks);
+		//make player change its co-ordinates.
 		movePlayer();
+		
 	}
-
+	
+	private void checkGoldTouch(CopyOnWriteArrayList<Block> blocks){
+		for (Block i : blocks){
+			//System.out.println("Checking " + i);
+			if (i.gold && isTouching(i.x, i.y, i.width, i.height)){
+				//contains and intersects isn't working - rest does though and changes as needed
+				//i.intersects(this.X, this.Y, this.width, this.height)
+				//isTouching(i.X, this.Y, this.width, this.height)
+				i.changeToFloor();
+				//System.out.println("Detected gold");
+				this.score += 10;
+			}
+		}
+	}
+	
+	private boolean isTouching (int x, int y, int width, int height){
+		if (this.X >= x && this.X <= x + width){
+			if (this.Y >= y && this.X <= y + height){
+				//System.out.println("touching gold");
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void render(Graphics g, int i) {
 //		g.setColor(Color.WHITE);
 //		g.drawRect((int)X, (int)Y, playerWidth, playerHeight);
