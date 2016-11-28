@@ -86,7 +86,7 @@ public class Player extends Rectangle implements KeyListener{
 				//i.intersects(this.X, this.Y, this.width, this.height)
 				//isTouching(i.X, this.Y, this.width, this.height)
 				i.changeToFloor();
-				//System.out.println("Detected gold");
+				System.out.println("Detected gold");
 				this.score += 10;
 			}
 		}
@@ -95,7 +95,7 @@ public class Player extends Rectangle implements KeyListener{
 	private boolean isTouching (int x, int y, int width, int height){
 		if (this.X >= x && this.X <= x + width){
 			if (this.Y >= y && this.X <= y + height){
-				//System.out.println("touching gold");
+				System.out.println("touching gold");
 				return true;
 			}
 		}
@@ -114,7 +114,7 @@ public class Player extends Rectangle implements KeyListener{
 				(int)(Y) - ((renderDistanceH * 20) / 2), 
 				renderDistanceW * 20, 
 				renderDistanceH * 20);
-	
+		g.drawString("Score: " + String.valueOf(this.score), (int) X, (int) Y);
 	}
 	
 	//Move player.
@@ -148,6 +148,10 @@ public class Player extends Rectangle implements KeyListener{
 	}
 	public double getY(){
 		return Y;
+	}
+	
+	public double getScore(){
+		return this.score;
 	}
 	//Setters
 	public void setX(float x){
