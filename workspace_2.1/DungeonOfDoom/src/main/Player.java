@@ -18,7 +18,7 @@ public class Player extends Rectangle implements KeyListener{
 	private static String Xdirection = "";
 	private static String Ydirection = "";
 	private static float speed = 5;
-	public static String staus = "standing";
+	public static String staus = "downstanding";
 	private static int score = 0;
 	
 	//Dimensions of Square/Screen following player.
@@ -28,12 +28,12 @@ public class Player extends Rectangle implements KeyListener{
 	public static Rectangle render;
 	
 	private BufferedImage spriteSheet = null;
-	private BufferedImage[] p=new BufferedImage[9];
+	private BufferedImage[] p=new BufferedImage[4];
 
 	public void init() {
 		loadImage loader = new loadImage();
 		try {
-			spriteSheet = loader.LoadImageFrom("/SpriteSheet1.png");
+			spriteSheet = loader.LoadImageFrom("/Player.png");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -41,8 +41,8 @@ public class Player extends Rectangle implements KeyListener{
 		
 		//Assign animation images to the array p array.
 		SpriteSheet ss = new SpriteSheet(spriteSheet);
-		for (int i=1;i<=8;i++){
-			p[i] = ss.grabImage(i, 1, 145/8, 32);
+		for (int i=0;i<4;i++){
+			p[i] = ss.grabImage(i, 0, 80/4, 60/3);
 		}	
 		
 		//Draw large rectangle following player.
@@ -122,23 +122,29 @@ public class Player extends Rectangle implements KeyListener{
 		//Make player move in desired direction.
 		if(Xdirection == "RIGHT"){
 			X += speed;
-			staus = "moveright";
+			staus = "faceright";
 		}
 		if(Xdirection == "LEFT"){
 			X -= speed; 
-			staus = "moveleft";
+			staus = "faceleft";
 		}
 		if(Ydirection == "UP"){
 			Y -= speed;
-			staus = "moveup";
+			staus = "faceup";
 		}
 		if(Ydirection == "DOWN"){
 			Y += speed; 
-			staus = "movedown";
+			staus = "facedown";
 		}
-		if ((Xdirection == "") && (Ydirection == "")){
-			staus = "standing";
-		}
+//		if (Xdirection == "faceright"){
+//			staus = "rightstanding";
+//		}else if (Xdirection == "faceleft"){
+//			staus = "leftstanding";
+//		}else if (Ydirection == "faceup"){
+//			staus = "upstanding";
+//		}else if (Ydirection == "facedown"){
+//			staus = "downstanding";
+//		}
 		
 	}
 	
@@ -184,16 +190,16 @@ public class Player extends Rectangle implements KeyListener{
 		//Stop moving when player stops pressing the button.
 		int key = e.getKeyCode();
 		if(key == KeyEvent.VK_D){
-			Xdirection = "";
+			Xdirection = "faceright";
 		}
 		if(key == KeyEvent.VK_A){
-			Xdirection = "";
+			Xdirection = "faceleft";
 		}
 		if(key == KeyEvent.VK_W){
-			Ydirection = "";
+			Ydirection = "faceup";
 		}
 		if(key == KeyEvent.VK_S){
-			Ydirection = "";
+			Ydirection = "facedown";
 		}
 		
 	}

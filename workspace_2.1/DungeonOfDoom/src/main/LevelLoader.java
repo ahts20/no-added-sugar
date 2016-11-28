@@ -53,17 +53,33 @@ public class LevelLoader extends GameState{
 			i.render(g);	
 		}
 		
-		if (frame != 8){
-			if (player.staus=="standing"){
-				player.render(g,frame);
-			}else{
-				frame++;
-				player.render(g,frame);
+//		if (frame != 1){
+//			if (player.staus=="downstanding"){
+//				player.render(g,2);
+//			}else if (player.staus == "leftstanding"){
+//				player.render(g, 0);
+//			}else if (player.staus == "rightstanding"){
+//				player.render(g, 1);
+//			}else if (player.staus == "upstanding"){
+//				player.render(g, 3);
+//			}else 
+			if (player.staus == "facedown"){
+//				frame++;
+				player.render(g,2);
+			}else if (player.staus == "faceleft"){
+//				frame++;
+				player.render(g,0);
+			}else if (player.staus == "faceright"){
+//				frame++;
+				player.render(g,1);
+			}else if (player.staus == "faceup"){
+//				frame++;
+				player.render(g,3);
 			}
-		}
-		else{
-			frame=1;
-		}
+//		}
+//		else{
+//			frame=0;
+//		}
 	}
 	
 	public static void generate(String world_name){
