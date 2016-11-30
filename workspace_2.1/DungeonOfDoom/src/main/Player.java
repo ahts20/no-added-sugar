@@ -42,6 +42,7 @@ public class Player extends Rectangle implements KeyListener{
 		//Assign animation images to the array p array.
 		SpriteSheet ss = new SpriteSheet(spriteSheet);
 		for (int i=0;i<4;i++){
+			for (int j=0;j<3;j++)
 			p[i] = ss.grabImage(i, 0, 80/4, 60/3);
 		}	
 		
