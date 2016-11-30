@@ -12,8 +12,6 @@ public class LevelLoader extends GameState{
 
 	public Player player;
 	public Block block;
-	
-	private int frame=1;
 
 	private static BufferedImage map;
 	public static loadImage loader; 
@@ -68,34 +66,15 @@ public class LevelLoader extends GameState{
 		for(Block i : blocks){
 			i.render(g);	
 		}
-		
-//		if (frame != 1){
-//			if (player.staus=="downstanding"){
-//				player.render(g,2);
-//			}else if (player.staus == "leftstanding"){
-//				player.render(g, 0);
-//			}else if (player.staus == "rightstanding"){
-//				player.render(g, 1);
-//			}else if (player.staus == "upstanding"){
-//				player.render(g, 3);
-//			}else 
-			if (player.staus == "facedown"){
-//				frame++;
-				player.render(g,2);
-			}else if (player.staus == "faceleft"){
-//				frame++;
-				player.render(g,0);
-			}else if (player.staus == "faceright"){
-//				frame++;
-				player.render(g,1);
-			}else if (player.staus == "faceup"){
-//				frame++;
-				player.render(g,3);
-			}
-//		}
-//		else{
-//			frame=0;
-//		}
+		if (player.staus == "facedown"){
+			player.render(g,2);
+		}else if (player.staus == "faceleft"){
+			player.render(g,0);
+		}else if (player.staus == "faceright"){
+			player.render(g,1);
+		}else if (player.staus == "faceup"){
+			player.render(g,3);
+		}
 	}
 	
 	public static void generate(String world_name){
