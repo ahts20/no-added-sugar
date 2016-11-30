@@ -12,8 +12,6 @@ public class Block extends Rectangle{
 	public int width;
 	public int height;
 	private boolean isAlive;
-//	private BufferedImage golds = null;
-//	private BufferedImage p=null;
 	
 	public boolean rectangle, wall, gold;
 	
@@ -34,15 +32,6 @@ public class Block extends Rectangle{
 	}
 	
 	public void init(){
-//		loadImage loader = new loadImage();
-//		try {
-//			golds = loader.LoadImageFrom("/Gold.png");
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		SpriteSheet ss = new SpriteSheet(golds);
-//		p = ss.grabImage(0, 0, 80/4, 60/3);
 		switch(blocktype){
 		case RECTANGLE:
 			rectangle = true;
@@ -72,8 +61,6 @@ public class Block extends Rectangle{
 			g.drawRect((int)x, (int)y, width, height);
 		}
 		if(gold == true){
-			
-//			g.drawImage(p, (int)x, (int)y, null);
 			g.setColor(Color.YELLOW);
 			g.drawRect((int)x, (int)y, width, height);
 		}
