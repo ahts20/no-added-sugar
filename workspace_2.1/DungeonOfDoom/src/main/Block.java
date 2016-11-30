@@ -12,8 +12,9 @@ public class Block extends Rectangle{
 	public int width;
 	public int height;
 	private boolean isAlive;
+	public boolean isVisible;
 	
-	public boolean rectangle, wall, gold;
+	public boolean rectangle, wall, gold, door;
 	
 	public Block(int x, int y) {
 		setBounds((int)x, (int)y, width, height);
@@ -42,6 +43,10 @@ public class Block extends Rectangle{
 		case GOLD:
 			gold = true;
 			break;
+		case DOOR:
+			door = true;
+			isVisible = false;
+			break;
 		}
 	}
 	
@@ -64,9 +69,18 @@ public class Block extends Rectangle{
 			g.setColor(Color.YELLOW);
 			g.drawRect((int)x, (int)y, width, height);
 		}
+		if(door == true && isVisible == false){
+			g.setColor(Color.WHITE);
+			g.drawRect((int)x, (int)y, width, height);
+		}
+		if(door == true && isVisible == true){
+			g.setColor(Color.BLUE);
+			g.drawRect((int)x, (int)y, width, height);
+			
+		}
 		
 	}
-	public void changeToFloor(){
+	public void changeGoldToFloor(){
 		//Changes block type to floor - e.g. when it was gold and gets picked up.
 		this.rectangle = true;
 		this.gold = false;
@@ -75,7 +89,8 @@ public class Block extends Rectangle{
 	public enum BlockType{
 		RECTANGLE,
 		WALL,
-		GOLD
+		GOLD,
+		DOOR
 	}
 	
 	

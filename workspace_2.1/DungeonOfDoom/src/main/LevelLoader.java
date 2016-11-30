@@ -34,6 +34,13 @@ public class LevelLoader extends GameState{
 
 	public void update() {
 		player.update(blocks);
+		if (allGoldPickedUp()){
+			for (Block i : blocks){
+				if (i.door)
+					i.isVisible = true;
+			}
+		}
+			
 		//POSSIBLE INTERSECTION, GOOD FOR MEMORY MANAGEMENT, NEEDS TO BE DISCUSSED
 //		for(Block i : blocks){
 //			if(Player.render.intersects(i)){
@@ -46,6 +53,15 @@ public class LevelLoader extends GameState{
 //				}
 //			}
 //		}
+	}
+	
+	private boolean allGoldPickedUp(){
+		boolean allGoldDetected = true;
+		for (Block i : blocks){
+			if (i.gold == true)
+				allGoldDetected = false;
+		}
+		return allGoldDetected;
 	}
 
 	public void render(Graphics g) {
@@ -109,6 +125,10 @@ public class LevelLoader extends GameState{
 				//If Yellow set as Gold.
 				case 0xffff00:
 					blocks.add(new Block(x*blockSize, y*blockSize, blockSize, BlockType.GOLD));
+					break;
+				//If Blue set as Door.
+				case 0x0080FF:
+					blocks.add(new Block(x*blockSize, y*blockSize, blockSize, BlockType.DOOR));
 					break;
 				}
 			}
