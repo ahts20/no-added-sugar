@@ -74,7 +74,7 @@ public class Player extends Rectangle implements KeyListener{
 		//Check for gold collision and update score and gold.
 		checkGoldTouch(blocks);
 		//make player change its co-ordinates.
-		movePlayer();
+		movePlayer(blocks);
 		
 	}
 	
@@ -111,25 +111,57 @@ public class Player extends Rectangle implements KeyListener{
 	}
 	
 	//Move player.
-	private void movePlayer(){
+	private void movePlayer(CopyOnWriteArrayList<Block> blocks){
 		//Make player move in desired direction.
 		if(Xdirection == "RIGHT"){
-			X += speed;
-			staus = "faceright";
+			if (detectTouchingWall(blocks)){
+				Xdirection = "LEFT";
+				X -= speed;
+			}
+			else{
+				X += speed;
+				staus = "faceright";
+			}
 		}
 		if(Xdirection == "LEFT"){
-			X -= speed; 
-			staus = "faceleft";
+			if (detectTouchingWall(blocks)){
+				Xdirection = "RIGHT";
+				X += speed;
+			}
+			else{					
+				X -= speed; 
+				staus = "faceleft";
+			}
+
 		}
 		if(Ydirection == "UP"){
-			Y -= speed;
-			staus = "faceup";
+			if (detectTouchingWall(blocks)){
+				Ydirection = "DOWN";
+				Y += speed;
+			}
+			else{
+				Y -= speed;
+				staus = "faceup";
+			}
 		}
 		if(Ydirection == "DOWN"){
-			Y += speed; 
-			staus = "facedown";
+			if (detectTouchingWall(blocks)){
+				Ydirection = "UP";
+				Y += speed;
+			}
+			else{
+				Y += speed; 
+				staus = "facedown";
+			}
 		}
 		
+	}
+	private boolean detectTouchingWall(CopyOnWriteArrayList<Block> blocks){
+		for ( Block i : blocks){
+			if ((i.wall || i.door) && isTouching(i.x,i.y,i.width,i.height))
+				return true;
+		}
+		return false;
 	}
 	
 	//getters
