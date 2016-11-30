@@ -18,7 +18,7 @@ public class Player extends Rectangle implements KeyListener{
 	private static String Xdirection = "";
 	private static String Ydirection = "";
 	private static float speed = 5;
-	public static String staus = "downstanding";
+	public static String staus = "facedown";
 	private static int score = 0;
 	
 	//Dimensions of Square/Screen following player.
@@ -82,11 +82,7 @@ public class Player extends Rectangle implements KeyListener{
 		for (Block i : blocks){
 			//System.out.println("Checking " + i);
 			if (i.gold && isTouching(i.x, i.y, i.width, i.height)){
-				//contains and intersects isn't working - rest does though and changes as needed
-				//i.intersects(this.X, this.Y, this.width, this.height)
-				//isTouching(i.X, this.Y, this.width, this.height)
-				i.changeToFloor();
-				System.out.println("Detected gold");
+				i.changeGoldToFloor();
 				this.score += 10;
 			}
 		}
@@ -94,8 +90,7 @@ public class Player extends Rectangle implements KeyListener{
 	
 	private boolean isTouching (int x, int y, int width, int height){
 		if (this.X >= x && this.X <= x + width){
-			if (this.Y >= y && this.X <= y + height){
-				System.out.println("touching gold");
+			if (this.Y >= y && this.Y <= y + height){
 				return true;
 			}
 		}
@@ -103,8 +98,6 @@ public class Player extends Rectangle implements KeyListener{
 	}
 	
 	public void render(Graphics g, int i) {
-//		g.setColor(Color.WHITE);
-//		g.drawRect((int)X, (int)Y, playerWidth, playerHeight);
 		
 		//Draw the player to the graphics object
 		g.drawImage(p[i], (int) X, (int) Y, null);
@@ -136,15 +129,6 @@ public class Player extends Rectangle implements KeyListener{
 			Y += speed; 
 			staus = "facedown";
 		}
-//		if (Xdirection == "faceright"){
-//			staus = "rightstanding";
-//		}else if (Xdirection == "faceleft"){
-//			staus = "leftstanding";
-//		}else if (Ydirection == "faceup"){
-//			staus = "upstanding";
-//		}else if (Ydirection == "facedown"){
-//			staus = "downstanding";
-//		}
 		
 	}
 	
