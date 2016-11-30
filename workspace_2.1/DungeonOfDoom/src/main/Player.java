@@ -28,12 +28,12 @@ public class Player extends Rectangle implements KeyListener{
 	public static Rectangle render;
 	
 	private BufferedImage spriteSheet = null;
-	private BufferedImage[] p=new BufferedImage[4];
+	private BufferedImage[] p=new BufferedImage[9];
 
 	public void init() {
 		loadImage loader = new loadImage();
 		try {
-			spriteSheet = loader.LoadImageFrom("/Player.png");
+			spriteSheet = loader.LoadImageFrom("/SpriteSheet.png");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
