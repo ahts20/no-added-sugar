@@ -8,7 +8,7 @@ public class SpriteSheet {
 		this.image = image;
 	}
 	public BufferedImage grabImage(int col, int row, int width, int height){
-		BufferedImage img = image.getSubimage((col*145/8)-145/8, (row*32)-32, width, height);
+		BufferedImage img = image.getSubimage((col*80/4), (row*60/3), width, height);
 		return img;
 		
 	}
