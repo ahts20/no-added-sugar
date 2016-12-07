@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import GameStates.GameState;
@@ -17,7 +18,7 @@ public class GameStateButton extends Rectangle{
 	private GameState gs;
 	private int xPos;
 	private int yPos;
-	public static int width = 250;
+	public static int width = 100;
 	public static int height = 50;
 	private String buttonMessage;
 	private boolean isHeldOver;
@@ -52,8 +53,10 @@ public class GameStateButton extends Rectangle{
 	}
 	
 	public void render(Graphics g){
+		Font fnt1 = new Font("arial", Font.BOLD, 30);
+		g.setFont(fnt1);
 		g.drawRect(xPos, yPos, width, height);
-		g.drawString(buttonMessage, xPos + width / 2 , yPos + height / 2);
+		g.drawString(buttonMessage, xPos + 20 , yPos + 30);
 	}
 	
 	public boolean isHeldOver(){
