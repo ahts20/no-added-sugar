@@ -11,11 +11,12 @@ public class Block extends Rectangle {
 	serialisation will stop working.
 	*/
 	private static final long serialVersionUID = 1L;
-	
+
 	private BlockType blocktype;
 	public int x, y;
 	public int width;
 	public int height;
+
 	public boolean isVisible;
 
 	public boolean rectangle, wall, gold, door;

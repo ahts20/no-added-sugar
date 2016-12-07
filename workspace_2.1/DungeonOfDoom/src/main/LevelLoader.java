@@ -7,6 +7,7 @@ import java.util.Timer;
 import GameStates.GameState;
 import GameStates.GameStateManager;
 
+
 public class LevelLoader extends GameState{
 	
 	public static World world;
@@ -14,8 +15,11 @@ public class LevelLoader extends GameState{
 	private String map_name;
 	
 	Timer t = new Timer();
-	
-	public LevelLoader(GameStateManager gsm){
+
+	public Player player;
+	public Block block;
+
+	public LevelLoader(GameStateManager gsm) {
 		super(gsm);
 	}
 	
@@ -46,7 +50,7 @@ public class LevelLoader extends GameState{
 //		       gsm.states.peek().init();
 //		    }
 //		}, 4000, 10000);
-		
+
 	}
 	
 	
@@ -61,6 +65,4 @@ public class LevelLoader extends GameState{
 	public void render(Graphics g) {
 		world.render(g);
 	}
-
-	
 }
