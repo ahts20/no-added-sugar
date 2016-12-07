@@ -57,7 +57,7 @@ public class Player extends Rectangle implements KeyListener {
 		int i = 0;
 		for (int k = 0; k < 3; k++) {
 			for (int j = 0; j < 4; j++) {
-				p[i] = ss.grabImage(j, k, 80 / 4, 60 / 3);
+				p[i] = ss.grabImage(j, k, 240 / 4, 180 / 3);
 				i++;
 			}
 		}
@@ -111,9 +111,9 @@ public class Player extends Rectangle implements KeyListener {
 	public void render(Graphics g, int i) {
 
 		// Draw the player to the graphics object
-		g.drawImage(p[i], (int) X, (int) Y, null);
+		g.drawImage(p[i], (int) X-30, (int) Y-30, null);
 		
-		g.drawString("Score: " + String.valueOf(score), (int) X, (int) Y);
+		g.drawString("Score: " + String.valueOf(score), (int) X-30, (int) Y-30);
 	}
 
 	// Move player.
