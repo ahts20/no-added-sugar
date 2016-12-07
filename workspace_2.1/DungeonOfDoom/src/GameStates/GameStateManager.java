@@ -2,7 +2,6 @@ package GameStates;
 
 import java.awt.Graphics;
 import java.util.Stack;
-import main.LevelLoader;
 
 public class GameStateManager {
 
@@ -11,7 +10,7 @@ public class GameStateManager {
 
 	public GameStateManager() {
 		states = new Stack<GameState>();
-		states.push(new LevelLoader(this));
+		states.push(new main.Menu(this));
 	}
 
 	public void update() {

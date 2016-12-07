@@ -1,6 +1,5 @@
 package main;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
@@ -10,6 +9,12 @@ import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Player extends Rectangle implements KeyListener {
+	/*
+	It is wise to declare it because if you don't declare one then when changing 
+	the class it will get a different one generated automatically and the 
+	serialisation will stop working.
+	*/
+	private static final long serialVersionUID = 1L;
 
 	public static int playerWidth = 40;
 	public static int playerHeight = 40;
@@ -18,8 +23,8 @@ public class Player extends Rectangle implements KeyListener {
 	private static String Xdirection = "";
 	private static String Ydirection = "";
 	private static float speed = 5;
-	public static String staus = "facedown";
-	private static int score = 0;
+	public String status = "facedown";
+	private int score = 0;
 
 	// Dimensions of Square/Screen following player.
 	private int renderDistanceW = 20;
@@ -81,7 +86,9 @@ public class Player extends Rectangle implements KeyListener {
 			// System.out.println("Checking " + i);
 			if (i.gold && isTouching(i.x, i.y, i.width, i.height)) {
 				i.changeGoldToFloor();
+				score += 10;
 				this.score += 10;
+
 			}
 		}
 	}
@@ -103,7 +110,8 @@ public class Player extends Rectangle implements KeyListener {
 		// Draw the rectangle to the graphics object
 		g.drawRect((int) (X) - ((renderDistanceW * 20) / 2), (int) (Y) - ((renderDistanceH * 20) / 2),
 				renderDistanceW * 20, renderDistanceH * 20);
-		g.drawString("Score: " + String.valueOf(this.score), (int) X, (int) Y);
+		
+		g.drawString("Score: " + String.valueOf(score), (int) X, (int) Y);
 	}
 
 	// Move player.
@@ -115,7 +123,7 @@ public class Player extends Rectangle implements KeyListener {
 				X -= speed;
 			} else {
 				X += speed;
-				staus = "faceright";
+				status = "faceright";
 			}
 		}
 		if (Xdirection == "LEFT") {
@@ -124,7 +132,7 @@ public class Player extends Rectangle implements KeyListener {
 				X += speed;
 			} else {
 				X -= speed;
-				staus = "faceleft";
+				status = "faceleft";
 			}
 
 		}
@@ -134,7 +142,7 @@ public class Player extends Rectangle implements KeyListener {
 				Y += speed;
 			} else {
 				Y -= speed;
-				staus = "faceup";
+				status = "faceup";
 			}
 		}
 		if (Ydirection == "DOWN") {
@@ -143,7 +151,8 @@ public class Player extends Rectangle implements KeyListener {
 				Y += speed;
 			} else {
 				Y += speed;
-				staus = "facedown";
+
+				status = "facedown";
 			}
 		}
 
