@@ -10,6 +10,8 @@ import GameStates.GameStateManager;
 public class LevelLoader extends GameState{
 	
 	public static World world;
+	public static Player player = new Player();
+	
 	private String worldName;
 	private String map_name;
 	
@@ -37,7 +39,7 @@ public class LevelLoader extends GameState{
 		world.init();
 	
 		world.generate(map_name);
-	
+		
 //		t.schedule(new TimerTask() {
 //		    @Override
 //		    public void run() {
@@ -53,6 +55,11 @@ public class LevelLoader extends GameState{
 	
 	@Override
 	public void update() {
+		if(player.isChanging == true){
+			System.out.println("HEY");
+			player.setIsChanging(false);
+		}
+		
 		world.update();
 
 	}

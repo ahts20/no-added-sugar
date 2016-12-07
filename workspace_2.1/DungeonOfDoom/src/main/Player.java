@@ -1,12 +1,16 @@
 package main;
 
+import java.awt.Checkbox;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import GameStates.GameStateManager;
 
 public class Player extends Rectangle implements KeyListener {
 	/*
@@ -25,17 +29,21 @@ public class Player extends Rectangle implements KeyListener {
 	private static float speed = 5;
 	public String status = "facedown";
 	private int score = 0;
+	
+	private GameStateManager gsm;
 
 	// Dimensions of Square/Screen following player.
 	private int renderDistanceW = 20;
 	private int renderDistanceH = 20;
 
 	public static Rectangle render;
+	
+	public boolean isChanging = false;
 
 	private BufferedImage spriteSheet = null;
 	public static BufferedImage[] p = new BufferedImage[12];
 
-	public void init() {
+	public void init() {	
 		loadImage loader = new loadImage();
 		try {
 			spriteSheet = loader.LoadImageFrom("/SpriteSheet.png");
@@ -121,7 +129,13 @@ public class Player extends Rectangle implements KeyListener {
 			} else {
 				X += speed;
 				status = "faceright";
+				if(detectTouchingDoor(blocks)){
+					World.resetWorld();
+			        gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
+			        gsm.states.peek().init();
+				}
 			}
+			
 		}
 		if (Xdirection == "LEFT") {
 			if (detectTouchingWall(blocks)) {
@@ -130,6 +144,11 @@ public class Player extends Rectangle implements KeyListener {
 			} else {
 				X -= speed;
 				status = "faceleft";
+				if(detectTouchingDoor(blocks)){
+					World.resetWorld();
+			        gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
+			        gsm.states.peek().init();
+				}
 			}
 
 		}
@@ -140,6 +159,11 @@ public class Player extends Rectangle implements KeyListener {
 			} else {
 				Y -= speed;
 				status = "faceup";
+				if(detectTouchingDoor(blocks)){
+					World.resetWorld();
+			        gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
+			        gsm.states.peek().init();
+				}
 			}
 		}
 		if (Ydirection == "DOWN") {
@@ -149,18 +173,33 @@ public class Player extends Rectangle implements KeyListener {
 			} else {
 				Y += speed;
 				status = "facedown";
+				if(detectTouchingDoor(blocks)){
+					World.resetWorld();
+			        gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
+			        gsm.states.peek().init();
+				}
 			}
 		}
-
 	}
 
 	private boolean detectTouchingWall(CopyOnWriteArrayList<Block> blocks) {
 		for (Block i : blocks) {
-			if ((i.wall || i.door) && isTouching(i.x, i.y, i.width, i.height))
+			if ((i.wall) && isTouching(i.x, i.y, i.width, i.height))
+
 				return true;
 		}
 		return false;
 	}
+	
+	private boolean detectTouchingDoor(CopyOnWriteArrayList<Block> blocks) {
+		for (Block i : blocks) {
+			if ((i.door) && isTouching(i.x, i.y, i.width, i.height))
+		
+		        return true;
+		}
+		return false;
+	}
+	   
 
 	// getters
 	public double getX() {
@@ -191,6 +230,7 @@ public class Player extends Rectangle implements KeyListener {
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_D) {
 			Xdirection = "RIGHT";
+			
 		}
 		if (key == KeyEvent.VK_A) {
 			Xdirection = "LEFT";
@@ -200,6 +240,12 @@ public class Player extends Rectangle implements KeyListener {
 		}
 		if (key == KeyEvent.VK_S) {
 			Ydirection = "DOWN";
+		}
+		
+		if (key == KeyEvent.VK_R) {
+		   World.resetWorld();
+	       gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
+	       gsm.states.peek().init();
 		}
 	}
 
@@ -228,4 +274,11 @@ public class Player extends Rectangle implements KeyListener {
 
 	}
 
+	public boolean isChanging() {
+		return isChanging;
+	}
+	public void setIsChanging(boolean isChanging){
+		this.isChanging = isChanging;
+	}
+	
 }

@@ -19,6 +19,10 @@ public class World{
 	
 	public static CopyOnWriteArrayList<Block> blocks = new CopyOnWriteArrayList<Block>();
 
+	public World(GameStateManager gsm){
+		this.gsm = gsm;
+	}
+	
 	public World(String worldName, GameStateManager gsm) {
 		this.gsm = gsm;
 	}
@@ -85,7 +89,7 @@ public class World{
 					break;
 				// If Black set as Wall.
 				case 0x000000:
-					blocks.add(new Block(x * blockSize, y * blockSize, blockSize, BlockType.WALL));
+					blocks.add(new Block(x * blockSize, y * blockSize, blockSize, BlockType.WALL).isSolid(true));
 					break;
 				// If Yellow set as Gold.
 				case 0xffff00:
@@ -103,7 +107,7 @@ public class World{
 		this.player = player;
 	}
 	
-	public void resetWorld(){
+	public static void resetWorld(){
 		blocks.clear();		
 	}
 	
