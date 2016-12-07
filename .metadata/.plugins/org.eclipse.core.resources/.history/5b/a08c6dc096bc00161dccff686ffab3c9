@@ -16,7 +16,6 @@ public class MouseInput implements MouseListener,  MouseMotionListener {
 		mouse = new Point(mouseMovedX, mouseMovedY);
 	}
 	
-	
 	public void render(Graphics g){
 		g.fillRect(mouseMovedX, mouseMovedY, 4, 4);
 	}

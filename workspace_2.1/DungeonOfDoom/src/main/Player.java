@@ -112,10 +112,7 @@ public class Player extends Rectangle implements KeyListener {
 
 		// Draw the player to the graphics object
 		g.drawImage(p[i], (int) X, (int) Y, null);
-
-		// Draw the rectangle to the graphics object
-		g.drawRect((int) (X) - ((renderDistanceW * 20) / 2), (int) (Y) - ((renderDistanceH * 20) / 2),
-				renderDistanceW * 20, renderDistanceH * 20);
+		
 		g.drawString("Score: " + String.valueOf(score), (int) X, (int) Y);
 	}
 
