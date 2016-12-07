@@ -7,19 +7,17 @@ import java.util.Timer;
 import GameStates.GameState;
 import GameStates.GameStateManager;
 
-
 public class LevelLoader extends GameState{
 	
 	public static World world;
+	public static Player player = new Player();
+	
 	private String worldName;
 	private String map_name;
 	
 	Timer t = new Timer();
-
-	public Player player;
-	public Block block;
-
-	public LevelLoader(GameStateManager gsm) {
+	
+	public LevelLoader(GameStateManager gsm){
 		super(gsm);
 	}
 	
@@ -41,7 +39,7 @@ public class LevelLoader extends GameState{
 		world.init();
 	
 		world.generate(map_name);
-	
+		
 //		t.schedule(new TimerTask() {
 //		    @Override
 //		    public void run() {
@@ -50,13 +48,18 @@ public class LevelLoader extends GameState{
 //		       gsm.states.peek().init();
 //		    }
 //		}, 4000, 10000);
-
+		
 	}
 	
 	
 	
 	@Override
 	public void update() {
+		if(player.isChanging == true){
+			System.out.println("HEY");
+			player.setIsChanging(false);
+		}
+		
 		world.update();
 
 	}
@@ -65,4 +68,6 @@ public class LevelLoader extends GameState{
 	public void render(Graphics g) {
 		world.render(g);
 	}
+
+	
 }
