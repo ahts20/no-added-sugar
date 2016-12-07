@@ -1,37 +1,38 @@
 package GameStates;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
 import javax.swing.JPanel;
 
-import main.GameGraphics;
-import main.Menu;
-import main.MouseInput;
-import main.Player;
-
 public class GameLoop extends JPanel implements Runnable {
-
-	private boolean running = false;
-	private Thread thread;
-
+	/*
+	It is wise to declare it because if you don't declare one then when changing 
+	the class it will get a different one generated automatically and the 
+	serialisation will stop working.
+	*/
+	private static final long serialVersionUID = 1L;
+	
+	public boolean running = false;
+	public Thread thread;
+	
 	public Graphics graphics;
+	public Graphics g2;
+	
 	public BufferedImage off_screen_gr_img;
 
 	public GameStateManager gsm;
 
-	private int width;
-	private int height;
+	public int width;
+	public int height;
 
-	private Menu menu;
+	public int updates = 0;
+	public int frames = 0;
+	
+	public int fps;
+	public int tps;
 
-	public static enum STATE {
-		MENU, GAME
-	};
 
-	public static STATE State = STATE.MENU;
 
 	public GameLoop(int width, int height) {
 		this.width = width;
@@ -57,8 +58,6 @@ public class GameLoop extends JPanel implements Runnable {
 		double ns = 1000000000 / amountOfTicks;
 
 		double delta = 0;
-		int updates = 0;
-		int frames = 0;
 		long timer = System.currentTimeMillis();
 
 		while (running) {
@@ -97,6 +96,9 @@ public class GameLoop extends JPanel implements Runnable {
 			// every second just to display
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
+				fps = updates;
+				tps = frames;
+
 				// System.out.println(frames);
 				updates = 0;
 				frames = 0;
@@ -107,8 +109,6 @@ public class GameLoop extends JPanel implements Runnable {
 	}
 
 	public void init() {
-		menu = new Menu();
-		this.addMouseListener(new MouseInput());
 		// Making the off_screen_gr_img into a canvas to draw graphics on
 		off_screen_gr_img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		// Setting graphics variable to allow the canvas to be an image
@@ -131,12 +131,13 @@ public class GameLoop extends JPanel implements Runnable {
 	public void render() {
 		// Clearing the canvas for further drawing
 		graphics.clearRect(0, 0, width, height);
+		
 		// GameStateManager allowing to input graphics from other
-		if (State == STATE.GAME) {
+
+		gsm.render(graphics);
+		// GameStateManager allowing to input graphics from other
+
 			gsm.render(graphics);
-		} else if (State == STATE.MENU) {
-			menu.render(graphics);
-		}
 		// Drawing and disposing of the image by using the loop
 		// This is where the graphics are drawn on the screen
 		drawImage();
@@ -144,6 +145,9 @@ public class GameLoop extends JPanel implements Runnable {
 
 	public void drawImage() {
 		// Initialising new graphics
+
+		g2 = getGraphics();
+
 		Graphics g2 = getGraphics();
 		if (off_screen_gr_img != null) {
 			// Drawing the image on the screen, this will contain graphics taken

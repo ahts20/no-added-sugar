@@ -1,117 +1,68 @@
 package main;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Timer;
+//import java.util.TimerTask;
 
-import main.Block.BlockType;
 import GameStates.GameState;
 import GameStates.GameStateManager;
 
-public class LevelLoader extends GameState {
+
+public class LevelLoader extends GameState{
+	
+	public static World world;
+	private String worldName;
+	private String map_name;
+	
+	Timer t = new Timer();
 
 	public Player player;
 	public Block block;
 
-	private static BufferedImage map;
-	public static loadImage loader;
-
-	public static CopyOnWriteArrayList<Block> blocks = new CopyOnWriteArrayList<Block>();
-
 	public LevelLoader(GameStateManager gsm) {
 		super(gsm);
 	}
+	
+	public LevelLoader(GameStateManager gsm, String worldName, String map_name) {
+		super(gsm);
+		this.worldName = worldName;
+		this.map_name = map_name;
+	}
 
+	@Override
 	public void init() {
-		loader = new loadImage();
-		generate("map");
-		player = new Player();
-		player.init();
-	}
+		if(worldName == null){
+			worldName = "null";
+			map_name = "map";
+		}
+		
+		world = new World(worldName, gsm);
+		world.addPlayer(new Player());
+		world.init();
+	
+		world.generate(map_name);
+	
+//		t.schedule(new TimerTask() {
+//		    @Override
+//		    public void run() {
+//		       world.resetWorld();
+//		       gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
+//		       gsm.states.peek().init();
+//		    }
+//		}, 4000, 10000);
 
+	}
+	
+	
+	
+	@Override
 	public void update() {
-		player.update(blocks);
-		if (allGoldPickedUp()) {
-			for (Block i : blocks) {
-				if (i.door)
-					i.isVisible = true;
-			}
-		}
+		world.update();
 
-		// POSSIBLE INTERSECTION, GOOD FOR MEMORY MANAGEMENT, NEEDS TO BE
-		// DISCUSSED
-		// for(Block i : blocks){
-		// if(Player.render.intersects(i)){
-		// if(!blocks.contains(i)){
-		// blocks.add(i);
-		// }
-		// } else {
-		// if(blocks.contains(i)){
-		// blocks.remove(i);
-		// }
-		// }
-		// }
 	}
 
-	private boolean allGoldPickedUp() {
-		boolean allGoldDetected = true;
-		for (Block i : blocks) {
-			if (i.gold == true)
-				allGoldDetected = false;
-		}
-		return allGoldDetected;
-	}
-
+	@Override
 	public void render(Graphics g) {
-		for (Block i : blocks) {
-			i.render(g);
-		}
-		if (player.staus == "facedown") {
-			player.render(g, 2);
-		} else if (player.staus == "faceleft") {
-			player.render(g, 0);
-		} else if (player.staus == "faceright") {
-			player.render(g, 1);
-		} else if (player.staus == "faceup") {
-			player.render(g, 3);
-		}
+		world.render(g);
 	}
-
-	public static void generate(String world_name) {
-		// Generates the world from the map PNG image.
-		map = null;
-		// Syntactic sugarrrr - match with block height and width to avoid gaps.
-		int blockSize = 25;
-		try {
-			map = loader.LoadImageFrom("/" + world_name + ".png");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		// Iterate through each pixel in the image.
-		for (int x = 0; x < 50; x++) {
-			for (int y = 0; y < 50; y++) {
-				int mapColours = map.getRGB(x, y);
-
-				switch (mapColours & 0xFFFFFF) {
-				// If Grey set as floor/RECTANGLE
-				case 0x808080:
-					blocks.add(new Block(x * blockSize, y * blockSize, blockSize, BlockType.RECTANGLE));
-					break;
-				// If Black set as Wall.
-				case 0x000000:
-					blocks.add(new Block(x * blockSize, y * blockSize, blockSize, BlockType.WALL));
-					break;
-				// If Yellow set as Gold.
-				case 0xffff00:
-					blocks.add(new Block(x * blockSize, y * blockSize, blockSize, BlockType.GOLD));
-					break;
-				// If Blue set as Door.
-				case 0x0080FF:
-					blocks.add(new Block(x * blockSize, y * blockSize, blockSize, BlockType.DOOR));
-					break;
-				}
-			}
-		}
-	}
-
 }
