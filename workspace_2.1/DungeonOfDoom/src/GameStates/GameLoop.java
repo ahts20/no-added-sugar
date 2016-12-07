@@ -32,8 +32,6 @@ public class GameLoop extends JPanel implements Runnable {
 	public int fps;
 	public int tps;
 
-
-
 	public GameLoop(int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -98,7 +96,6 @@ public class GameLoop extends JPanel implements Runnable {
 				timer += 1000;
 				fps = updates;
 				tps = frames;
-
 				// System.out.println(frames);
 				updates = 0;
 				frames = 0;
@@ -135,9 +132,7 @@ public class GameLoop extends JPanel implements Runnable {
 		// GameStateManager allowing to input graphics from other
 
 		gsm.render(graphics);
-		// GameStateManager allowing to input graphics from other
-
-			gsm.render(graphics);
+		
 		// Drawing and disposing of the image by using the loop
 		// This is where the graphics are drawn on the screen
 		drawImage();
@@ -145,10 +140,7 @@ public class GameLoop extends JPanel implements Runnable {
 
 	public void drawImage() {
 		// Initialising new graphics
-
 		g2 = getGraphics();
-
-		Graphics g2 = getGraphics();
 		if (off_screen_gr_img != null) {
 			// Drawing the image on the screen, this will contain graphics taken
 			// from other classes

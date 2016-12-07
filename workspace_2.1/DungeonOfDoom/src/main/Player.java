@@ -15,7 +15,7 @@ public class Player extends Rectangle implements KeyListener {
 	serialisation will stop working.
 	*/
 	private static final long serialVersionUID = 1L;
-
+	
 	public static int playerWidth = 40;
 	public static int playerHeight = 40;
 	private float X = (Main.width / 2) - (playerWidth / 2);
@@ -87,8 +87,6 @@ public class Player extends Rectangle implements KeyListener {
 			if (i.gold && isTouching(i.x, i.y, i.width, i.height)) {
 				i.changeGoldToFloor();
 				score += 10;
-				this.score += 10;
-
 			}
 		}
 	}
@@ -110,7 +108,6 @@ public class Player extends Rectangle implements KeyListener {
 		// Draw the rectangle to the graphics object
 		g.drawRect((int) (X) - ((renderDistanceW * 20) / 2), (int) (Y) - ((renderDistanceH * 20) / 2),
 				renderDistanceW * 20, renderDistanceH * 20);
-		
 		g.drawString("Score: " + String.valueOf(score), (int) X, (int) Y);
 	}
 
@@ -151,7 +148,6 @@ public class Player extends Rectangle implements KeyListener {
 				Y += speed;
 			} else {
 				Y += speed;
-
 				status = "facedown";
 			}
 		}

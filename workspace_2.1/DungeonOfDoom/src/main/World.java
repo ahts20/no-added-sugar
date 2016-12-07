@@ -111,8 +111,8 @@ public class World{
 	
 		if(wn != worldName){
 			resetWorld();
-			GameStateManager.states.push(new LevelLoader(gsm, wn, mn));
-			GameStateManager.states.peek().init();
+			gsm.states.push(new LevelLoader(gsm, wn, mn));
+			gsm.states.peek().init();
 		} else {
 			System.out.println("ALREADY IN THE WORLD");
 		}

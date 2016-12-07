@@ -46,7 +46,6 @@ public class JUnitGold {
 		assertEquals(false, d.isVisible);
 
 		// Create Level loader object and add player and blocks.
-
 		World world = new World("testWorld", new GameStateManager());
 		world.player = p;
 		world.blocks = blocks;
@@ -54,10 +53,8 @@ public class JUnitGold {
 		// Change pos of player to gold block location.
 		p.setX(10);
 		p.setY(10);
-		
 		// Update game logic
 		world.update();
-
 
 		// Check if score increased by 10.
 		assertEquals(true, p.getScore() == 10.0);
