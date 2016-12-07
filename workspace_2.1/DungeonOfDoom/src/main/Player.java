@@ -28,7 +28,7 @@ public class Player extends Rectangle implements KeyListener{
 	public static Rectangle render;
 	
 	private BufferedImage spriteSheet = null;
-	private BufferedImage[] p=new BufferedImage[9];
+	public static BufferedImage[] p=new BufferedImage[12];
 
 	public void init() {
 		loadImage loader = new loadImage();
@@ -41,8 +41,12 @@ public class Player extends Rectangle implements KeyListener{
 		
 		//Assign animation images to the array p array.
 		SpriteSheet ss = new SpriteSheet(spriteSheet);
-		for (int i=0;i<4;i++){
-			p[i] = ss.grabImage(i, 0, 80/4, 60/3);
+		int i=0;
+		for (int k=0;k<3;k++){
+			for (int j=0;j<4;j++){
+				p[i] = ss.grabImage(j, k, 80/4, 60/3);
+				i++;
+			}
 		}	
 		
 		//Draw large rectangle following player.
