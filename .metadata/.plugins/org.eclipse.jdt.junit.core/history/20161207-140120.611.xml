@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="JUnitGameLoopTest" project="DungeonOfDoom" tests="5" started="5" failures="0" errors="0" ignored="0">
+  <testsuite name="JUnitGameLoopTest" time="2.111">
+    <testcase name="testRun" classname="JUnitGameLoopTest" time="2.016"/>
+    <testcase name="testInit" classname="JUnitGameLoopTest" time="0.026"/>
+    <testcase name="testGameLoop" classname="JUnitGameLoopTest" time="0.041"/>
+    <testcase name="testAddNotify" classname="JUnitGameLoopTest" time="0.021"/>
+    <testcase name="testUpdate" classname="JUnitGameLoopTest" time="0.007"/>
+  </testsuite>
+</testrun>

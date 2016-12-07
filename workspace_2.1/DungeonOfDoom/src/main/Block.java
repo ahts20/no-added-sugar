@@ -11,15 +11,16 @@ public class Block extends Rectangle {
 	serialisation will stop working.
 	*/
 	private static final long serialVersionUID = 1L;
-
+	
 	private BlockType blocktype;
 	public int x, y;
 	public int width;
 	public int height;
-
 	public boolean isVisible;
 
 	public boolean rectangle, wall, gold, door;
+	
+	private boolean isSolid;
 
 	public Block(int x, int y) {
 		setBounds((int) x, (int) y, width, height);
@@ -98,5 +99,15 @@ public class Block extends Rectangle {
 	public enum BlockType {
 		RECTANGLE, WALL, GOLD, DOOR
 	}
+	
+	public boolean isSolid() {
+		return isSolid;
+	}
+	
+	public Block isSolid(boolean isSolid){
+		this.isSolid = isSolid;
+		return this;
+	}
+	
 
 }

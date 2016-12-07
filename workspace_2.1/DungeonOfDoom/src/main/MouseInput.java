@@ -61,6 +61,7 @@ public class MouseInput implements MouseListener,  MouseMotionListener {
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-	}
 		
+	}
+
 }
