@@ -3,15 +3,20 @@ package main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Block extends Rectangle {
+	/*
+	It is wise to declare it because if you don't declare one then when changing 
+	the class it will get a different one generated automatically and the 
+	serialisation will stop working.
+	*/
+	private static final long serialVersionUID = 1L;
+
 	private BlockType blocktype;
 	public int x, y;
 	public int width;
 	public int height;
-	private boolean isAlive;
+
 	public boolean isVisible;
 
 	public boolean rectangle, wall, gold, door;
