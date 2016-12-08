@@ -59,8 +59,11 @@ public class Bot extends Avatar {
 			BotYdirection = "DOWN";
 	}
 	private void tryToHitPlayer(){
-		if (isTouching( (int) player.getX(), (int) player.getY(), 60, 60))
+		if (isTouching( (int) player.getX(), (int) player.getY(), 60, 60)){
 			knockPlayer();
+			stealGold();
+			makeInactive();
+		}
 	}
 	
 	protected boolean isTouching(int x, int y, int width, int height) {
@@ -68,9 +71,7 @@ public class Bot extends Avatar {
 		 * Buggy for some reason in Avatar.
 		 * Adjusted for smaller visible section of image.
 		 */
-		//Adjust for smaller segment of visible image within it's square.
-//		x = (int) (x *( width*.6));
-//		y = (int) (y*.9);
+
 		//Checking current in target space
 		if (this.X >= x && this.X <= x + width) {
 			if (this.Y >= y && this.Y <= y + height) {
@@ -88,6 +89,7 @@ public class Bot extends Avatar {
 	
 	private void knockPlayer(){
 		int power = 200;
+		//Knock the player in the right direction.
 		if (BotXdirection.equals("RIGHT"))
 			player.setX((float) (player.getX()+power));
 		if (BotXdirection.equals("LEFT"))
@@ -96,10 +98,14 @@ public class Bot extends Avatar {
 			player.setY((float) (player.getY()+power));
 		if (BotXdirection.equals("UP"))
 			player.setY((float) (player.getY()-power));
-		//Make inactive after hitting.
-		makeInactive();
+		
 	}
-	
+	private void stealGold(){
+		int goldTake = 20;
+		if (player.getScore() > goldTake)
+			player.setScore(player.getScore() - goldTake);
+		else player.setScore(0);
+	}
 	private void makeInactive(){
 		active = false;
 		BotXdirection = "";
@@ -118,7 +124,6 @@ public class Bot extends Avatar {
 	}
 	
 	public void render(Graphics g){
-		//System.out.println("Rendering bot " + X + "\t" + Y);
 		g.drawRect((int) this.X, (int) Y, this.playerWidth, this.playerHeight);
 	}
 }

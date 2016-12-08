@@ -161,9 +161,10 @@ public abstract class Avatar {
 		return this.Y;
 	}
 
-	public double getScore() {
+	public int getScore() {
 		return this.score;
 	}
+	
 
 	// Setters
 	public void setX(float x) {
@@ -172,6 +173,10 @@ public abstract class Avatar {
 
 	public void setY(float y) {
 		this.Y = y;
+	}
+	
+	public void setScore(int s){
+		this.score = s;
 	}
 
 	
