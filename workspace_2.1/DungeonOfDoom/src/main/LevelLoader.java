@@ -35,7 +35,6 @@ public class LevelLoader extends GameState{
 		}
 		
 		world = new World(worldName, gsm);
-		world.addPlayer(new Player());
 		world.init();
 	
 		world.generate(map_name);
