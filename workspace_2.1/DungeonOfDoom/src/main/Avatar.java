@@ -60,7 +60,7 @@ public abstract class Avatar {
 		if (this.X >= x && this.X <= x + width) {
 			if (this.Y >= y && this.Y <= y + height) {
 				return true;
-			}
+			} 
 		}
 		//Checking target in current space.
 		if (x >= this.X && x <= this.X + this.width) {
