@@ -56,8 +56,15 @@ public abstract class Avatar {
 
 
 	protected boolean isTouching(int x, int y, int width, int height) {
+		//Checking current in target space
 		if (this.X >= x && this.X <= x + width) {
 			if (this.Y >= y && this.Y <= y + height) {
+				return true;
+			} 
+		}
+		//Checking target in current space.
+		if (x >= this.X && x <= this.X + this.width) {
+			if (y >= this.Y && y <= this.Y + this.height) {
 				return true;
 			}
 		}
@@ -154,9 +161,10 @@ public abstract class Avatar {
 		return this.Y;
 	}
 
-	public double getScore() {
+	public int getScore() {
 		return this.score;
 	}
+	
 
 	// Setters
 	public void setX(float x) {
@@ -165,6 +173,10 @@ public abstract class Avatar {
 
 	public void setY(float y) {
 		this.Y = y;
+	}
+	
+	public void setScore(int s){
+		this.score = s;
 	}
 
 	

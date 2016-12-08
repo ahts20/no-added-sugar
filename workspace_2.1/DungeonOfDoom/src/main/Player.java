@@ -99,10 +99,10 @@ public class Player extends Avatar implements KeyListener {
 	public void render(Graphics g, int i) {
 
 		// Draw the player to the graphics object
-		g.drawImage(this.p[i], (int) this.X-30, (int) this.Y-30, null);
+		g.drawImage(this.p[i], (int) this.X, (int) this.Y, null);
 		//System.out.println("Current X cord: " + this.X + " Current direction: " + this.Xdirection);
 		
-		g.drawString("Score: " + String.valueOf(score), (int) this.X-30, (int) this.Y-30);
+		g.drawString("Score: " + String.valueOf(score), (int) this.X, (int) this.Y-30);
 	}
 	
 	private void checkGoldTouch(CopyOnWriteArrayList<Block> blocks) {
