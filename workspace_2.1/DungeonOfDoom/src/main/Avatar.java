@@ -12,7 +12,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import GameStates.GameStateManager;
 
-public abstract class Avatar implements KeyListener {
+public abstract class Avatar {
 	/*
 	It is wise to declare it because if you don't declare one then when changing 
 	the class it will get a different one generated automatically and the 
@@ -22,11 +22,13 @@ public abstract class Avatar implements KeyListener {
 	
 	public static int playerWidth = 40;
 	public static int playerHeight = 40;
-	private float X = (Main.width / 2) - (playerWidth / 2);
-	private float Y = (Main.height / 2) - (playerHeight / 2);
+	public int height = 60;
+	public int width = 60;
+	protected float X;
+	protected float Y;
 	protected static String Xdirection;
 	protected static String Ydirection;
-	private float speed = 5;
+	protected float speed = 5;
 	public String status = "facedown";
 	protected int score = 0;
 	
@@ -38,31 +40,12 @@ public abstract class Avatar implements KeyListener {
 	
 	public boolean isChanging = false;
 
-	private BufferedImage spriteSheet = null;
+	protected BufferedImage spriteSheet = null;
 	public static BufferedImage[] p = new BufferedImage[12];
 
 	public void init() {	
 		this.Xdirection = "";
 		this.Ydirection = "";
-		
-		loadImage loader = new loadImage();
-		try {
-			spriteSheet = loader.LoadImageFrom("/SpriteSheet.png");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// Assign animation images to the array p array.
-		SpriteSheet ss = new SpriteSheet(spriteSheet);
-		int i = 0;
-		for (int k = 0; k < 3; k++) {
-			for (int j = 0; j < 4; j++) {
-				this.p[i] = ss.grabImage(j, k, 240 / 4, 180 / 3);
-				i++;
-			}
-		}
-
 	}
 
 	public void update(CopyOnWriteArrayList<Block> blocks) {
@@ -82,21 +65,14 @@ public abstract class Avatar implements KeyListener {
 	}
 
 	public void render(Graphics g, int i) {
+}
 
-		// Draw the player to the graphics object
-		g.drawImage(this.p[i], (int) this.X-30, (int) this.Y-30, null);
-		//System.out.println("Current X cord: " + this.X + " Current direction: " + this.Xdirection);
-		
-		g.drawString("Score: " + String.valueOf(score), (int) this.X-30, (int) this.Y-30);
-	}
-
-	// Move player.
 	protected void movePlayer(CopyOnWriteArrayList<Block> blocks) {
 		// Make player move in desired direction.
 		if (this.Xdirection == "RIGHT") {
 			if (detectTouchingWall(blocks)) {
 				this.Xdirection = "LEFT";
-				this.X -= this.speed;
+				X -= this.speed;
 			} else {
 				this.X += this.speed;
 				this.status = "faceright";
@@ -108,9 +84,9 @@ public abstract class Avatar implements KeyListener {
 			}
 			
 		}
-		if (this.Xdirection == "LEFT") {
+		if (this.Xdirection.equals("LEFT")) {
 			if (detectTouchingWall(blocks)) {
-				this.Xdirection = "RIGHT";
+				this.Xdirection.equals("RIGHT");
 				this.X += this.speed;
 			} else {
 				this.X -= this.speed;
@@ -152,7 +128,6 @@ public abstract class Avatar implements KeyListener {
 			}
 		}
 	}
-
 	protected boolean detectTouchingWall(CopyOnWriteArrayList<Block> blocks) {
 		for (Block i : blocks) {
 			if ((i.wall) && isTouching(i.x, i.y, i.width, i.height))
