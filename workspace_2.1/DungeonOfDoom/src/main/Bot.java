@@ -87,7 +87,7 @@ public class Bot extends Avatar {
 	}
 	
 	private void knockPlayer(){
-		int power = 40;
+		int power = 200;
 		if (BotXdirection.equals("RIGHT"))
 			player.setX((float) (player.getX()+power));
 		if (BotXdirection.equals("LEFT"))
