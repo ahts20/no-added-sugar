@@ -17,7 +17,7 @@ public class Block extends Rectangle {
 	public int width;
 	public int height;
 	public boolean isVisible;
-
+	
 	public boolean rectangle, wall, gold, door;
 	
 	private boolean isSolid;
@@ -26,6 +26,7 @@ public class Block extends Rectangle {
 		setBounds((int) x, (int) y, width, height);
 		this.x = x;
 		this.y = y;
+
 	}
 
 	public Block(int x, int y, int blockSize, BlockType blocktype) {
