@@ -13,15 +13,15 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import GameStates.GameStateManager;
 
 public class Player extends Avatar implements KeyListener {
-	
-	public void init (){
+
+	public void init() {
 		this.Xdirection = "";
 		this.Ydirection = "";
 		X = (Main.width / 2) - (playerWidth / 2);
 		Y = (Main.height / 2) - (playerHeight / 2);
 		loadImage loader = new loadImage();
 		try {
-			spriteSheet = loader.LoadImageFrom("/SpriteSheet.png");
+			spriteSheet = loader.LoadImageFrom("/SpriteSheet(2).png");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,14 +37,16 @@ public class Player extends Avatar implements KeyListener {
 			}
 		}
 	}
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// Set player direction according to the key presses.
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_D) {
 			this.Xdirection = "RIGHT";
-			//System.out.println("Set X direction to Right: " + this.Xdirection);
-			
+			// System.out.println("Set X direction to Right: " +
+			// this.Xdirection);
+
 		}
 		if (key == KeyEvent.VK_A) {
 			this.Xdirection = "LEFT";
@@ -55,11 +57,11 @@ public class Player extends Avatar implements KeyListener {
 		if (key == KeyEvent.VK_S) {
 			this.Ydirection = "DOWN";
 		}
-		
+
 		if (key == KeyEvent.VK_R) {
-		   World.resetWorld();
-	       gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
-	       gsm.states.peek().init();
+			World.resetWorld();
+			gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
+			gsm.states.peek().init();
 		}
 	}
 
@@ -69,7 +71,7 @@ public class Player extends Avatar implements KeyListener {
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_D) {
 			this.Xdirection = "faceright";
-			//System.out.println("Facing right");
+			// System.out.println("Facing right");
 		}
 		if (key == KeyEvent.VK_A) {
 			this.Xdirection = "faceleft";
@@ -84,9 +86,10 @@ public class Player extends Avatar implements KeyListener {
 	}
 
 	@Override
-	public void keyTyped(KeyEvent k){
-		
+	public void keyTyped(KeyEvent k) {
+
 	}
+
 	public void update(CopyOnWriteArrayList<Block> blocks) {
 
 		// Check for gold collision and update score and gold.
@@ -95,16 +98,17 @@ public class Player extends Avatar implements KeyListener {
 		movePlayer(blocks);
 
 	}
-	
+
 	public void render(Graphics g, int i) {
 
 		// Draw the player to the graphics object
 		g.drawImage(this.p[i], (int) this.X, (int) this.Y, null);
-		//System.out.println("Current X cord: " + this.X + " Current direction: " + this.Xdirection);
-		
-		g.drawString("Score: " + String.valueOf(score), (int) this.X, (int) this.Y-30);
+		// System.out.println("Current X cord: " + this.X + " Current direction:
+		// " + this.Xdirection);
+
+		g.drawString("Score: " + String.valueOf(score), (int) this.X, (int) this.Y - 30);
 	}
-	
+
 	private void checkGoldTouch(CopyOnWriteArrayList<Block> blocks) {
 		for (Block i : blocks) {
 			// System.out.println("Checking " + i);
@@ -114,5 +118,5 @@ public class Player extends Avatar implements KeyListener {
 			}
 		}
 	}
-	
+
 }
