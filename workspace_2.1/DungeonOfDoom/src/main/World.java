@@ -72,7 +72,17 @@ public class World{
 		} else if (player.status == "faceup") {
 			player.render(g, 3);
 		}
-		bot.render(g);
+		
+		if (bot.botState == "facedown") {
+			bot.render(g, 6);
+		} else if (bot.botState == "faceleft") {
+			bot.render(g, 4);
+		} else if (bot.botState == "faceright") {
+			bot.render(g, 5);
+		} else if (bot.botState == "faceup") {
+			bot.render(g, 7);
+		}
+//		bot.render(g);
 	}
 
 	public void generate(String world_name) {
