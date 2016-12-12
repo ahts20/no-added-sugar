@@ -108,15 +108,47 @@ public class TestBot {
 		assertEquals(false, bot.getActive());
 	}
 	@Test
-	public void testBotPushesPlayer() {
+	public void testBotPushesPlayerDown() {
 		bot.setX(10);
 		bot.setY(10);
-		bot.setBotYdirection("DOWN");
-		p.setX(11);
+		p.setX(10);
 		p.setY(11);
 		//Run logic
 		world.update();
 		//Becomes inactive.
 		assertEquals(true, p.getY() > 10);
+	}
+	@Test
+	public void testBotPushesPlayerUp() {
+		bot.setX(10);
+		bot.setY(10);
+		p.setX(10);
+		p.setY(9);
+		//Run logic
+		world.update();
+		//Becomes inactive.
+		assertEquals(true, p.getY() < 10);
+	}
+	@Test
+	public void testBotPushesPlayerRight() {
+		bot.setX(10);
+		bot.setY(10);
+		p.setX(11);
+		p.setY(10);
+		//Run logic
+		world.update();
+		//Becomes inactive.
+		assertEquals(true, p.getX() > 10);
+	}
+	@Test
+	public void testBotPushesPlayerLeft() {
+		bot.setX(10);
+		bot.setY(10);
+		p.setX(9);
+		p.setY(10);
+		//Run logic
+		world.update();
+		//Becomes inactive.
+		assertEquals(true, p.getX() < 10);
 	}
 }
