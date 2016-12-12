@@ -17,12 +17,16 @@
 <fullyQualifiedTypeName name="java.lang.Thread"/>
 <fullyQualifiedTypeName name="org.junit.After"/>
 <fullyQualifiedTypeName name="java.awt.event.KeyEvent"/>
-<fullyQualifiedTypeName name="main.Player"/>
 <fullyQualifiedTypeName name="java.awt.event.KeyListener"/>
 <fullyQualifiedTypeName name="com.sun.glass.ui.Timer"/>
 <fullyQualifiedTypeName name="java.util.Timer"/>
-<fullyQualifiedTypeName name="main.World"/>
-<fullyQualifiedTypeName name="GameStates.GameStateManager"/>
 <fullyQualifiedTypeName name="java.util.TimerTask"/>
 <fullyQualifiedTypeName name="main.LevelLoader"/>
+<fullyQualifiedTypeName name="main.Block"/>
+<fullyQualifiedTypeName name="java.awt.Checkbox"/>
+<fullyQualifiedTypeName name="main.Check"/>
+<fullyQualifiedTypeName name="java.awt.Point"/>
+<fullyQualifiedTypeName name="main.World"/>
+<fullyQualifiedTypeName name="GameStates.GameStateManager"/>
+<fullyQualifiedTypeName name="main.Player"/>
 </qualifiedTypeNameHistroy>
