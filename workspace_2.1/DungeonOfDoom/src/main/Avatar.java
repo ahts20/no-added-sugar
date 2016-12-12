@@ -26,8 +26,8 @@ public abstract class Avatar {
 	public int width = 60;
 	protected float X;
 	protected float Y;
-	protected static String Xdirection;
-	protected static String Ydirection;
+	protected static String Xdirection = "";
+	protected static String Ydirection = "";
 	protected float speed = 5;
 	public String status = "facedown";
 	protected int score = 0;
@@ -164,8 +164,12 @@ public abstract class Avatar {
 	public int getScore() {
 		return this.score;
 	}
-	
-
+	public String getXdirection(){
+		return this.Xdirection;
+	}
+	public String getYdirection(){
+		return this.Ydirection;
+	}
 	// Setters
 	public void setX(float x) {
 		this.X = x;
@@ -179,7 +183,12 @@ public abstract class Avatar {
 		this.score = s;
 	}
 
-	
+	public void setXDirection(String dir){
+		this.Xdirection = dir;
+	}
+	public void setYDirection(String dir){
+		this.Ydirection = dir;
+	}
 	public boolean isChanging() {
 		return isChanging;
 	}

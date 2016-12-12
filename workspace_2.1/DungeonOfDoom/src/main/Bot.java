@@ -6,27 +6,27 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Bot extends Avatar {
 	Player player = new Player();
-	protected float X = (Main.width / 3) - (playerWidth / 3);
-	protected float Y = (Main.height / 3) - (playerHeight / 3);
-	private String BotXdirection;
-	private String BotYdirection;
+	
+	public final int goldTake = 20;
+	private String BotXdirection = "";
+	private String BotYdirection = "";
 	public static String botState="";
-	boolean active = true;
+	private boolean active = true;
 	long startSleepTime;
 	int sleepingTime = 3;
 
 	public void init(Player player) {
-		this.BotXdirection = "";
-		this.BotYdirection = "";
 		this.player = player;
 		this.speed = 3;
+		this.X = (Main.width / 3) - (playerWidth / 3);
+		this.Y = (Main.height / 3) - (playerHeight / 3);
 	}
 
 	public void update(CopyOnWriteArrayList<Block> blocks) {
 		// Check is sleeping
 		checkIfSleeping();
 		// Change direction
-		if (active)
+		if (getActive())
 			attackPlayer();
 
 		// make player change its co-ordinates.
@@ -35,11 +35,11 @@ public class Bot extends Avatar {
 
 	private void checkIfSleeping() {
 		// System.out.println(active);
-		if (!active) {
+		if (!getActive()) {
 			long elapsedTime = (System.currentTimeMillis() - startSleepTime) / 1000;
 			// System.out.println("Elapsed time: " + elapsedTime);
 			if ((int) elapsedTime > (int) sleepingTime) {
-				active = true;
+				setActive(true);
 			}
 		}
 	}
@@ -115,7 +115,6 @@ public class Bot extends Avatar {
 	}
 
 	private void stealGold() {
-		int goldTake = 20;
 		if (player.getScore() > goldTake)
 			player.setScore(player.getScore() - goldTake);
 		else
@@ -123,7 +122,7 @@ public class Bot extends Avatar {
 	}
 
 	private void makeInactive() {
-		active = false;
+		setActive(false);
 		BotXdirection = "";
 		BotYdirection = "";
 		startSleepTime = System.currentTimeMillis();
@@ -143,5 +142,28 @@ public class Bot extends Avatar {
 	public void render(Graphics g, int i) {
 		// g.drawRect((int) this.X, (int) Y, this.playerWidth, this.playerHeight);
 		g.drawImage(this.p[i], (int) this.X, (int) this.Y, null);
+	}
+		public boolean getActive() {
+		return active;
+	}
+	//Getters
+	public String getBotXdirection(){
+		return BotXdirection;
+	}
+	public String getBotYdirection(){
+		return BotYdirection;
+	}
+	//Setters
+	public void setBotXdirection(String dir){
+		BotXdirection = dir;
+	}
+	public void setBotYdirection(String dir){
+		BotYdirection = dir;
+	}
+
+
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 }
