@@ -9,6 +9,7 @@ import GameStates.GameStateManager;
 public class World{
 
 	public Player player;
+	public Bot bot;
 	public Block block;
 	private GameStateManager gsm;
 
@@ -31,10 +32,17 @@ public class World{
 		loader = new loadImage();
 		player = new Player();
 		player.init();
+		bot = new Bot();
+		bot.init(player);
 	}
 
 	public void update() {
 		player.update(blocks);
+		checkGoldTakenAndOpenDoor();
+		bot.update(blocks);
+		
+	}
+	private void checkGoldTakenAndOpenDoor(){
 		if (allGoldPickedUp()) {
 			for (Block i : blocks) {
 				if (i.door)
@@ -42,7 +50,6 @@ public class World{
 			}
 		}
 	}
-
 	private boolean allGoldPickedUp() {
 		boolean allGoldDetected = true;
 		for (Block i : blocks) {
@@ -65,6 +72,7 @@ public class World{
 		} else if (player.status == "faceup") {
 			player.render(g, 3);
 		}
+		bot.render(g);
 	}
 
 	public void generate(String world_name) {
