@@ -69,8 +69,9 @@ public class Block extends Rectangle {
 		}
 
 		if (wall == true) {
-			g.setColor(Color.WHITE);
-			g.drawRect((int) x, (int) y, width, height);
+//			g.setColor(Color.WHITE);
+//			g.drawRect((int) x, (int) y, width, height);
+			g.drawImage(Player.p[9], (int) x, (int) y, width, height, null);
 		}
 		if (gold == true) {
 			g.drawImage(Player.p[8], (int) x, (int) y, width, height, null);

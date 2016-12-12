@@ -64,13 +64,13 @@ public class World{
 			i.render(g);
 		}
 		if (player.status == "facedown") {
-			player.render(g, 2);
+			player.render(g, 3);
 		} else if (player.status == "faceleft") {
 			player.render(g, 0);
 		} else if (player.status == "faceright") {
 			player.render(g, 1);
 		} else if (player.status == "faceup") {
-			player.render(g, 3);
+			player.render(g, 2);
 		}
 		
 		if (bot.botState == "facedown") {
