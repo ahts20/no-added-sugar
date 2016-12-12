@@ -7,6 +7,7 @@ import org.junit.Test;
 import GameStates.GameStateManager;
 import main.Block;
 import main.Block.BlockType;
+import main.Bot;
 import main.LevelLoader;
 import main.Player;
 import main.World;
@@ -49,6 +50,7 @@ public class JUnitGold {
 		World world = new World("testWorld", new GameStateManager());
 		world.player = p;
 		world.blocks = blocks;
+		world.bot = new Bot();
 
 		// Change pos of player to gold block location.
 		p.setX(10);

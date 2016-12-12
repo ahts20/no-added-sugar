@@ -6,10 +6,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Bot extends Avatar {
 	Player player = new Player();
-	protected float X = (Main.width / 3) - (playerWidth / 3);
-	protected float Y = (Main.height / 3) - (playerHeight / 3);
-	private String BotXdirection;
-	private String BotYdirection;
+
+	private String BotXdirection = "";
+	private String BotYdirection = "";
 	public static String botState="";
 	boolean active = true;
 	long startSleepTime;
@@ -20,6 +19,8 @@ public class Bot extends Avatar {
 		this.BotYdirection = "";
 		this.player = player;
 		this.speed = 3;
+		this.X = (Main.width / 3) - (playerWidth / 3);
+		this.Y = (Main.height / 3) - (playerHeight / 3);
 	}
 
 	public void update(CopyOnWriteArrayList<Block> blocks) {
@@ -143,5 +144,20 @@ public class Bot extends Avatar {
 	public void render(Graphics g, int i) {
 		// g.drawRect((int) this.X, (int) Y, this.playerWidth, this.playerHeight);
 		g.drawImage(this.p[i], (int) this.X, (int) this.Y, null);
+	}
+	
+	//Getters
+	public String getBotXdirection(){
+		return this.BotXdirection;
+	}
+	public String getBotYdirection(){
+		return this.BotYdirection;
+	}
+	//Setters
+	public void setBotXdirection(String dir){
+		this.BotXdirection = dir;
+	}
+	public void setBotYdirection(String dir){
+		this.BotYdirection = dir;
 	}
 }
