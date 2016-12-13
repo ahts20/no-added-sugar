@@ -3,3 +3,4 @@
 *.log
 .metadata/.plugins/org.eclipse.jdt.core/savedIndexNames.txt
 *.txt
+workspace_2.1/DungeonOfDoom/res/score.txt
