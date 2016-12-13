@@ -2,3 +2,4 @@
 *.class
 *.log
 .metadata/.plugins/org.eclipse.jdt.core/savedIndexNames.txt
+*.txt
