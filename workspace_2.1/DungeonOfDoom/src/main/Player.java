@@ -18,6 +18,7 @@ public class Player extends Avatar implements KeyListener {
 	private static String P2Xdirection = "";
 	private static String P2Ydirection = "";
 	private Integer iD;
+	private CopyOnWriteArrayList<Block> blocks;
 
 	public void init(float X, float Y, int playerNum) {
 //		X = (Main.width / 2) - (playerWidth / 2);
@@ -125,7 +126,9 @@ public class Player extends Avatar implements KeyListener {
 	}
 
 	public void update(CopyOnWriteArrayList<Block> blocks) {
-
+		//update pointer to blocks, so it can be used in the push to 
+		//know where walls are. 
+		this.blocks = blocks;
 		// Check for gold collision and update score and gold.
 		checkGoldTouch(blocks);
 		// make player change its co-ordinates.
@@ -243,6 +246,47 @@ public class Player extends Avatar implements KeyListener {
 		        return true;
 		}
 		return false;
+	}
+	public void getKnocked (int distance, String direction){
+		//Break total distance down into smaller steps.
+		int step = distance/10;
+		for (int i = 0; i <= distance; i += 10){
+			//Move if not touching a wall or door object.
+			if(!detectTouchingWall(blocks) && !detectTouchingDoor(blocks)){
+				moveCords(step, direction);
+			}
+			else{
+				//If touching a wall from previous step move back by one.
+				//Reverse direction
+				switch(direction){
+				case "RIGHT":
+					direction = "LEFT";
+					break;
+				case "LEFT":
+					direction = "RIGHT";
+					break;
+				case "UP":
+					direction = "DOWN";
+					break;
+				case "DOWN":
+					direction = "UP";
+					break;
+				}
+				//Move back one step.
+				moveCords(step, direction);
+				break;
+			}
+		}
+	}
+	public void moveCords(int distance, String direction){
+		if (direction.equals("RIGHT"))
+			X = (this.X + distance);
+		if (direction.equals("LEFT"))
+			X = (this.X - distance);
+		if (direction.equals("DOWN"))
+			Y = (this.Y + distance);
+		if (direction.equals("UP"))
+			Y = (this.Y - distance);
 	}
 	public void setXDirection(String dir){
 		this.P1Xdirection = dir;

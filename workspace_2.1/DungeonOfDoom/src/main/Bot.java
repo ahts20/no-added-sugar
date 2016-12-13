@@ -121,16 +121,16 @@ public class Bot extends Avatar {
 	}
 
 	private void knockPlayer(Player closest) {
-		int power = 200;
+		int power = 100;
 		// Knock the player in the right direction.
 		if (BotXdirection.equals("RIGHT"))
-			closest.setX((float) (closest.getX() + power));
+			closest.getKnocked(power, BotXdirection);
 		if (BotXdirection.equals("LEFT"))
-			closest.setX((float) (closest.getX() - power));
-		if (BotXdirection.equals("DOWN"))
-			closest.setY((float) (closest.getY() + power));
-		if (BotXdirection.equals("UP"))
-			closest.setY((float) (closest.getY() - power));
+			closest.getKnocked(power, BotXdirection);
+		if (BotYdirection.equals("DOWN"))
+			closest.getKnocked(power, BotYdirection);
+		if (BotYdirection.equals("UP"))
+			closest.getKnocked(power, BotYdirection);
 
 	}
 
