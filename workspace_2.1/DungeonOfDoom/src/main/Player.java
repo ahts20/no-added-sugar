@@ -73,6 +73,7 @@ public abstract class Player extends Avatar implements KeyListener {
 					BufferedWriter bw = new BufferedWriter(fw);
 					PrintWriter out = new PrintWriter(bw))
 				{
+					out.println(this.score);
 					out.close();
 					
 				} catch (Exception e){

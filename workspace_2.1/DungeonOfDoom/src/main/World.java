@@ -109,7 +109,7 @@ public class World{
 		// Generates the world from the map PNG image.
 		map = null;
 		// Syntactic sugarrrr - match with block height and width to avoid gaps.
-		int blockSize = 25;
+		int blockSize = 26;
 		try {
 			map = loader.LoadImageFrom("/" + world_name + ".png");
 		} catch (Exception e) {
@@ -117,7 +117,7 @@ public class World{
 		}
 		// Iterate through each pixel in the image.
 		for (int x = 0; x < 50; x++) {
-			for (int y = 0; y < 50; y++) {
+			for (int y = 0; y < 30; y++) {
 				int mapColours = map.getRGB(x, y);
 
 				switch (mapColours & 0xFFFFFF) {
