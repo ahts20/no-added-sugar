@@ -8,10 +8,13 @@ import GameStates.GameStateManager;
 
 public class World{
 
-	public Player player;
+	public Player player1, player2;
 	public Bot bot;
 	public Block block;
 	private GameStateManager gsm;
+	
+	//Used by enoughGoldPickedUp() to know how much gold was originally in place.
+	private int totalGold;
 
 	private static BufferedImage map;
 	public static loadImage loader;
@@ -30,46 +33,64 @@ public class World{
 
 	public void init() {
 		loader = new loadImage();
-		player.init();
+
+		player2 = new Player2();
+		player1 = new Player1();
+		
+		player2.init(500,600,2);
+		player1.init(300, 600, 1);
+		
+
 		bot = new Bot();
-		bot.init(player);
+		bot.init(player1, player2, 400, 200);
+		
 	}
 
+
 	public void update() {
-		player.update(blocks);
+		player1.update(blocks);
+		player2.update(blocks);
 		checkGoldTakenAndOpenDoor();
 		bot.update(blocks);
 		
 	}
 	private void checkGoldTakenAndOpenDoor(){
-		if (allGoldPickedUp()) {
+		if (enoughGoldPickedUp()) {
 			for (Block i : blocks) {
 				if (i.door)
 					i.isVisible = true;
 			}
 		}
 	}
-	private boolean allGoldPickedUp() {
-		boolean allGoldDetected = true;
+	private boolean enoughGoldPickedUp() {
+		int minimumPercentToOpenDoor = 50;
+		int currentGold = returnCurrentGold();
+		//System.out.println(currentGold + "  " + this.totalGold);
+		if(currentGold == 0)
+			return true;
+		return (Math.abs((currentGold/(float) this.totalGold)*100) < minimumPercentToOpenDoor);
+	}
+	private int returnCurrentGold() {
+		int gold = 0;
 		for (Block i : blocks) {
 			if (i.gold == true)
-				allGoldDetected = false;
+				gold ++;
 		}
-		return allGoldDetected;
+		return gold;
 	}
-
 	public void render(Graphics g) {
 		for (Block i : blocks) {
 			i.render(g);
 		}
-		if (player.status == "facedown") {
-			player.render(g, 3);
-		} else if (player.status == "faceleft") {
-			player.render(g, 0);
-		} else if (player.status == "faceright") {
-			player.render(g, 1);
-		} else if (player.status == "faceup") {
-			player.render(g, 2);
+		player2.render(g, 3);
+		if (player1.status == "facedown") {
+			player1.render(g, 3);
+		} else if (player1.status == "faceleft") {
+			player1.render(g, 0);
+		} else if (player1.status == "faceright") {
+			player1.render(g, 1);
+		} else if (player1.status == "faceup") {
+			player1.render(g, 2);
 		}
 		
 		if (bot.botState == "facedown") {
@@ -88,7 +109,7 @@ public class World{
 		// Generates the world from the map PNG image.
 		map = null;
 		// Syntactic sugarrrr - match with block height and width to avoid gaps.
-		int blockSize = 25;
+		int blockSize = 26;
 		try {
 			map = loader.LoadImageFrom("/" + world_name + ".png");
 		} catch (Exception e) {
@@ -96,7 +117,7 @@ public class World{
 		}
 		// Iterate through each pixel in the image.
 		for (int x = 0; x < 50; x++) {
-			for (int y = 0; y < 50; y++) {
+			for (int y = 0; y < 30; y++) {
 				int mapColours = map.getRGB(x, y);
 
 				switch (mapColours & 0xFFFFFF) {
@@ -119,9 +140,13 @@ public class World{
 				}
 			}
 		}
+		//Save total gold as an attribute, so it can be used to 
+		//detect is enough gold is collected.
+		this.totalGold = returnCurrentGold();
+		System.out.println(returnCurrentGold());
 	}
 	public void addPlayer(Player player) {
-		this.player = player;
+		this.player1 = player;
 	}
 	
 	public static void resetWorld(){

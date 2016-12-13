@@ -15,13 +15,17 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import GameStates.GameStateManager;
 
-public class Player extends Avatar implements KeyListener {
+public abstract class Player extends Avatar implements KeyListener {
+	protected static String P1Xdirection = "";
+	protected static String P1Ydirection = "";
+	protected static String P2Xdirection = "";
+	protected static String P2Ydirection = "";
+	protected CopyOnWriteArrayList<Block> blocks;
 
-	public void init() {
-		this.Xdirection = "";
-		this.Ydirection = "";
-		X = (Main.width / 2) - (playerWidth / 2);
-		Y = (Main.height / 2) - (playerHeight / 2);
+	public void init(float X, float Y, int playerNum) {
+		this.X = X;
+		this.Y = Y;
+		
 		loadImage loader = new loadImage();
 		try {
 			spriteSheet = loader.LoadImageFrom("/SpriteSheet(1).png");
@@ -41,63 +45,10 @@ public class Player extends Avatar implements KeyListener {
 		}
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// Set player direction according to the key presses.
-		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_D) {
-			this.Xdirection = "RIGHT";
-			// System.out.println("Set X direction to Right: " +
-			// this.Xdirection);
-
-		}
-		if (key == KeyEvent.VK_A) {
-			this.Xdirection = "LEFT";
-		}
-		if (key == KeyEvent.VK_W) {
-			this.Ydirection = "UP";
-		}
-		if (key == KeyEvent.VK_S) {
-			this.Ydirection = "DOWN";
-		}
-
-		if (key == KeyEvent.VK_R) {
-			World.resetWorld();
-			gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
-			gsm.states.peek().init();
-		}
-		if (key == KeyEvent.VK_ESCAPE){
-			System.exit(1);
-		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// Stop moving when player stops pressing the button.
-		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_D) {
-			this.Xdirection = "faceright";
-			// System.out.println("Facing right");
-		}
-		if (key == KeyEvent.VK_A) {
-			this.Xdirection = "faceleft";
-		}
-		if (key == KeyEvent.VK_W) {
-			this.Ydirection = "faceup";
-		}
-		if (key == KeyEvent.VK_S) {
-			this.Ydirection = "facedown";
-		}
-
-	}
-
-	@Override
-	public void keyTyped(KeyEvent k) {
-
-	}
-
 	public void update(CopyOnWriteArrayList<Block> blocks) {
-
+		//update pointer to blocks, so it can be used in the push to 
+		//know where walls are. 
+		this.blocks = blocks;
 		// Check for gold collision and update score and gold.
 		checkGoldTouch(blocks);
 		// make player change its co-ordinates.
@@ -109,8 +60,6 @@ public class Player extends Avatar implements KeyListener {
 
 		// Draw the player to the graphics object
 		g.drawImage(this.p[i], (int) this.X, (int) this.Y, null);
-		// System.out.println("Current X cord: " + this.X + " Current direction:
-		// " + this.Xdirection);
 
 		g.drawString("Score: " + String.valueOf(score), (int) this.X, (int) this.Y - 30);
 	}
@@ -124,7 +73,6 @@ public class Player extends Avatar implements KeyListener {
 					BufferedWriter bw = new BufferedWriter(fw);
 					PrintWriter out = new PrintWriter(bw))
 				{
-					System.out.println("PRINT");
 					out.println(this.score);
 					out.close();
 					
@@ -134,5 +82,70 @@ public class Player extends Avatar implements KeyListener {
 			}
 		}
 	}
-
+	
+	protected void movePlayer(CopyOnWriteArrayList<Block> blocks) {
+		//Implemented in Player1 and Player2 classes.
+	}
+	protected boolean detectTouchingWall(CopyOnWriteArrayList<Block> blocks) {
+		for (Block i : blocks) {
+			if ((i.wall) && isTouching(i.x, i.y, i.width, i.height))
+				return true;
+		}
+		return false;
+	}
+	
+	protected boolean detectTouchingDoor(CopyOnWriteArrayList<Block> blocks) {
+		for (Block i : blocks) {
+			if ((i.door) && isTouching(i.x, i.y, i.width, i.height))
+		        return true;
+		}
+		return false;
+	}
+	public void getKnocked (int distance, String direction){
+		//Break total distance down into smaller steps.
+		int step = distance/10;
+		for (int i = 0; i <= distance; i += 10){
+			//Move if not touching a wall or door object.
+			if(!detectTouchingWall(blocks) && !detectTouchingDoor(blocks)){
+				moveCords(step, direction);
+			}
+			else{
+				//If touching a wall from previous step move back by one.
+				//Reverse direction
+				switch(direction){
+				case "RIGHT":
+					direction = "LEFT";
+					break;
+				case "LEFT":
+					direction = "RIGHT";
+					break;
+				case "UP":
+					direction = "DOWN";
+					break;
+				case "DOWN":
+					direction = "UP";
+					break;
+				}
+				//Move back one step.
+				moveCords(step, direction);
+				break;
+			}
+		}
+	}
+	public void moveCords(int distance, String direction){
+		if (direction.equals("RIGHT"))
+			X = (this.X + distance);
+		if (direction.equals("LEFT"))
+			X = (this.X - distance);
+		if (direction.equals("DOWN"))
+			Y = (this.Y + distance);
+		if (direction.equals("UP"))
+			Y = (this.Y - distance);
+	}
+	public void setXDirection(String dir){
+		this.P1Xdirection = dir;
+	}
+	public void setYDirection(String dir){
+		this.P1Ydirection = dir;
+}
 }
