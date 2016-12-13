@@ -54,13 +54,13 @@ public class MenuState extends GameState {
 			e.printStackTrace();
 		}
 		
-		play = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), 200, new LevelLoader(gsm), gsm, "PLAY");
-		highScore = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), 350, new HighScoreState(gsm), gsm, "HIGH SCORE");
-		quit = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), 500, new QuitState(gsm), gsm, "QUIT");
+		play = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), 200, new LevelLoader(gsm), "PLAY");
+		highScore = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), 350, new HighScoreState(gsm), "HIGH SCORE");
+		quit = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), 500, new QuitState(gsm), "QUIT");
 		
 	}
 	/**
-	 * Part of GameLoop, Updates the declared classes and fields (60 FramesPerSecond)
+	 * Part of GameLoop, Updates the declared classes and fields (60 FPS)
 	 * Keeps track of mouse position
 	 * @see GameStates.GameState#update()
 	 */
