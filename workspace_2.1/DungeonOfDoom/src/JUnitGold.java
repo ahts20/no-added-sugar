@@ -48,7 +48,7 @@ public class JUnitGold {
 
 		// Create Level loader object and add player and blocks.
 		World world = new World("testWorld", new GameStateManager());
-		world.player = p;
+		world.player1 = p;
 		world.blocks = blocks;
 		world.bot = new Bot();
 

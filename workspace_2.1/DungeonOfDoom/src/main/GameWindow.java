@@ -25,7 +25,6 @@ public class GameWindow extends JFrame{
 		addMouseListener(new MouseInput());
 		//move dragMove
 		addMouseMotionListener(new MouseInput());
-		
 		addKeyListener(new Player());
 		
 		setVisible(true);

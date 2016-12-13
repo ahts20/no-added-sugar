@@ -5,7 +5,8 @@ import java.awt.event.KeyEvent;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Bot extends Avatar {
-	Player player = new Player();
+	Player player1 = new Player();
+	Player player2 = new Player();
 	
 	public final int goldTake = 20;
 	private String BotXdirection = "";
@@ -15,8 +16,9 @@ public class Bot extends Avatar {
 	long startSleepTime;
 	int sleepingTime = 3;
 
-	public void init(Player player) {
-		this.player = player;
+	public void init(Player player1, Player player2) {
+		this.player1 = player1;
+		this.player2 = player2;
 		this.speed = 3;
 		this.X = (Main.width / 3) - (playerWidth / 3);
 		this.Y = (Main.height / 3) - (playerHeight / 3);
@@ -46,35 +48,53 @@ public class Bot extends Avatar {
 
 	private void attackPlayer() {
 		// Move towards player.
-		setDirectionToPlayer();
+		Player closest = setDirectionToPlayer();
 		// Hit player
-		tryToHitPlayer();
+		tryToHitPlayer(closest);
 	}
 
-	private void setDirectionToPlayer() {
-
-		if (player.getX() < this.X){
+	private Player setDirectionToPlayer() {
+		Player closest = findClosestPlayer();
+		
+		if (closest.getX() < this.X){
 			BotXdirection = "LEFT";
 			botState = "faceleft";
 		}
-		if (player.getX() > this.X){
+		if (closest.getX() > this.X){
 			BotXdirection = "RIGHT";
 			botState = "faceright";
 		}
-		if (player.getY() < this.Y){
+		if (closest.getY() < this.Y){
 			BotYdirection = "UP";
 			botState = "faceup";
 		}
-		if (player.getY() > this.Y){
+		if (closest.getY() > this.Y){
 			BotYdirection = "DOWN";
 			botState = "facedown";
 		}
+		return closest;
 	}
 
-	private void tryToHitPlayer() {
-		if (isTouching((int) player.getX(), (int) player.getY(), 60, 60)) {
-			knockPlayer();
-			stealGold();
+	private Player findClosestPlayer() {
+		double dist = calculateDist(player1.getX(), player1.getY(), this.X, this.Y);
+		double dist2 = calculateDist(player2.getX(), player2.getY(), this.X, this.Y);
+		if (dist < dist2)
+				return player1;
+		return player2;
+	}
+
+	private double calculateDist(double x, double y, float x2, float y2) {
+		double X = Math.abs(x - x2);
+		double Y = Math.abs(y - y2);
+		double dist = Math.pow(X, 2);
+		dist += Math.pow(Y, 2);
+		return dist;
+	}
+
+	private void tryToHitPlayer(Player closest) {
+		if (isTouching((int) closest.getX(), (int) closest.getY(), 60, 60)) {
+			knockPlayer(closest);
+			stealGold(closest);
 			makeInactive();
 		}
 	}
@@ -100,25 +120,25 @@ public class Bot extends Avatar {
 		return false;
 	}
 
-	private void knockPlayer() {
+	private void knockPlayer(Player closest) {
 		int power = 200;
 		// Knock the player in the right direction.
 		if (BotXdirection.equals("RIGHT"))
-			player.setX((float) (player.getX() + power));
+			closest.setX((float) (closest.getX() + power));
 		if (BotXdirection.equals("LEFT"))
-			player.setX((float) (player.getX() - power));
+			closest.setX((float) (closest.getX() - power));
 		if (BotXdirection.equals("DOWN"))
-			player.setY((float) (player.getY() + power));
+			closest.setY((float) (closest.getY() + power));
 		if (BotXdirection.equals("UP"))
-			player.setY((float) (player.getY() - power));
+			closest.setY((float) (closest.getY() - power));
 
 	}
 
-	private void stealGold() {
-		if (player.getScore() > goldTake)
-			player.setScore(player.getScore() - goldTake);
+	private void stealGold(Player closest) {
+		if (closest.getScore() > goldTake)
+			closest.setScore(closest.getScore() - goldTake);
 		else
-			player.setScore(0);
+			closest.setScore(0);
 	}
 
 	private void makeInactive() {

@@ -28,7 +28,7 @@ public class TestBot {
 		blocks.add(new Block(0,0,10,BlockType.RECTANGLE));
 		// Create Level loader object and add player and blocks.
 		world = new World("testWorld", new GameStateManager());
-		world.player = p;
+		world.player1 = p;
 		world.blocks = blocks;
 		world.bot = bot;
 		
