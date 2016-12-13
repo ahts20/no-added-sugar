@@ -63,8 +63,9 @@ public class Block extends Rectangle {
 
 	public void render(Graphics g) {
 		if (rectangle == true) {
-			g.setColor(Color.RED);
-			g.drawRect((int) x, (int) y, width, height);
+			g.drawImage(Player.p[10], (int) x, (int) y, width, height, null);
+//			g.setColor(Color.RED);
+//			g.drawRect((int) x, (int) y, width, height);
 			// System.out.println("HEY");
 		}
 
@@ -84,9 +85,9 @@ public class Block extends Rectangle {
 			g.drawImage(Player.p[9], (int) x, (int) y, width, height, null);
 		}
 		if (door == true && isVisible == true) {
-			g.setColor(Color.BLUE);
-			g.drawRect((int) x, (int) y, width, height);
-
+//			g.setColor(Color.BLUE);
+//			g.drawRect((int) x, (int) y, width, height);
+			g.drawImage(Player.p[10], (int) x, (int) y, width, height, null);
 		}
 
 	}

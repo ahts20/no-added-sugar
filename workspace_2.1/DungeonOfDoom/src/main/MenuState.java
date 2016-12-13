@@ -25,7 +25,7 @@ public class MenuState extends GameState {
 	MouseInput mi;
 	loadImage loader;
 	//Header Image
-	BufferedImage backTitle;
+	BufferedImage backTitle,logo;
 	/**
 	 * Constructor. Sets the field values.
 	 * @param GameStateManager
@@ -48,18 +48,19 @@ public class MenuState extends GameState {
 		loader = new loadImage();
 		try {
 			backTitle = loader.LoadImageFrom("/dooomFINAL.png");
+			logo = loader.LoadImageFrom("/LOGO1.png");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		play = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), 200, new LevelLoader(gsm), gsm, "PLAY");
-		highScore = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), 350, new HighScoreState(gsm), gsm, "HIGH SCORE");
-		quit = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), 500, new QuitState(gsm), gsm, "QUIT");
+		play = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), 200, new LevelLoader(gsm), "PLAY");
+		highScore = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), 350, new HighScoreState(gsm), "HIGH SCORE");
+		quit = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), 500, new QuitState(gsm), "QUIT");
 		
 	}
 	/**
-	 * Part of GameLoop, Updates the declared classes and fields (60 FramesPerSecond)
+	 * Part of GameLoop, Updates the declared classes and fields (60 FPS)
 	 * Keeps track of mouse position
 	 * @see GameStates.GameState#update()
 	 */
@@ -86,6 +87,7 @@ public class MenuState extends GameState {
 	public void render(Graphics g) {
 		g.setColor(Color.white);
 		g.drawImage(backTitle, Main.width/4, 30, null);
+		g.drawImage(logo, Main.width/4+240, Main.height-150, null);
 		play.render(g);
 		highScore.render(g);
 		quit.render(g);
