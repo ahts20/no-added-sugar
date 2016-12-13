@@ -96,7 +96,7 @@ public abstract class Player extends Avatar implements KeyListener {
 	
 	protected boolean detectTouchingDoor(CopyOnWriteArrayList<Block> blocks) {
 		for (Block i : blocks) {
-			if ((i.door) && isTouching(i.x, i.y, i.width, i.height))
+			if ((i.door) && isTouching(i.x, i.y, i.width, i.height) && i.isVisible)
 		        return true;
 		}
 		return false;
