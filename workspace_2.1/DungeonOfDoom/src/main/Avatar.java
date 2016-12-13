@@ -22,8 +22,8 @@ public abstract class Avatar {
 	
 	public static int playerWidth = 40;
 	public static int playerHeight = 40;
-	public int height = 60;
-	public int width = 60;
+	public int height = 45;
+	public int width = 45;
 	protected float X;
 	protected float Y;
 //	protected static String Xdirection = "";

@@ -25,7 +25,7 @@ public class MenuState extends GameState {
 	MouseInput mi;
 	loadImage loader;
 	//Header Image
-	BufferedImage backTitle;
+	BufferedImage backTitle,logo;
 	/**
 	 * Constructor. Sets the field values.
 	 * @param GameStateManager
@@ -48,6 +48,7 @@ public class MenuState extends GameState {
 		loader = new loadImage();
 		try {
 			backTitle = loader.LoadImageFrom("/dooomFINAL.png");
+			logo = loader.LoadImageFrom("/LOGO1.png");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -86,6 +87,7 @@ public class MenuState extends GameState {
 	public void render(Graphics g) {
 		g.setColor(Color.white);
 		g.drawImage(backTitle, Main.width/4, 30, null);
+		g.drawImage(logo, Main.width/4+240, Main.height-150, null);
 		play.render(g);
 		highScore.render(g);
 		quit.render(g);
