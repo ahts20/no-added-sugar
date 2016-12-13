@@ -30,7 +30,6 @@ public class World{
 
 	public void init() {
 		loader = new loadImage();
-		player = new Player();
 		player.init();
 		bot = new Bot();
 		bot.init(player);

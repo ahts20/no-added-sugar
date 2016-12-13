@@ -1,7 +1,14 @@
 package main;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import GameStates.GameState;
 import GameStates.GameStateManager;
 
@@ -17,10 +24,18 @@ public class GameStateButton extends Rectangle{
 	private GameState gs;
 	private int xPos;
 	private int yPos;
-	public static int width = 100;
-	public static int height = 50;
+	public static final int width = 250;
+	public static final int height = 60;
 	private String buttonMessage;
 	private boolean isHeldOver;
+	
+	public GameStateButton(int xPos, int yPos, String buttonMessage){
+		this.xPos = xPos;
+		this.yPos = yPos;
+		this.buttonMessage = buttonMessage;		
+		setBounds(xPos, yPos, width, height);
+	}
+	
 	
 	public GameStateButton(int xPos, int yPos, GameState gamestate, GameStateManager gsm, String buttonMessage){
 		this.gs = gamestate;
@@ -32,7 +47,6 @@ public class GameStateButton extends Rectangle{
 	}
 	
 	public void update(){
-		setBounds(xPos, yPos, width, height);
 		if(MouseInput.mouse != null){
 			if(getBounds().contains(MouseInput.mouse)){
 				isHeldOver = true;
@@ -52,8 +66,20 @@ public class GameStateButton extends Rectangle{
 	}
 	
 	public void render(Graphics g){
-		g.drawRect(xPos, yPos, width, height);
-		g.drawString(buttonMessage, xPos + 20 , yPos + 30);
+
+		Font font = new Font("8BIT WONDER", Font.PLAIN, 20);
+		g.setFont(font);
+		
+		if(isHeldOver == true){
+			g.setColor(Color.RED);
+			g.drawRect(xPos, yPos, width, height);
+		} else {
+			g.setColor(Color.GRAY);
+			g.drawRect(xPos, yPos, width, height);
+		}
+		FontMetrics metrics = g.getFontMetrics(font);
+		int x = (width - metrics.stringWidth(buttonMessage)) / 2;
+		g.drawString(buttonMessage, x + xPos, yPos + height / 2);
 	}
 	
 	public boolean isHeldOver(){
