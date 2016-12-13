@@ -26,8 +26,8 @@ public abstract class Avatar {
 	public int width = 60;
 	protected float X;
 	protected float Y;
-	protected static String Xdirection = "";
-	protected static String Ydirection = "";
+//	protected static String Xdirection = "";
+//	protected static String Ydirection = "";
 	protected float speed = 5;
 	public String status = "facedown";
 	protected int score;
@@ -44,14 +44,8 @@ public abstract class Avatar {
 	public static BufferedImage[] p = new BufferedImage[12];
 
 	public void init() {	
-		this.Xdirection = "";
-		this.Ydirection = "";
-	}
-
-	public void update(CopyOnWriteArrayList<Block> blocks) {
-		// make player change its co-ordinates.
-		movePlayer(blocks);
-
+//		this.Xdirection = "";
+//		this.Ydirection = "";
 	}
 
 
@@ -74,67 +68,7 @@ public abstract class Avatar {
 	public void render(Graphics g, int i) {
 }
 
-	protected void movePlayer(CopyOnWriteArrayList<Block> blocks) {
-		// Make player move in desired direction.
-		if (this.Xdirection == "RIGHT") {
-			if (detectTouchingWall(blocks)) {
-				this.Xdirection = "LEFT";
-				X -= this.speed;
-			} else {
-				this.X += this.speed;
-				this.status = "faceright";
-				if(detectTouchingDoor(blocks)){
-					World.resetWorld();
-			        gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
-			        gsm.states.peek().init();
-				}
-			}
-			
-		}
-		if (this.Xdirection.equals("LEFT")) {
-			if (detectTouchingWall(blocks)) {
-				this.Xdirection.equals("RIGHT");
-				this.X += this.speed;
-			} else {
-				this.X -= this.speed;
-				this.status = "faceleft";
-				if(detectTouchingDoor(blocks)){
-					World.resetWorld();
-			        gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
-			        gsm.states.peek().init();
-				}
-			}
 
-		}
-		if (this.Ydirection == "UP") {
-			if (detectTouchingWall(blocks)) {
-				this.Ydirection = "DOWN";
-				this.Y += this.speed;
-			} else {
-				this.Y -= this.speed;
-				this.status = "faceup";
-				if(detectTouchingDoor(blocks)){
-					World.resetWorld();
-			        gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
-			        gsm.states.peek().init();
-				}
-			}
-		}
-		if (this.Ydirection == "DOWN") {
-			if (detectTouchingWall(blocks)) {
-				this.Ydirection = "UP";
-				this.Y += this.speed;
-			} else {
-				this.Y += this.speed;
-				this.status = "facedown";
-				if(detectTouchingDoor(blocks)){
-					World.resetWorld();
-			        gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
-			        gsm.states.peek().init();
-				}
-			}
-		}
-	}
 	protected boolean detectTouchingWall(CopyOnWriteArrayList<Block> blocks) {
 		for (Block i : blocks) {
 			if ((i.wall) && isTouching(i.x, i.y, i.width, i.height))
@@ -164,12 +98,12 @@ public abstract class Avatar {
 	public int getScore() {
 		return this.score;
 	}
-	public String getXdirection(){
-		return this.Xdirection;
-	}
-	public String getYdirection(){
-		return this.Ydirection;
-	}
+//	public String getXdirection(){
+//		return this.Xdirection;
+//	}
+//	public String getYdirection(){
+//		return this.Ydirection;
+//	}
 	// Setters
 	public void setX(float x) {
 		this.X = x;
@@ -183,12 +117,6 @@ public abstract class Avatar {
 		this.score = s;
 	}
 
-	public void setXDirection(String dir){
-		this.Xdirection = dir;
-	}
-	public void setYDirection(String dir){
-		this.Ydirection = dir;
-	}
 	public boolean isChanging() {
 		return isChanging;
 	}

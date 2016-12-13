@@ -16,7 +16,7 @@ import GameStates.GameStateManager;
 public class LevelLoader extends GameState{
 	
 	public static World world;
-	public static Player player = new Player();
+	public static Player player = new Player1();
 	
 	private String worldName;
 	private String map_name;

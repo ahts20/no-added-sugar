@@ -10,6 +10,8 @@ import main.Block.BlockType;
 import main.Bot;
 import main.LevelLoader;
 import main.Player;
+import main.Player1;
+import main.Player2;
 import main.World;
 
 public class JUnitGold {
@@ -40,7 +42,8 @@ public class JUnitGold {
 		blocks.add(b);
 		blocks.add(d);
 		// Place player
-		Player p = new Player();
+		Player p = new Player1();
+		Player p2 = new Player2();
 		// Check start score is 0.
 		assertEquals(true, p.getScore() == 0.0);
 		// Check door is not visible
@@ -48,7 +51,8 @@ public class JUnitGold {
 
 		// Create Level loader object and add player and blocks.
 		World world = new World("testWorld", new GameStateManager());
-		world.player = p;
+		world.player1 = p;
+		world.player2 = p2;
 		world.blocks = blocks;
 		world.bot = new Bot();
 
