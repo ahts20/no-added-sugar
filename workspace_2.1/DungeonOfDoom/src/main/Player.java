@@ -28,7 +28,7 @@ public abstract class Player extends Avatar implements KeyListener {
 		
 		loadImage loader = new loadImage();
 		try {
-			spriteSheet = loader.LoadImageFrom("/SpriteSheet(1).png");
+			spriteSheet = loader.LoadImageFrom("/SpriteSheet(3).png");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,7 +37,7 @@ public abstract class Player extends Avatar implements KeyListener {
 		// Assign animation images to the array p array.
 		SpriteSheet ss = new SpriteSheet(spriteSheet);
 		int i = 0;
-		for (int k = 0; k < 3; k++) {
+		for (int k = 0; k < 4; k++) {
 			for (int j = 0; j < 4; j++) {
 				this.p[i] = ss.grabImage(j, k, height, width);
 				i++;

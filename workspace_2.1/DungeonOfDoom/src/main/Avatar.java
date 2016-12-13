@@ -41,7 +41,7 @@ public abstract class Avatar {
 	public boolean isChanging = false;
 
 	protected BufferedImage spriteSheet = null;
-	public static BufferedImage[] p = new BufferedImage[12];
+	public static BufferedImage[] p = new BufferedImage[16];
 
 	public void init() {	
 //		this.Xdirection = "";
