@@ -12,6 +12,9 @@ public class World{
 	public Bot bot;
 	public Block block;
 	private GameStateManager gsm;
+	
+	//Used by enoughGoldPickedUp() to know how much gold was originally in place.
+	private int totalGold;
 
 	private static BufferedImage map;
 	public static loadImage loader;
@@ -38,7 +41,9 @@ public class World{
 		
 		bot = new Bot();
 		bot.init(player1, player2);
+		
 	}
+
 
 	public void update() {
 		player1.update(blocks);
@@ -48,22 +53,29 @@ public class World{
 		
 	}
 	private void checkGoldTakenAndOpenDoor(){
-		if (allGoldPickedUp()) {
+		if (enoughGoldPickedUp()) {
 			for (Block i : blocks) {
 				if (i.door)
 					i.isVisible = true;
 			}
 		}
 	}
-	private boolean allGoldPickedUp() {
-		boolean allGoldDetected = true;
+	private boolean enoughGoldPickedUp() {
+		int minimumPercentToOpenDoor = 50;
+		int currentGold = returnCurrentGold();
+		//System.out.println(currentGold + "  " + this.totalGold);
+		if(currentGold == 0)
+			return true;
+		return (Math.abs((currentGold/(float) this.totalGold)*100) < minimumPercentToOpenDoor);
+	}
+	private int returnCurrentGold() {
+		int gold = 0;
 		for (Block i : blocks) {
 			if (i.gold == true)
-				allGoldDetected = false;
+				gold ++;
 		}
-		return allGoldDetected;
+		return gold;
 	}
-
 	public void render(Graphics g) {
 		for (Block i : blocks) {
 			i.render(g);
@@ -126,6 +138,10 @@ public class World{
 				}
 			}
 		}
+		//Save total gold as an attribute, so it can be used to 
+		//detect is enough gold is collected.
+		this.totalGold = returnCurrentGold();
+		System.out.println(returnCurrentGold());
 	}
 	public void addPlayer(Player player) {
 		this.player1 = player;

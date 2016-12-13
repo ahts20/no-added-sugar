@@ -115,7 +115,7 @@ public class Player extends Avatar implements KeyListener {
 			this.P1Ydirection = "facedown";
 		}
 		//Overwrite to prevent constant walking.#
-		System.out.println(iD);
+		//System.out.println(iD);
 		this.P2Xdirection = "default";
 		this.P2Ydirection = "default";
 	}
