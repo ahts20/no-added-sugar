@@ -20,6 +20,8 @@ public class GameWindow extends JFrame{
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
+		setUndecorated(true);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		//click release
 		addMouseListener(new MouseInput());

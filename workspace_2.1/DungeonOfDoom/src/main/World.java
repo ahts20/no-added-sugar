@@ -33,12 +33,14 @@ public class World{
 
 	public void init() {
 		loader = new loadImage();
+
 		player2 = new Player();
 		player1 = new Player();
 		
 		player2.init(300,600,2);
 		player1.init(500, 600, 1);
 		
+
 		bot = new Bot();
 		bot.init(player1, player2);
 		
