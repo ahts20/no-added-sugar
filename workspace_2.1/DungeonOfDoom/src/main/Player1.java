@@ -69,11 +69,12 @@ public class Player1 extends Player implements KeyListener {
 
 		Xdirection = P1Xdirection;
 		Ydirection = P1Ydirection;
-
+		int extraPushback = 5;
+		
 		if (Xdirection == "RIGHT") {
 			if (detectTouchingWall(blocks)) {
 				Xdirection = "LEFT";
-				this.X -= this.speed;
+				this.X -= this.speed+extraPushback;
 			} else {
 				this.X += this.speed;
 				this.status = "faceright";
@@ -87,7 +88,7 @@ public class Player1 extends Player implements KeyListener {
 		if (Xdirection.equals("LEFT")) {
 			if (detectTouchingWall(blocks)) {
 				Xdirection.equals("RIGHT");
-				this.X += this.speed;
+				this.X += this.speed+extraPushback;
 			} else {
 				this.X -= this.speed;
 				this.status = "faceleft";
@@ -101,7 +102,7 @@ public class Player1 extends Player implements KeyListener {
 		if (Ydirection == "UP") {
 			if (detectTouchingWall(blocks)) {
 				Ydirection = "DOWN";
-				this.Y += this.speed;
+				this.Y += this.speed+extraPushback;
 			} else {
 				this.Y -= this.speed;
 				this.status = "faceup";
@@ -115,9 +116,9 @@ public class Player1 extends Player implements KeyListener {
 		if (Ydirection == "DOWN") {
 			if (detectTouchingWall(blocks)) {
 				Ydirection = "UP";
-				this.Y -= this.speed;
+				this.Y -= this.speed+extraPushback;
 			} else {
-				this.Y += this.speed;
+				this.Y += this.speed; 
 				this.status = "facedown";
 				if(detectTouchingDoor(blocks)){
 					World.resetWorld();
