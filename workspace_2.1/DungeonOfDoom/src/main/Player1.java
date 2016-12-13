@@ -7,8 +7,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Player1 extends Player implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
-		String Xdirection = "";
-		String Ydirection = "";
 		// Set player direction according to the key presses.
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_D) {
@@ -117,7 +115,7 @@ public class Player1 extends Player implements KeyListener {
 		if (Ydirection == "DOWN") {
 			if (detectTouchingWall(blocks)) {
 				Ydirection = "UP";
-				this.Y += this.speed;
+				this.Y -= this.speed;
 			} else {
 				this.Y += this.speed;
 				this.status = "facedown";
