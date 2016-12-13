@@ -9,6 +9,8 @@ import GameStates.GameStateManager;
 import main.Block;
 import main.Bot;
 import main.Player;
+import main.Player1;
+import main.Player2;
 import main.World;
 import main.Block.BlockType;
 
@@ -22,9 +24,9 @@ public class AvatarTest {
 	@Before
 	public void setUpTestVariables() throws Exception {
 		bot = new Bot();
-		p = new Player();
-		p2 = new Player();
-		bot.init(p, p2);
+		p = new Player1();
+		p2 = new Player2();
+		bot.init(p, p2, 500, 500);
 		
 		blocks.add(new Block(0,0,10,BlockType.RECTANGLE));
 		// Create Level loader object and add player and blocks.

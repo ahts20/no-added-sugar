@@ -10,11 +10,13 @@ import main.Block;
 import main.Block.BlockType;
 import main.Bot;
 import main.Player;
+import main.Player1;
+import main.Player2;
 import main.World;
 
 public class TestBot {
 	Bot bot;
-	Player p;
+	Player p, p2;
 	World world;
 	
 	CopyOnWriteArrayList<Block> blocks = new CopyOnWriteArrayList<Block>();
@@ -22,13 +24,16 @@ public class TestBot {
 	@Before
 	public void setUpTestVariables() throws Exception {
 		bot = new Bot();
-		p = new Player();
-		bot.init(p);
+		p = new Player1();
+		p2 = new Player2();
+		
+		bot.init(p, p2, 100, 100);
 		
 		blocks.add(new Block(0,0,10,BlockType.RECTANGLE));
 		// Create Level loader object and add player and blocks.
 		world = new World("testWorld", new GameStateManager());
 		world.player1 = p;
+		world.player2 = p2;
 		world.blocks = blocks;
 		world.bot = bot;
 		
@@ -40,6 +45,8 @@ public class TestBot {
 		bot.setY(10);
 		p.setX(10);
 		p.setY(10);
+		p2.setX(10);
+		p2.setY(10);
 				
 		world.update();
 
@@ -52,6 +59,8 @@ public class TestBot {
 		bot.setY(10);
 		p.setX(500);
 		p.setY(10);
+		p2.setX(500);
+		p2.setY(10);
 
 		world.update();
 
@@ -63,6 +72,8 @@ public class TestBot {
 		bot.setY(500);
 		p.setX(10);
 		p.setY(10);
+		p2.setX(10);
+		p2.setY(10);
 
 		world.update();
 
@@ -74,6 +85,8 @@ public class TestBot {
 		bot.setY(100);
 		p.setX(10);
 		p.setY(500);
+		p2.setX(10);
+		p2.setY(500);
 
 		world.update();
 
@@ -88,6 +101,8 @@ public class TestBot {
 		bot.setY(10);
 		p.setX(10);
 		p.setY(10);
+		p2.setX(100);
+		p2.setY(100);
 
 		world.update();
 
@@ -100,6 +115,8 @@ public class TestBot {
 		bot.setY(10);
 		p.setX(10);
 		p.setY(10);
+		p2.setX(10);
+		p2.setY(10);
 		//Active before
 		assertEquals(true, bot.getActive());
 		//Run logic
@@ -113,6 +130,8 @@ public class TestBot {
 		bot.setY(10);
 		p.setX(10);
 		p.setY(11);
+		p2.setX(10);
+		p2.setY(11);
 		//Run logic
 		world.update();
 		//Becomes inactive.
@@ -124,6 +143,8 @@ public class TestBot {
 		bot.setY(10);
 		p.setX(10);
 		p.setY(9);
+		p2.setX(10);
+		p2.setY(9);
 		//Run logic
 		world.update();
 		//Becomes inactive.
@@ -135,6 +156,8 @@ public class TestBot {
 		bot.setY(10);
 		p.setX(11);
 		p.setY(10);
+		p2.setX(11);
+		p2.setY(10);
 		//Run logic
 		world.update();
 		//Becomes inactive.
@@ -146,6 +169,8 @@ public class TestBot {
 		bot.setY(10);
 		p.setX(9);
 		p.setY(10);
+		p2.setX(9);
+		p2.setY(10);
 		//Run logic
 		world.update();
 		//Becomes inactive.

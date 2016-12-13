@@ -5,8 +5,8 @@ import java.awt.event.KeyEvent;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Bot extends Avatar {
-	Player player1 = new Player();
-	Player player2 = new Player();
+	Player player1 = new Player1();
+	Player player2 = new Player1();
 	
 	public final int goldTake = 20;
 	private String BotXdirection = "";
@@ -16,12 +16,12 @@ public class Bot extends Avatar {
 	long startSleepTime;
 	int sleepingTime = 3;
 
-	public void init(Player player1, Player player2) {
+	public void init(Player player1, Player player2, float X, float Y) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.speed = 3;
-		this.X = (Main.width / 3) - (playerWidth / 3);
-		this.Y = (Main.height / 3) - (playerHeight / 3);
+		this.X = X;
+		this.Y = Y;
 	}
 
 	public void update(CopyOnWriteArrayList<Block> blocks) {
