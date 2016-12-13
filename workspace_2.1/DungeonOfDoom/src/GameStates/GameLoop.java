@@ -1,10 +1,19 @@
 package GameStates;
-
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
-
+/**
+* GameLoop is the most important function of the game , called when the game is started. 
+* Creates an infinite loop updating the update() and render() function 60 times a second (60 FPS).
+* Uses GameStateManager class in order to connect to all the other declared states (LevelLoader, MenuState).
+* Runs on a separate Thread.
+* (Extends JPanel container and Implements Runnable)
+*
+* @version 1.0
+* @release 13/12/2016
+* @See GameLoop.java
+*/
 public class GameLoop extends JPanel implements Runnable {
 	/*
 	It is wise to declare it because if you don't declare one then when changing 
@@ -12,26 +21,32 @@ public class GameLoop extends JPanel implements Runnable {
 	serialisation will stop working.
 	*/
 	private static final long serialVersionUID = 1L;
-	
+	//Declared booleans (Infinite Loop)
 	public boolean running = false;
+	public boolean shouldRender = false;
+	//Declaring new thread
 	public Thread thread;
-	
+	//Declared Graphics
 	public Graphics graphics;
 	public Graphics g2;
-	
+	//Declaring Image to draw graphics on 
 	public BufferedImage off_screen_gr_img;
-
+	//Declaring the class used
 	public GameStateManager gsm;
-
+	//Declared integers
 	public int width;
 	public int height;
-
 	public int updates = 0;
 	public int frames = 0;
-	
 	public int fps;
 	public int tps;
-
+	/**
+	 * Constructor. Sets the field values. Uses Width and Height to set new Dimension.
+	 * @param width
+	 * 		Specifies the width of the Dimension
+	 * @param height
+	 * 		Specifies the height of the Dimension.
+	 */
 	public GameLoop(int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -40,7 +55,9 @@ public class GameLoop extends JPanel implements Runnable {
 		setFocusable(false);
 		requestFocus();
 	}
-
+	/**
+	 * Works with JFrame to start the new Thread using the JFrame
+	 */
 	public void addNotify() {
 		super.addNotify();
 		if (thread == null) {
@@ -48,7 +65,9 @@ public class GameLoop extends JPanel implements Runnable {
 			thread.start();
 		}
 	}
-
+	/**
+	 * Runs when the thread is started. The method that updates the program (60 FPS)
+	 */
 	public void run() {
 		init();
 		long lastTime = System.nanoTime();
@@ -60,49 +79,42 @@ public class GameLoop extends JPanel implements Runnable {
 
 		while (running) {
 
-			// It takes time to get from lastTime to now
+			//It takes time to get from lastTime to now
 			long now = System.nanoTime();
-			// Sets delta to be the ratio between right now and the total number
-			// of frames desired within a second.
-			// Calls update for each of these times.
+			//Sets delta to be the ratio between right now and the total number
+			//of frames desired within a second.
+			//Calls update for each of these times.
 			delta += (now - lastTime) / ns;
 			lastTime = now;
-
-			boolean shouldRender = false;
-
+			//Calls update 60 times a second
 			while (delta >= 1) {
-
 				updates++;
 				update();
-				// Gets out of the if statements
 				delta--;
 				shouldRender = true;
 			}
-
+			//Calls render 60 times a second
 			if (shouldRender == true) {
 				frames++;
 				render();
 			}
 
-			// sleepy
+			//Sleepy
 			try {
 				Thread.sleep(2);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 
-			// every second just to display
+			//Every second just to display and test (JUnit)
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				fps = updates;
 				tps = frames;
-				// System.out.println(frames);
 				updates = 0;
 				frames = 0;
 			}
-
 		}
-
 	}
 
 	public void init() {

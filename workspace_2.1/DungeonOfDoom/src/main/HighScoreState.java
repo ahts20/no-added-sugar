@@ -1,5 +1,4 @@
 package main;
-
 import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -44,7 +43,7 @@ public class HighScoreState extends GameState{
 	@Override
 	public void init() {
 		mi = new MouseInput();
-		back = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), (Main.height - 200), new MenuState(gsm), gsm, "BACK");
+		back = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), (Main.height - 200), new MenuState(gsm), "BACK");
 	
 		BufferedReader reader = null;
 		try {
@@ -59,7 +58,7 @@ public class HighScoreState extends GameState{
 		}	
 	}
 	/**
-	 * Part of GameLoop, Updates the declared classes and fields (60 FramesPerSecond)
+	 * Part of GameLoop, Updates the declared classes and fields (60 FPS)
 	 * @see GameStates.GameState#update()
 	 */
 	@Override
