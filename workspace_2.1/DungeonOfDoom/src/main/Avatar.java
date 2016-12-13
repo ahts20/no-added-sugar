@@ -30,7 +30,7 @@ public abstract class Avatar {
 	protected static String Ydirection = "";
 	protected float speed = 5;
 	public String status = "facedown";
-	protected int score = 0;
+	protected int score;
 	
 	protected GameStateManager gsm;
 

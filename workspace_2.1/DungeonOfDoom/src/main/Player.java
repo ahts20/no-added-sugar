@@ -7,7 +7,10 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import GameStates.GameStateManager;
@@ -21,7 +24,7 @@ public class Player extends Avatar implements KeyListener {
 		Y = (Main.height / 2) - (playerHeight / 2);
 		loadImage loader = new loadImage();
 		try {
-			spriteSheet = loader.LoadImageFrom("/SpriteSheet(2).png");
+			spriteSheet = loader.LoadImageFrom("/SpriteSheet(1).png");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,6 +65,9 @@ public class Player extends Avatar implements KeyListener {
 			World.resetWorld();
 			gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
 			gsm.states.peek().init();
+		}
+		if (key == KeyEvent.VK_ESCAPE){
+			System.exit(1);
 		}
 	}
 
@@ -111,10 +117,20 @@ public class Player extends Avatar implements KeyListener {
 
 	private void checkGoldTouch(CopyOnWriteArrayList<Block> blocks) {
 		for (Block i : blocks) {
-			// System.out.println("Checking " + i);
 			if (i.gold && isTouching(i.x, i.y, i.width, i.height)) {
 				i.changeGoldToFloor();
 				this.score += 10;
+				try(FileWriter fw = new FileWriter("res/score.txt", true);
+					BufferedWriter bw = new BufferedWriter(fw);
+					PrintWriter out = new PrintWriter(bw))
+				{
+					System.out.println("PRINT");
+					out.println(this.score);
+					out.close();
+					
+				} catch (Exception e){
+					e.printStackTrace();
+				}
 			}
 		}
 	}
