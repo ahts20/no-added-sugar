@@ -1,10 +1,24 @@
 package main;
 
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Bot extends Avatar {
+	/**
+	 * In game an instance of this class will work as an NPC.
+	 * It chases after the closest player, pushes them and reduces 
+	 * their score by 20.
+	 * 
+	 * @author James
+	 * @see Avatar.
+	 * @see Player1.
+	 * @see Player2.
+	 * 
+	 * Called by:
+	 * @see World.java.
+	 */
+	
+	
 	Player player1 = new Player1();
 	Player player2 = new Player1();
 	
@@ -17,6 +31,29 @@ public class Bot extends Avatar {
 	int sleepingTime = 3;
 
 	public void init(Player player1, Player player2, float X, float Y) {
+		/**
+		 * This method is used to set variables and pointers to allow the
+		 * class to interact with other classes in the game.
+		 * 
+		 * Called by:
+		 * 	@see World.java
+		 * 
+		 * @param player1
+		 * 	The player1 instance passed in from the class World.java.
+		 * 	This allows the bot class to reference this player class so it can 
+		 * 	work out distances, and influence the correct player.
+		 * 
+		 * @param player2
+		 * 	The player2 instance passed in from the class World.java.
+		 * 	This allows the bot class to reference this player class so it can 
+		 * 	work out distances, and influence the correct player.
+		 * 
+		 * @param X
+		 * 	A variable passed in to set the Bot's X starting coordinate.
+		 * 
+		 * @param Y
+		 * 	A variable passed in to set the Bot's Y starting coordinate.
+		 */
 		this.player1 = player1;
 		this.player2 = player2;
 		this.speed = 3;
@@ -25,6 +62,11 @@ public class Bot extends Avatar {
 	}
 
 	public void update(CopyOnWriteArrayList<Block> blocks) {
+		/**
+		 * This method coordinates the Bot's in game logic.
+		 * 
+		 * 
+		 */
 		// Check is sleeping
 		checkIfSleeping();
 		// Change direction
