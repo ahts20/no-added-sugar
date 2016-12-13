@@ -117,7 +117,7 @@ public class Player1 extends Player implements KeyListener {
 				Ydirection = "UP";
 				this.Y -= this.speed;
 			} else {
-				this.Y += this.speed;
+				this.Y += this.speed; 
 				this.status = "facedown";
 				if(detectTouchingDoor(blocks)){
 					World.resetWorld();
