@@ -64,24 +64,39 @@ public class Bot extends Avatar {
 	public void update(CopyOnWriteArrayList<Block> blocks) {
 		/**
 		 * This method coordinates the Bot's in game logic.
+		 * The bot spends time inactive after attacking a player
+		 * so it starts by checking to see if it can be active.
+		 * Then if the bot is active it sets its direction to the closest
+		 * player and moves in that direction, it also attempts to attack
+		 * - which is successful if the player is touching the bot..
 		 * 
+		 * @param blocks
+		 * 	This is passed in from World.java class. It is
+		 * 	an array list of all blocks in the game. 
 		 * 
+		 * @see World.java
+		 * 	Uses this method to update Bot's logic.		 * 
 		 */
-		// Check is sleeping
+		
 		checkIfSleeping();
-		// Change direction
+				
 		if (getActive())
 			attackPlayer();
 
-		// make player change its co-ordinates.
 		moveBot();
 	}
 
 	private void checkIfSleeping() {
-		// System.out.println(active);
+		/**
+		 * This method sets the bot's active attribute to be
+		 * true is enough time has passed since being inactive.
+		 * 
+		 * @see update().
+		 * 	Calls this method to check if bot can become active again.
+		 */
+
 		if (!getActive()) {
 			long elapsedTime = (System.currentTimeMillis() - startSleepTime) / 1000;
-			// System.out.println("Elapsed time: " + elapsedTime);
 			if ((int) elapsedTime > (int) sleepingTime) {
 				setActive(true);
 			}
@@ -89,7 +104,16 @@ public class Bot extends Avatar {
 	}
 
 	private void attackPlayer() {
-		// Move towards player.
+		/**
+		 * This method identifies the closest player
+		 * and tries to hit it.
+		 * 
+		 * @see setDirectionToPlayer()
+		 * 	This method returns the closest player to the bot.
+		 * @see tryToHitPlayer()
+		 * 	This method will knock the player, steal 20 score points
+		 * 	and will make the bot inactive.
+		 */
 		Player closest = setDirectionToPlayer();
 		// Hit player
 		tryToHitPlayer(closest);
@@ -205,15 +229,16 @@ public class Bot extends Avatar {
 		// g.drawRect((int) this.X, (int) Y, this.playerWidth, this.playerHeight);
 		g.drawImage(this.p[i], (int) this.X, (int) this.Y, null);
 	}
-		public boolean getActive() {
-		return active;
-	}
+
 	//Getters
 	public String getBotXdirection(){
 		return BotXdirection;
 	}
 	public String getBotYdirection(){
 		return BotYdirection;
+	}		
+	public boolean getActive() {
+		return active;
 	}
 	//Setters
 	public void setBotXdirection(String dir){
