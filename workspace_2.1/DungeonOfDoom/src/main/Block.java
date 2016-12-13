@@ -80,7 +80,8 @@ public class Block extends Rectangle {
 		}
 		if (door == true && isVisible == false) {
 			g.setColor(Color.WHITE);
-			g.drawRect((int) x, (int) y, width, height);
+//			g.drawRect((int) x, (int) y, width, height);
+			g.drawImage(Player.p[9], (int) x, (int) y, width, height, null);
 		}
 		if (door == true && isVisible == true) {
 			g.setColor(Color.BLUE);
