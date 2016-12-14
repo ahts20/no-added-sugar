@@ -7,7 +7,17 @@ import java.awt.Graphics;
 
 import GameStates.GameState;
 import GameStates.GameStateManager;
-
+/**
+* GameOverState class called when the game is started.
+* Uses QuitState classes to give user further interaction.
+* Uses GameStateButton class to allow the user to change the game states when clicked on the buttons.
+* Uses MouseInput class to allow user to use the mouse for interaction.
+* (Extends GameState to use the init(), update() and render() functions which connect to the GameLoop and JFrame respectively.)
+*
+* @version 1.0
+* @release 14/12/2016
+* @See GameOverState.java
+*/
 public class GameOverState extends GameState {
 	//Classes declared
 	GameStateButton quit;
@@ -16,28 +26,46 @@ public class GameOverState extends GameState {
 	String message = "Contgratulations";
 	String message2 = "Please Try Again";
 	String message3 = "And Do Not Forget To View Your HighScore";
+	/**
+	 * Constructor. Sets the field values.
+	 * @param GameStateManager
+	 * 		calls the GameStateManager class
+	 */
 	public GameOverState(GameStateManager gsm) {
 		super(gsm);
-		// TODO Auto-generated constructor stub
 	}
-
+	/**
+	 * Part of GameLoop, Initialises the declared classes and fields.
+	 * Specifies the GameStates to change to, for the quit GameStateButton.
+	 * @see GameStates.GameState#init()
+	 */
 	@Override
 	public void init() {
 		mi = new MouseInput();
 		quit = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), Main.height - 150, new QuitState(gsm), "QUIT");
 		
 	}
-
+	/**
+	 * Part of GameLoop, Updates the declared classes and fields (60 FPS)
+	 * Updates the mouse position and keep track of the GameStateButton
+	 * @see GameStates.GameState#update()
+	 */
 	@Override
 	public void update() {
 		mi.update();
 		quit.update();
 
 	}
-
+	/**
+	 * Part of GameLoop, Sets the graphics for JFrame.
+	 * Draws the buttons on the Screen.
+	 * Draws the mouse on the screen.
+	 * @see GameStates.GameState#render(java.awt.Graphics)
+	 * @param g
+		 * 	The graphics object which is displayed to the screen.
+	 */
 	@Override
 	public void render(Graphics g) {
-
 		//Loads new Font
 		Font font = new Font("8BIT WONDER", Font.PLAIN, 30);
 		g.setFont(font);
