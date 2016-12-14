@@ -209,7 +209,7 @@ public abstract class Player extends Avatar implements KeyListener {
 		 * bot. The method move the player in the desired  direction by 
 		 * the desired amount and stops if a wall is encountered.
 		 * 
-		 * It does this by splitting the distance into 10 segments. At each 
+		 * It does this by splitting the distance into segments of 5 pixels. At each 
 		 * segment it moves the player and checks to see if a wall is touched.
 		 * If it is, then the player is moved back one step and the process ends there.
 		 * 
@@ -223,8 +223,8 @@ public abstract class Player extends Avatar implements KeyListener {
 		 * 	player.
 		 */
 		
-		int step = distance/10;
-		for (int i = 0; i <= distance; i += 10){
+		int step = 5;
+		for (int i = 0; i <= distance; i += 5){
 			//Move if not touching a wall or door object.
 			if(!detectTouchingWall(blocks) && !detectTouchingDoor(blocks)){
 				moveCords(step, direction);
@@ -254,7 +254,14 @@ public abstract class Player extends Avatar implements KeyListener {
 	}
 	public void moveCords(int distance, String direction){
 		/**
+		 * This method moves the player coordinates by the 
+		 * specified amount in the correct direction.
 		 * 
+		 * @param distance
+		 * 	The distance to move the player.
+		 * 
+		 * @param direction
+		 * 	The direction to move the player.
 		 */
 		if (direction.equals("RIGHT"))
 			X = (this.X + distance);
