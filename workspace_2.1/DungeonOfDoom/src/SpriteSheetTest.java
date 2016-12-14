@@ -6,21 +6,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 import main.SpriteSheet;
-import main.loadImage;
 
 public class SpriteSheetTest {
-//	private static loadImage loader = new loadImage();
-//	private static BufferedImage spriteSheet;
-//	spriteSheet = loader.LoadImageFrom("/SpriteSheet.png");
-//	private static SpriteSheet ss = new SpriteSheet(spriteSheet);
+	
+	private BufferedImage image=null;
 
 	@Before
 	public void setUp() throws Exception {
+		SpriteSheet spriteSheet = new SpriteSheet(image);
 	}
 
 	@Test
-	public void testSpriteSheet() {
-		
+	public void testSpriteSheet(SpriteSheet spriteSheet) {		
+		assertEquals(null, spriteSheet);
 		fail("Not yet implemented");
 	}
 
