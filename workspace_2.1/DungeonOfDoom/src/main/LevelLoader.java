@@ -11,8 +11,6 @@ import java.util.Timer;
 
 
 
-
-
 import GameStates.GameState;
 import GameStates.GameStateManager;
 
@@ -37,6 +35,7 @@ public class LevelLoader extends GameState{
 
 	@Override
 	public void init() {
+
 		world = new World(worldName, gsm);
 		world.addPlayer(player);
 		world.init();
@@ -44,9 +43,7 @@ public class LevelLoader extends GameState{
 		if(worldName == null){
 			worldName = "null";
 			map_name = "map";
-		} else {
-//			System.out.println(linesP1.get(linesP1.size()-1));
-		}
+		} 
 		
 
 	

@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import main.Block.BlockType;
@@ -66,7 +67,8 @@ public class World{
 		player1.update(blocks);
 		player2.update(blocks);
 		checkGoldTakenAndOpenDoor();
-//		bot.update(blocks);
+
+		bot.update(blocks);
 		savePlayer1Score();
 		savePlayer2Score();
 		player1.touching = false;
@@ -110,7 +112,7 @@ public class World{
 		for (Block i : blocks) {
 			i.render(g);
 		}
-		
+
 		player1.render(g);
 		player2.render(g);
 		
@@ -180,6 +182,7 @@ public class World{
 			PrintWriter out = new PrintWriter(bw))
 			{
 		out.println(player1.score);
+
 		linesP1.add(player1.score);
 		change = false;
 		
@@ -187,6 +190,7 @@ public class World{
 			} catch (Exception e){
 				e.printStackTrace();
 			}			
+
 		}
 	}
 	
@@ -197,9 +201,11 @@ public class World{
 			PrintWriter out = new PrintWriter(bw))
 			{
 		out.println(player2.score);
+
 		linesP2.add(player2.score);
 		changeP2 = false;
 		
+
 		out.close();
 			} catch (Exception e){
 				e.printStackTrace();

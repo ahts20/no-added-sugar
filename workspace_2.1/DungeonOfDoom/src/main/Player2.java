@@ -79,7 +79,7 @@ public class Player2 extends Player {
 				if(detectTouchingDoor(blocks)){
 					counter ++;
 					touching = true;
-				
+	
 					if(maps[counter].equals("$")){
 						gsm.states.push(new GameOverState(gsm));
 						gsm.states.peek().init();
@@ -88,6 +88,7 @@ public class Player2 extends Player {
 						gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
 						gsm.states.peek().init();
 					}
+
 				}
 			}
 		}
@@ -101,7 +102,7 @@ public class Player2 extends Player {
 				if(detectTouchingDoor(blocks)){
 					counter ++;
 					touching = true;
-				
+			
 					if(maps[counter].equals("$")){
 						gsm.states.push(new GameOverState(gsm));
 						gsm.states.peek().init();
@@ -110,6 +111,7 @@ public class Player2 extends Player {
 						gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
 						gsm.states.peek().init();
 					}
+
 				}
 			}
 		}
@@ -123,7 +125,7 @@ public class Player2 extends Player {
 				if(detectTouchingDoor(blocks)){
 					counter ++;
 					touching = true;
-				
+	
 					if(maps[counter].equals("$")){
 						gsm.states.push(new GameOverState(gsm));
 						gsm.states.peek().init();
@@ -132,6 +134,7 @@ public class Player2 extends Player {
 						gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
 						gsm.states.peek().init();
 					}
+
 				}
 			}
 		}
@@ -145,7 +148,7 @@ public class Player2 extends Player {
 				if(detectTouchingDoor(blocks)){
 					counter ++;
 					touching = true;
-				
+	
 					if(maps[counter].equals("$")){
 						gsm.states.push(new GameOverState(gsm));
 						gsm.states.peek().init();
@@ -154,6 +157,7 @@ public class Player2 extends Player {
 						gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
 						gsm.states.peek().init();
 					}
+
 				}
 			}
 		}

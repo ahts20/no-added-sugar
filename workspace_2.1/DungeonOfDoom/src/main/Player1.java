@@ -72,6 +72,7 @@ public class Player1 extends Player implements KeyListener {
 				if(detectTouchingDoor(blocks)){
 					counter ++;
 					touching = true;
+
 				
 					if(maps[counter].equals("$")){
 						gsm.states.push(new GameOverState(gsm));
@@ -81,6 +82,8 @@ public class Player1 extends Player implements KeyListener {
 						gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
 						gsm.states.peek().init();
 					}
+
+
 				}
 			}
 		}
@@ -94,7 +97,7 @@ public class Player1 extends Player implements KeyListener {
 				if(detectTouchingDoor(blocks)){
 					counter ++;
 					touching = true;
-				
+	
 					if(maps[counter].equals("$")){
 						gsm.states.push(new GameOverState(gsm));
 						gsm.states.peek().init();
@@ -103,6 +106,7 @@ public class Player1 extends Player implements KeyListener {
 						gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
 						gsm.states.peek().init();
 					}
+
 				}
 			}
 		}
@@ -125,6 +129,7 @@ public class Player1 extends Player implements KeyListener {
 						gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
 						gsm.states.peek().init();
 					}
+
 				}
 			}
 		}
@@ -147,6 +152,7 @@ public class Player1 extends Player implements KeyListener {
 						gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
 						gsm.states.peek().init();
 					}
+
 				}
 			}
 		}

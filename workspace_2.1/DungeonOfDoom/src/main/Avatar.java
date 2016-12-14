@@ -85,6 +85,13 @@ public abstract class Avatar {
 		return false;
 	}
 	   
+	protected boolean detectTouchingHiddenDoor(CopyOnWriteArrayList<Block> blocks) {
+		for (Block i : blocks) {
+			if ((i.door && !i.isVisible) && isTouching(i.x, i.y, i.width, i.height))
+		        return true;
+		}
+		return false;
+	}
 
 	// getters
 	public double getX() {
