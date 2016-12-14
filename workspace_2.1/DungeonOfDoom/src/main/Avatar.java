@@ -123,7 +123,7 @@ public abstract class Avatar {
 		 * 	Returns false if this is not the case.
 		 */
 		for (Block i : blocks) {
-			if ((i.door) && isTouching(i.x, i.y, i.width, i.height))
+			if ((i.door) && isTouching(i.x, i.y, i.width, i.height) && i.isVisible)
 		        return true;
 		}
 		return false;
