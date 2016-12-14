@@ -276,7 +276,7 @@ public class Bot extends Avatar {
 		 * 	Calls the current method.
 		 */
 
-		int power = 100;
+		int power = 50;
 		// Knock the player in the right direction.
 		if (BotXdirection.equals("RIGHT"))
 			closest.getKnocked(power, BotXdirection);
