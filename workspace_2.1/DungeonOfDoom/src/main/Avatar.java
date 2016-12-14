@@ -98,12 +98,7 @@ public abstract class Avatar {
 	public int getScore() {
 		return this.score;
 	}
-//	public String getXdirection(){
-//		return this.Xdirection;
-//	}
-//	public String getYdirection(){
-//		return this.Ydirection;
-//	}
+
 	// Setters
 	public void setX(float x) {
 		this.X = x;
