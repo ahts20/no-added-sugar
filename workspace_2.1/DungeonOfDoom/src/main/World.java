@@ -2,7 +2,11 @@ package main;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.concurrent.CopyOnWriteArrayList;
+
 import main.Block.BlockType;
 import GameStates.GameStateManager;
 
@@ -51,7 +55,10 @@ public class World{
 		player1.update(blocks);
 		player2.update(blocks);
 		checkGoldTakenAndOpenDoor();
-		bot.update(blocks);
+//		bot.update(blocks);
+		savePlayer1Score();
+		savePlayer2Score();
+		player1.touching = false;
 		
 	}
 	private void checkGoldTakenAndOpenDoor(){
@@ -82,16 +89,9 @@ public class World{
 		for (Block i : blocks) {
 			i.render(g);
 		}
-		player2.render(g, 3);
-		if (player1.status == "facedown") {
-			player1.render(g, 3);
-		} else if (player1.status == "faceleft") {
-			player1.render(g, 0);
-		} else if (player1.status == "faceright") {
-			player1.render(g, 1);
-		} else if (player1.status == "faceup") {
-			player1.render(g, 2);
-		}
+		
+		player1.render(g);
+		player2.render(g);
 		
 		if (bot.botState == "facedown") {
 			bot.render(g, 6);
@@ -143,7 +143,6 @@ public class World{
 		//Save total gold as an attribute, so it can be used to 
 		//detect is enough gold is collected.
 		this.totalGold = returnCurrentGold();
-		System.out.println(returnCurrentGold());
 	}
 	public void addPlayer(Player player) {
 		this.player1 = player;
@@ -153,14 +152,32 @@ public class World{
 		blocks.clear();		
 	}
 	
-	public void changeToWorld(String wn, String mn){
-	
-		if(wn != worldName){
-			resetWorld();
-			gsm.states.push(new LevelLoader(gsm, wn, mn));
-			gsm.states.peek().init();
-		} else {
-			System.out.println("ALREADY IN THE WORLD");
+	public void savePlayer1Score(){
+		if(player1.touching == true){
+			try(FileWriter fw = new FileWriter("res/scorePlayer1.txt", true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			PrintWriter out = new PrintWriter(bw))
+			{
+		out.println(player1.score);
+		out.close();
+			} catch (Exception e){
+				e.printStackTrace();
+			}
 		}
-	}	
+	}
+	
+	public void savePlayer2Score(){
+		if(player2.touching == true){
+			try(FileWriter fw = new FileWriter("res/scorePlayer2.txt", true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			PrintWriter out = new PrintWriter(bw))
+			{
+		out.println(player2.score);
+		out.close();
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
 }

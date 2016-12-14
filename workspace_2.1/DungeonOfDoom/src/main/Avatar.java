@@ -51,15 +51,14 @@ public abstract class Avatar {
 
 	protected boolean isTouching(int x, int y, int width, int height) {
 		//Checking current in target space
-		int padding = 10;
-		if (this.X+padding >= x && this.X+padding <= x + width) {
-			if (this.Y+padding >= y && this.Y+padding <= y + height) {
+		if (this.X >= x && this.X <= x + width) {
+			if (this.Y >= y && this.Y <= y + height) {
 				return true;
 			} 
 		}
 		//Checking target in current space.
-		if (x + padding >= this.X && x + padding <= this.X + this.width) {
-			if (y + padding >= this.Y && y + padding <= this.Y + this.height) {
+		if (x >= this.X && x <= this.X + this.width) {
+			if (y >= this.Y && y <= this.Y + this.height) {
 				return true;
 			}
 		}
@@ -85,14 +84,6 @@ public abstract class Avatar {
 		}
 		return false;
 	}
-	protected boolean detectTouchingHiddenDoor(CopyOnWriteArrayList<Block> blocks) {
-		for (Block i : blocks) {
-			if ((i.door && !i.isVisible) && isTouching(i.x, i.y, i.width, i.height))
-		        return true;
-		}
-		return false;
-	}
-	  
 	   
 
 	// getters
@@ -107,7 +98,12 @@ public abstract class Avatar {
 	public int getScore() {
 		return this.score;
 	}
-
+//	public String getXdirection(){
+//		return this.Xdirection;
+//	}
+//	public String getYdirection(){
+//		return this.Ydirection;
+//	}
 	// Setters
 	public void setX(float x) {
 		this.X = x;
