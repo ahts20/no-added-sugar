@@ -114,29 +114,12 @@ public class Bot extends Avatar {
 		 * 	This method will knock the player, steal 20 score points
 		 * 	and will make the bot inactive.
 		 */
-		
 		Player closest = setDirectionToPlayer();
 		// Hit player
 		tryToHitPlayer(closest);
 	}
 
 	private Player setDirectionToPlayer() {
-		/**
-		 * This method sets the bot's BotXdirection and
-		 * BotYdirection variables to the closest player's location.
-		 * It also sets the state correctly so the corresponding image
-		 * can be selected.
-		 * 
-		 * @see findClosestPlayer()
-		 * 	This method uses the class to identify the closest player.
-		 * 
-		 * @see attackPlayer()
-		 * 	The current method is called by this method.
-		 * 
-		 * @return closest
-		 * 	Returns the object of the closest player to the bot's
-		 * 	location.
-		 */
 		Player closest = findClosestPlayer();
 		
 		if (closest.getX() < this.X){
@@ -159,14 +142,6 @@ public class Bot extends Avatar {
 	}
 
 	private Player findClosestPlayer() {
-		/**
-		 * This method uses the calculateDist() method to calculate the
-		 * distance between each player and the bot.
-		 * 
-		 * @return player1, player2
-		 * 	This method returns the closest player instance to the bots
-		 * 	location.
-		 */
 		double dist = calculateDist(player1.getX(), player1.getY(), this.X, this.Y);
 		double dist2 = calculateDist(player2.getX(), player2.getY(), this.X, this.Y);
 		if (dist < dist2)
@@ -175,17 +150,6 @@ public class Bot extends Avatar {
 	}
 
 	private double calculateDist(double x, double y, float x2, float y2) {
-		/**
-		 * This method calculates the distance between the coordinates passed in.
-		 * It is based on the mathematical formula c^2 = a^2 + b^2.
-		 * 
-		 * @see findClosestPlayer()
-		 * 	The current method is called by this method.
-		 * 
-		 * @return
-		 * 	The current method returns the distance between the two variables.
-		 */
-		
 		double X = Math.abs(x - x2);
 		double Y = Math.abs(y - y2);
 		double dist = Math.pow(X, 2);
@@ -194,26 +158,6 @@ public class Bot extends Avatar {
 	}
 
 	private void tryToHitPlayer(Player closest) {
-		/**
-		 * This method coordinates the bot's hit functionality.
-		 * If the bot is in contact with the closest player then
-		 * it will knock the player, remove 20 score points, and it will
-		 * then make the bot inactive (until woken up after 3 seconds).
-		 * 
-		 * @see isTouching()
-		 * 	Used to determing if the bot is touching the closest player.
-		 * 
-		 * @see knockPlayer()
-		 * 	Used to move the player.
-		 * 
-		 * @see stealGold()
-		 * 	Used to remove gold/score from the target player.
-		 * 
-		 * @see makeInactive()
-		 * 	Used to make the current bot inactive.
-		 * 
-		 */
-		
 		if (isTouching((int) closest.getX(), (int) closest.getY(), 60, 60)) {
 			knockPlayer(closest);
 			stealGold(closest);
@@ -223,24 +167,8 @@ public class Bot extends Avatar {
 
 	protected boolean isTouching(int x, int y, int width, int height) {
 		/**
-		 * This method also exists in the Avatar class, although java is behaving in a weird way
-		 * when this class tries to use it (other inherited methods work perfectly).
-		 * 
-		 * This method checks to see if the X-Y coordinates overlap (with reference to height and width),
-		 * to determine if their areas overlap.
-		 * 
-		 * @param x
-		 * 	This is the x coordinate.
-		 * @param y
-		 * 	This is the y coordinate.
-		 * @param width
-		 * 	This is the width of the object.
-		 * @param height
-		 * 	This is the height of the object.
-		 * 
-		 * @return true/false
-		 * 	This method returns true if the arguments overlap with the current object's area.
-		 * 	This method returns false if the arguments overlap with the current object's area.
+		 * Buggy for some reason in Avatar. Adjusted for smaller visible section
+		 * of image.
 		 */
 
 		// Checking current in target space
@@ -259,19 +187,8 @@ public class Bot extends Avatar {
 	}
 
 	private void knockPlayer(Player closest) {
-		/**
-		 * This method determines the bot's direction and 
-		 * calls the player's method to get knocked in the appropriate 
-		 * direction.
-		 * 
-		 * @power 
-		 * 	This variable sets the distance to knock the player.
-		 * 
-		 * @see tryToHitPlayer()
-		 * 	Calls the current method.
-		 */
-		
 		int power = 100;
+		// Knock the player in the right direction.
 		if (BotXdirection.equals("RIGHT"))
 			closest.getKnocked(power, BotXdirection);
 		if (BotXdirection.equals("LEFT"))
@@ -284,27 +201,6 @@ public class Bot extends Avatar {
 	}
 
 	private void stealGold(Player closest) {
-		/**
-		 * This method coordinates the stealing gold function of
-		 * the bot.
-		 * 
-		 * @param closest
-		 * 	This is the player instance which the method takes the
-		 * 	gold from. 
-		 * 	In the context it is used, it was named closest because it
-		 * 	is the closest player instance to the bot, and hence the one 
-		 * 	which will have its gold taken.
-		 * 
-		 * @see tryToHitPlayer()
-		 * 	Calls the current method.
-		 * 
-		 * @see .getScore()
-		 * 	Getter which returns the player instance score.
-		 * 
-		 * @see .setScore()
-		 * 	Setter which sets the player instance score.
-		 */
-		
 		if (closest.getScore() > goldTake)
 			closest.setScore(closest.getScore() - goldTake);
 		else
