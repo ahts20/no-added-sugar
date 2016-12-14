@@ -1,9 +1,12 @@
 package main;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import GameStates.GameState;
 import GameStates.GameStateManager;
 /**
@@ -22,7 +25,8 @@ public class HighScoreState extends GameState{
 	GameStateButton back;
 	MouseInput mi;
 	//Array storing the score
-	ArrayList<String> lines = new ArrayList<String>();
+	ArrayList<String> linesP1 = new ArrayList<String>();
+	ArrayList<String> linesP2 = new ArrayList<String>();
 	/**
 	 * Constructor. Sets the field values.
 	 * @param GameStateManager
@@ -45,14 +49,20 @@ public class HighScoreState extends GameState{
 		mi = new MouseInput();
 		back = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), (Main.height - 200), new MenuState(gsm), "BACK");
 	
-		BufferedReader reader = null;
+		BufferedReader readerPlayer1 = null;
+		BufferedReader readerPlayer2 = null;
 		try {
-			reader = new BufferedReader(new FileReader("res/score.txt"));
-			String line = null;
-			while ((line = reader.readLine()) != null) {
-				lines.add(line);
-
+			readerPlayer1 = new BufferedReader(new FileReader("res/scorePlayer1.txt"));
+			readerPlayer2 = new BufferedReader(new FileReader("res/scorePlayer2.txt"));
+			String lineP1 = null;
+			String lineP2 = null;
+			while ((lineP1 = readerPlayer1.readLine()) != null) {
+				linesP1.add(lineP1);
 			}
+			while ((lineP2 = readerPlayer2.readLine()) != null) {
+				linesP2.add(lineP2);
+			}
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
@@ -73,22 +83,48 @@ public class HighScoreState extends GameState{
 	 * Draws the buttons on the Screen.
 	 * Draws the highest score on the Screen. 
 	 * @see GameStates.GameState#render(java.awt.Graphics)
+	 * @param g
+		 * 	The graphics object which is displayed to the screen.
 	 */
 	@Override
 	public void render(Graphics g) {
-		mi.render(g);
-		back.render(g);
-		int highest = Integer.parseInt(lines.get(0));
+		//Declares integers
+		int highestP1 = 0;
+		int highestP2 = 0;
+		//Loads new Font
+		Font font = new Font("8BIT WONDER", Font.PLAIN, 20);
+		g.setFont(font);
 		
-		for(int i = 1; i < lines.size(); i++){
-			if(Integer.parseInt(lines.get(i)) > highest){
-				highest = Integer.parseInt(lines.get(i));
+		for(int i = 1; i < linesP1.size(); i++){
+			if(Integer.parseInt(linesP1.get(i)) > highestP1){
+				highestP1 = Integer.parseInt(linesP1.get(i));
 			}
 		}
 		
-		g.drawString(String.valueOf(highest), 400, 200);
+		for(int i = 1; i < linesP2.size(); i++){
+			if(Integer.parseInt(linesP2.get(i)) > highestP2){
+				highestP2 = Integer.parseInt(linesP2.get(i));
+			}
+		}
+		g.setColor(Color.GRAY);
+		if(!linesP1.isEmpty()){
+			g.drawString("Player 1 Score", 300, 200);
+			g.drawString(String.valueOf(highestP1), 400, 300);
+		} else {
+			g.drawString("No Score Yet", 300, 300);
+		}
+		
+		if(!linesP2.isEmpty()){
+			g.drawString("Player 2 Score", 800, 200);
+			g.drawString(String.valueOf(highestP2), 900, 300);
+		} else {
+			g.drawString("No Score Yet", 800, 300);
+		}
+		
 		
 		g.clipRect(0,  0, Main.width, Main.height);
 		
+		mi.render(g);
+		back.render(g);
 	}
 }

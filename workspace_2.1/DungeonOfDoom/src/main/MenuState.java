@@ -83,10 +83,14 @@ public class MenuState extends GameState {
 	 * Part of GameLoop, Sets the graphics for JFrame
 	 * Draws the buttons on the Screen and sets their colour
 	 * @see GameStates.GameState#render(java.awt.Graphics)
+	 * @param g
+		 * 	The graphics object which is displayed to the screen.
 	 */
 	@Override
 	public void render(Graphics g) {
+		//Loads new Font
 		Font font1 = new Font("Bloodthirsty", Font.PLAIN, 20);
+		
 		g.setColor(Color.pink);
 		g.setFont(font1);
 		g.drawString("Long long ago, there was a poor city.", Main.width-420, 200);
@@ -100,16 +104,19 @@ public class MenuState extends GameState {
 		g.drawString("of a gostly guard.", Main.width-420, 400);
 		g.drawString("This is a cooperative game!", Main.width-420, 450);
 		g.drawString("Player1 use 'wasd' to control directions;", Main.width-420, 500);
-		g.drawString("Player2 use 'arrows' to control directions;", Main.width-420, 525);
-		g.drawString("If you and your buddy collect at least 50%", Main.width-420, 550);
-		g.drawString("of the golden swords, the stone doors open", Main.width-420, 575);
-		g.drawString("and lead you to the next room. On the fourth", Main.width-420, 600);
-		g.drawString("and final room you can exit the final door to", Main.width-420, 625);
-		g.drawString("finish the game.", Main.width-420, 650);
-		g.drawString("By the way, avoid the ghost, it will hurt you!", Main.width-420, 700);
+
+		g.drawString("Player2 uses 'arrows' to control directions;", Main.width-420, 525);
+		g.drawString("If you and your buddy collect 50% golden", Main.width-420, 550);
+		g.drawString(" sword, the stone door will be opened that", Main.width-420, 575);
+		g.drawString("leads you to the next room. On the third and", Main.width-420, 600);
+		g.drawString("final room you can exit the final door to", Main.width-420, 625);
+		g.drawString("win the game.", Main.width-420, 650);
+		g.drawString("By the Way, avoid the ghost, it will hurt you!", Main.width-420, 675);
+
 		g.setColor(Color.white);
 		g.drawImage(backTitle, Main.width/4, 30, null);
 		g.drawImage(logo, Main.width/4+240, Main.height-150, null);
+		
 		play.render(g);
 		highScore.render(g);
 		quit.render(g);

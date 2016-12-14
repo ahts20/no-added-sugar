@@ -1,5 +1,4 @@
 package main;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -26,7 +25,6 @@ public class Block extends Rectangle {
 		setBounds((int) x, (int) y, width, height);
 		this.x = x;
 		this.y = y;
-
 	}
 
 	public Block(int x, int y, int blockSize, BlockType blocktype) {
@@ -64,29 +62,19 @@ public class Block extends Rectangle {
 	public void render(Graphics g) {
 		if (rectangle == true) {
 			g.drawImage(Player.p[10], (int) x, (int) y, width, height, null);
-//			g.setColor(Color.RED);
-//			g.drawRect((int) x, (int) y, width, height);
-			// System.out.println("HEY");
 		}
 
 		if (wall == true) {
-//			g.setColor(Color.WHITE);
-//			g.drawRect((int) x, (int) y, width, height);
 			g.drawImage(Player.p[9], (int) x, (int) y, width, height, null);
 		}
 		if (gold == true) {
 			g.drawImage(Player.p[8], (int) x, (int) y, width, height, null);
-			// g.setColor(Color.YELLOW);
-			// g.drawRect((int)x, (int)y, width, height);
 		}
 		if (door == true && isVisible == false) {
 			g.setColor(Color.WHITE);
-//			g.drawRect((int) x, (int) y, width, height);
 			g.drawImage(Player.p[9], (int) x, (int) y, width, height, null);
 		}
 		if (door == true && isVisible == true) {
-//			g.setColor(Color.BLUE);
-//			g.drawRect((int) x, (int) y, width, height);
 			g.drawImage(Player.p[10], (int) x, (int) y, width, height, null);
 		}
 

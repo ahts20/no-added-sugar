@@ -1,5 +1,4 @@
 package GameStates;
-
 import java.awt.Graphics;
 import java.util.Stack;
 
