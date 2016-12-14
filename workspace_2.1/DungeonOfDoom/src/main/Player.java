@@ -37,11 +37,9 @@ public abstract class Player extends Avatar implements KeyListener {
 	public static boolean touching = false;
 	
 	public World world = new World(gsm);
-	
-	//!!!!
-	public static int counter = 0;
 
-	public String[] maps = {"", "map2", "map3", "$"};
+	public static int counter = 0;
+	public String[] maps = {"", "map2", "map3", "map4", "$"};
 
 
 	public void init(float X, float Y, int playerNum) {

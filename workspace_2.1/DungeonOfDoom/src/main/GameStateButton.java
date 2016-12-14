@@ -11,6 +11,7 @@ import GameStates.GameStateManager;
 * GameStateButton called when the buttons are clicked on in the MenuState, HighScoreState, QuitState, CreditsState and HowToStates.
 * Uses GameState class to specify the new Game State when clicked on the button.
 * (Extends Rectangle to use the setBound() function to see if the mouse position is over the button).
+*
 * @version 1.0
 * @release 13/12/2016
 * @See GameStateButton.java
@@ -95,6 +96,8 @@ public class GameStateButton extends Rectangle{
 	 * Sets the colour of the button for when the mouse is not over the button.
 	 * Draws the buttons on the screen.
 	 * @see GameStates.GameState#render(java.awt.Graphics)
+	 * @param g
+		 * 	The graphics object which is displayed to the screen.
 	 */
 	public void render(Graphics g){
 		Font font = new Font("8BIT WONDER", Font.PLAIN, 20);
@@ -107,6 +110,7 @@ public class GameStateButton extends Rectangle{
 			g.setColor(Color.GRAY);
 			g.drawRect(xPos, yPos, width, height);
 		}
+		//Centres the graph
 		FontMetrics metrics = g.getFontMetrics(font);
 		int x = (width - metrics.stringWidth(buttonMessage)) / 2;
 		g.drawString(buttonMessage, x + xPos, yPos + height / 2);

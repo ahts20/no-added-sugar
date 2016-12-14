@@ -83,11 +83,14 @@ public class MenuState extends GameState {
 	 * Part of GameLoop, Sets the graphics for JFrame
 	 * Draws the buttons on the Screen and sets their colour
 	 * @see GameStates.GameState#render(java.awt.Graphics)
+	 * @param g
+		 * 	The graphics object which is displayed to the screen.
 	 */
 	@Override
 	public void render(Graphics g) {
-
+		//Loads new Font
 		Font font1 = new Font("Bloodthirsty", Font.PLAIN, 20);
+		
 		g.setColor(Color.pink);
 		g.setFont(font1);
 		g.drawString("Long long ago, there was a poor country.", Main.width-420, 200);
@@ -111,6 +114,7 @@ public class MenuState extends GameState {
 		g.setColor(Color.white);
 		g.drawImage(backTitle, Main.width/4, 30, null);
 		g.drawImage(logo, Main.width/4+240, Main.height-150, null);
+		
 		play.render(g);
 		highScore.render(g);
 		quit.render(g);
