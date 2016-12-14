@@ -13,10 +13,23 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import GameStates.GameStateManager;
 
 public abstract class Avatar {
-	/*
-	It is wise to declare it because if you don't declare one then when changing 
-	the class it will get a different one generated automatically and the 
-	serialisation will stop working.
+	/**
+	 * This class is the parent class to the Bot and the Player class.
+	 * It contains all shared methods and attributes.
+	 * 
+	 * The Xdirection and Ydirection attributes are static because java
+	 * displayed a strange bug, where there attributes would reset to 
+	 * default values if they were non static, despite accessing them in a
+	 * non static way.
+	 * 
+	 * @author James
+	 *  
+	 * @see Bot.java
+	 * 	Bot class is child of Avatar.
+	 * 
+	 * @see Player.jva
+	 * 	Player class is child of Avatar.
+	 * 
 	*/
 	private static final long serialVersionUID = 1L;
 	
@@ -26,15 +39,11 @@ public abstract class Avatar {
 	public int width = 45;
 	protected float X;
 	protected float Y;
-//	protected static String Xdirection = "";
-//	protected static String Ydirection = "";
 	protected float speed = 5;
 	public String status = "facedown";
 	protected int score;
 	
 	protected GameStateManager gsm;
-
-
 
 	public static Rectangle render;
 	
@@ -44,12 +53,23 @@ public abstract class Avatar {
 	public static BufferedImage[] p = new BufferedImage[16];
 
 	public void init() {	
+		/**
+		 * Init method which can be used to initialise variables, child classes override this.
+		 */
 //		this.Xdirection = "";
 //		this.Ydirection = "";
 	}
 
 
 	protected boolean isTouching(int x, int y, int width, int height) {
+		/**
+		 * Method which detects whether an object represented by the parameters
+		 * overlaps with the current object's space.
+		 * 
+		 * @return true/false
+		 * 	Returns true if the objects overlap.
+		 * 	Returns false if the objects do not overlap.
+		 */
 		//Checking current in target space
 		if (this.X >= x && this.X <= x + width) {
 			if (this.Y >= y && this.Y <= y + height) {
@@ -66,10 +86,24 @@ public abstract class Avatar {
 	}
 
 	public void render(Graphics g, int i) {
+		/**
+		 * Method used to draw object to the graphics.
+		 * It is overwritten in child classes.
+		 */
 }
 
 
 	protected boolean detectTouchingWall(CopyOnWriteArrayList<Block> blocks) {
+		/**
+		 * Method used to detect whether the object is touching a wall object.
+		 * 
+		 * @param blocks
+		 * 	A variable which contains all elements of the blocks in the current game.
+		 * 
+		 * @return true/false
+		 * 	Returns true if the object of Avatar is touching any walls in the game.
+		 * 	Returns false if this is not the case.
+		 */
 		for (Block i : blocks) {
 			if ((i.wall) && isTouching(i.x, i.y, i.width, i.height))
 				return true;
@@ -78,14 +112,36 @@ public abstract class Avatar {
 	}
 	
 	protected boolean detectTouchingDoor(CopyOnWriteArrayList<Block> blocks) {
+		/**
+		 * Method used to detect whether the Avatar object is touching a door object.
+		 * 
+		 * @param blocks
+		 * 	A variable which contains all elements of the blocks in the current game.
+		 * 
+		 * @return true/false
+		 * 	Returns true if the object of Avatar is touching any doors in the game.
+		 * 	Returns false if this is not the case.
+		 */
 		for (Block i : blocks) {
-			if ((i.door) && isTouching(i.x, i.y, i.width, i.height))
+			if ((i.door) && isTouching(i.x, i.y, i.width, i.height) && i.isVisible)
 		        return true;
 		}
 		return false;
 	}
 	   
 	protected boolean detectTouchingHiddenDoor(CopyOnWriteArrayList<Block> blocks) {
+		/**
+		 * Method used to detect whether the object is touching a door object which is not visible.
+		 * Doors start as being hidden (i.e. not visible) at the start of the room. When enough gold 
+		 * is collected they become visible.
+		 * 
+		 * @param blocks
+		 * 	A variable which contains all elements of the blocks in the current game.
+		 * 
+		 * @return true/false
+		 * 	Returns true if the object of Avatar is touching any walls in the game.
+		 * 	Returns false if this is not the case.
+		 */
 		for (Block i : blocks) {
 			if ((i.door && !i.isVisible) && isTouching(i.x, i.y, i.width, i.height))
 		        return true;
