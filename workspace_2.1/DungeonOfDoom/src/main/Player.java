@@ -53,26 +53,7 @@ public abstract class Player extends Avatar implements KeyListener {
 		checkGoldTouch(blocks);
 		// make player change its co-ordinates.
 		movePlayer(blocks);
-		
-		if (checkIfOutside(blocks))
-			resetPosition();
 
-	}
-
-	private void resetPosition() {
-		this.X = 300;
-		this.Y = 300;
-		
-	}
-
-	private boolean checkIfOutside(CopyOnWriteArrayList<Block> blocks) {
-		boolean outSide = true;
-		for (Block i: blocks){
-			//If touching a block which is in the game map:
-			if ((isTouching(i.x, i.y, i.height, i.width) && (i.rectangle || i.gold || (i.door && i.isVisible))))
-				outSide = false;
-		}
-		return outSide;
 	}
 
 	public void render(Graphics g, int i) {
@@ -123,34 +104,31 @@ public abstract class Player extends Avatar implements KeyListener {
 	public void getKnocked (int distance, String direction){
 		//Break total distance down into smaller steps.
 		int step = distance/10;
-		for (int i = 0; i <= distance; i += 20){
+		for (int i = 0; i <= distance; i += 10){
 			//Move if not touching a wall or door object.
 			if(!detectTouchingWall(blocks) && !detectTouchingDoor(blocks)){
 				moveCords(step, direction);
-				//Check again if new position is in wall.
-				if(detectTouchingWall(blocks) || detectTouchingDoor(blocks)){
-					//IF it does then reverse the direction to move back that step.
-					//Reverse direction
-					switch(direction){
-					case "RIGHT":
-						direction = "LEFT";
-						break;
-					case "LEFT":
-						direction = "RIGHT";
-						break;
-					case "UP":
-						direction = "DOWN";
-						break;
-					case "DOWN":
-						direction = "UP";
-						break;
-					}
-					//Move back one step.
-					moveCords(step, direction);
-					//Exit for loop.
+			}
+			else{
+				//If touching a wall from previous step move back by one.
+				//Reverse direction
+				switch(direction){
+				case "RIGHT":
+					direction = "LEFT";
+					break;
+				case "LEFT":
+					direction = "RIGHT";
+					break;
+				case "UP":
+					direction = "DOWN";
+					break;
+				case "DOWN":
+					direction = "UP";
 					break;
 				}
-				
+				//Move back one step.
+				moveCords(step, direction);
+				break;
 			}
 		}
 	}

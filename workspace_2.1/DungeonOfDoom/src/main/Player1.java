@@ -69,10 +69,10 @@ public class Player1 extends Player implements KeyListener {
 
 		Xdirection = P1Xdirection;
 		Ydirection = P1Ydirection;
-		int extraPushback = 20;
+		int extraPushback = 5;
 		
 		if (Xdirection == "RIGHT") {
-			if (detectTouchingWall(blocks) || detectTouchingHiddenDoor(blocks)) {
+			if (detectTouchingWall(blocks)) {
 				Xdirection = "LEFT";
 				this.X -= this.speed+extraPushback;
 			} else {
@@ -86,7 +86,7 @@ public class Player1 extends Player implements KeyListener {
 			}
 		}
 		if (Xdirection.equals("LEFT")) {
-			if (detectTouchingWall(blocks) || detectTouchingHiddenDoor(blocks)) {
+			if (detectTouchingWall(blocks)) {
 				Xdirection.equals("RIGHT");
 				this.X += this.speed+extraPushback;
 			} else {
@@ -100,7 +100,7 @@ public class Player1 extends Player implements KeyListener {
 			}
 		}
 		if (Ydirection == "UP") {
-			if (detectTouchingWall(blocks) || detectTouchingHiddenDoor(blocks)) {
+			if (detectTouchingWall(blocks)) {
 				Ydirection = "DOWN";
 				this.Y += this.speed+extraPushback;
 			} else {
@@ -114,7 +114,7 @@ public class Player1 extends Player implements KeyListener {
 			}
 		}
 		if (Ydirection == "DOWN") {
-			if (detectTouchingWall(blocks) || detectTouchingHiddenDoor(blocks)) {
+			if (detectTouchingWall(blocks)) {
 				Ydirection = "UP";
 				this.Y -= this.speed+extraPushback;
 			} else {
