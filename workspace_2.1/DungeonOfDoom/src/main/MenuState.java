@@ -86,10 +86,26 @@ public class MenuState extends GameState {
 	 */
 	@Override
 	public void render(Graphics g) {
-		Font font1 = new Font("Bloodthirsty", Font.PLAIN, 40);
+		Font font1 = new Font("Bloodthirsty", Font.PLAIN, 20);
 		g.setColor(Color.pink);
 		g.setFont(font1);
-		g.drawString("kk", 100, 100);
+		g.drawString("Long long ago, there was a poor country.", Main.width-420, 200);
+		g.drawString("There was a dungeon outside the city. There", Main.width-420, 225);
+		g.drawString("were countless treasures.Anyone who had", Main.width-420, 250);
+		g.drawString("stolen one of them had to spend his whole", Main.width-420, 275);
+		g.drawString("life, but I heard there was a ghostly guard,", Main.width-420, 300);
+		g.drawString("and there was no one come back again. But", Main.width-420, 325);
+		g.drawString("the Yorik brothers still decided to go to", Main.width-420, 350);
+		g.drawString("this dungeon for wealth.", Main.width-420, 375);
+		g.drawString("This is a cooperative game!", Main.width-420, 450);
+		g.drawString("Player1 use 'wasd' to control directions;", Main.width-420, 500);
+		g.drawString("Player2 uses 'arrows' to control directions;", Main.width-420, 525);
+		g.drawString("If you and your buddy collect 50% golden", Main.width-420, 550);
+		g.drawString(" sword, the stone door will be opened that", Main.width-420, 575);
+		g.drawString("leads you to the next room. On the third and", Main.width-420, 600);
+		g.drawString("final room you can exit the final door to", Main.width-420, 625);
+		g.drawString("win the game.", Main.width-420, 650);
+		g.drawString("By the Way, avoid the ghost, it will hurt you!", Main.width-420, 675);
 		g.setColor(Color.white);
 		g.drawImage(backTitle, Main.width/4, 30, null);
 		g.drawImage(logo, Main.width/4+240, Main.height-150, null);

@@ -10,6 +10,7 @@ import java.util.Timer;
 
 
 
+
 import GameStates.GameState;
 import GameStates.GameStateManager;
 
@@ -40,7 +41,7 @@ public class LevelLoader extends GameState{
 		
 		BufferedReader reader = null;
 		try {
-			reader = new BufferedReader(new FileReader("res/score.txt"));
+			reader = new BufferedReader(new FileReader("res/scorePlayer1.txt"));
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				lines.add(line);
@@ -58,7 +59,7 @@ public class LevelLoader extends GameState{
 			worldName = "null";
 			map_name = "map";
 		} else {
-			player.setScore(Integer.parseInt(lines.get(lines.size()-1)));
+//			player.setScore(Integer.parseInt(lines.get(lines.size()-1)));
 		}
 		
 		world.init();

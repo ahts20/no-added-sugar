@@ -1,14 +1,15 @@
 package main;
 
 import java.awt.event.KeyEvent;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Player2 extends Player {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		String Xdirection = "";
-		String Ydirection = "";
 		// Set player direction according to the key presses.
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_RIGHT) {
@@ -26,13 +27,6 @@ public class Player2 extends Player {
 		if (key == KeyEvent.VK_DOWN) {
 			P2Ydirection = "DOWN";
 		}
-
-		if (key == KeyEvent.VK_R) {
-			World.resetWorld();
-			gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
-			gsm.states.peek().init();
-		}
-		
 		
 		if (key == KeyEvent.VK_ESCAPE) {
 			System.exit(1);
@@ -76,61 +70,68 @@ public class Player2 extends Player {
 		Ydirection = P2Ydirection;
 
 		if (Xdirection == "RIGHT") {
-			if (detectTouchingWall(blocks) || detectTouchingHiddenDoor(blocks)) {
+			if (detectTouchingWall(blocks)) {
 				Xdirection = "LEFT";
 				this.X -= this.speed+extraPushback;
 			} else {
 				this.X += this.speed;
 				this.status = "faceright";
 				if(detectTouchingDoor(blocks)){
+					counter ++;
+					touching = true;
 					World.resetWorld();
-					gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
+					gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
 					gsm.states.peek().init();
 				}
 			}
 		}
 		if (Xdirection.equals("LEFT")) {
-			if (detectTouchingWall(blocks) || detectTouchingHiddenDoor(blocks)) {
+			if (detectTouchingWall(blocks)) {
 				Xdirection.equals("RIGHT");
 				this.X += this.speed+extraPushback;
 			} else {
 				this.X -= this.speed;
 				this.status = "faceleft";
 				if(detectTouchingDoor(blocks)){
+					counter ++;
+					touching = true;
 					World.resetWorld();
-					gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
+					gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
 					gsm.states.peek().init();
 				}
 			}
 		}
 		if (Ydirection == "UP") {
-			if (detectTouchingWall(blocks) || detectTouchingHiddenDoor(blocks)) {
+			if (detectTouchingWall(blocks)) {
 				Ydirection = "DOWN";
 				this.Y += this.speed+extraPushback;
 			} else {
 				this.Y -= this.speed;
 				this.status = "faceup";
 				if(detectTouchingDoor(blocks)){
+					counter ++;
+					touching = true;
 					World.resetWorld();
-					gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
+					gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
 					gsm.states.peek().init();
 				}
 			}
 		}
 		if (Ydirection == "DOWN") {
-			if (detectTouchingWall(blocks) || detectTouchingHiddenDoor(blocks)) {
+			if (detectTouchingWall(blocks)) {
 				Ydirection = "UP";
 				this.Y -= this.speed+extraPushback;
 			} else {
 				this.Y += this.speed;
 				this.status = "facedown";
 				if(detectTouchingDoor(blocks)){
+					counter ++;
+					touching = true;
 					World.resetWorld();
-					gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
+					gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
 					gsm.states.peek().init();
 				}
 			}
 		}
 	}
-
 }
