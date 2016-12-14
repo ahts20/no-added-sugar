@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.util.Stack;
 
 public class GameStateManager {
-
+	
 	// Stack allows you to push states
 	public static Stack<GameState> states;
 
