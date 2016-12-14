@@ -10,18 +10,18 @@ import java.util.Timer;
 
 
 
+
+
+
 import GameStates.GameState;
 import GameStates.GameStateManager;
 
 public class LevelLoader extends GameState{
 	
 	public static World world;
-	public static Player player = new Player1();
-	
+	public static Player player;
 	private String worldName;
 	private String map_name;
-	
-	public ArrayList<String> lines = new ArrayList<String>();
 	
 	Timer t = new Timer();
 	
@@ -37,34 +37,20 @@ public class LevelLoader extends GameState{
 
 	@Override
 	public void init() {
-		
-		BufferedReader reader = null;
-		try {
-			reader = new BufferedReader(new FileReader("res/score.txt"));
-			String line = null;
-			while ((line = reader.readLine()) != null) {
-				lines.add(line);
-
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-		
 		world = new World(worldName, gsm);
 		world.addPlayer(player);
-	
+		world.init();
+		
 		if(worldName == null){
 			worldName = "null";
 			map_name = "map";
 		} else {
-			player.setScore(Integer.parseInt(lines.get(lines.size()-1)));
+//			System.out.println(linesP1.get(linesP1.size()-1));
 		}
 		
-		world.init();
+
 	
 		world.generate(map_name);
-		
 		
 	}
 	
@@ -72,9 +58,7 @@ public class LevelLoader extends GameState{
 	
 	@Override
 	public void update() {
-		
 		world.update();
-		
 	}
 
 	@Override

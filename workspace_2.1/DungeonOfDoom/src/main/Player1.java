@@ -5,13 +5,13 @@ import java.awt.event.KeyListener;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Player1 extends Player implements KeyListener {
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// Set player direction according to the key presses.
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_D) {
 			P1Xdirection = "RIGHT";
-
 		}
 		if (key == KeyEvent.VK_A) {
 			P1Xdirection = "LEFT";
@@ -22,14 +22,6 @@ public class Player1 extends Player implements KeyListener {
 		if (key == KeyEvent.VK_S) {
 			P1Ydirection = "DOWN";
 		}
-
-		if (key == KeyEvent.VK_R) {
-			World.resetWorld();
-			gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
-			gsm.states.peek().init();
-		}
-		
-		
 		if (key == KeyEvent.VK_ESCAPE) {
 			System.exit(1);
 		}
@@ -66,7 +58,6 @@ public class Player1 extends Player implements KeyListener {
 		String Xdirection = "";
 		String Ydirection = "";
 
-
 		Xdirection = P1Xdirection;
 		Ydirection = P1Ydirection;
 		int extraPushback = 5;
@@ -79,9 +70,17 @@ public class Player1 extends Player implements KeyListener {
 				this.X += this.speed;
 				this.status = "faceright";
 				if(detectTouchingDoor(blocks)){
-					World.resetWorld();
-					gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
-					gsm.states.peek().init();
+					counter ++;
+					touching = true;
+				
+					if(maps[counter].equals("$")){
+						gsm.states.push(new GameOverState(gsm));
+						gsm.states.peek().init();
+					} else {
+						World.resetWorld();
+						gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
+						gsm.states.peek().init();
+					}
 				}
 			}
 		}
@@ -93,9 +92,17 @@ public class Player1 extends Player implements KeyListener {
 				this.X -= this.speed;
 				this.status = "faceleft";
 				if(detectTouchingDoor(blocks)){
-					World.resetWorld();
-					gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
-					gsm.states.peek().init();
+					counter ++;
+					touching = true;
+				
+					if(maps[counter].equals("$")){
+						gsm.states.push(new GameOverState(gsm));
+						gsm.states.peek().init();
+					} else {
+						World.resetWorld();
+						gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
+						gsm.states.peek().init();
+					}
 				}
 			}
 		}
@@ -107,9 +114,17 @@ public class Player1 extends Player implements KeyListener {
 				this.Y -= this.speed;
 				this.status = "faceup";
 				if(detectTouchingDoor(blocks)){
-					World.resetWorld();
-					gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
-					gsm.states.peek().init();
+					counter ++;
+					touching = true;
+				
+					if(maps[counter].equals("$")){
+						gsm.states.push(new GameOverState(gsm));
+						gsm.states.peek().init();
+					} else {
+						World.resetWorld();
+						gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
+						gsm.states.peek().init();
+					}
 				}
 			}
 		}
@@ -121,12 +136,19 @@ public class Player1 extends Player implements KeyListener {
 				this.Y += this.speed; 
 				this.status = "facedown";
 				if(detectTouchingDoor(blocks)){
-					World.resetWorld();
-					gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
-					gsm.states.peek().init();
+					counter ++;
+					touching = true;
+				
+					if(maps[counter].equals("$")){
+						gsm.states.push(new GameOverState(gsm));
+						gsm.states.peek().init();
+					} else {
+						World.resetWorld();
+						gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
+						gsm.states.peek().init();
+					}
 				}
 			}
 		}
 	}
-
 }

@@ -22,10 +22,18 @@ public abstract class Player extends Avatar implements KeyListener {
 	protected static String P2Ydirection = "";
 	protected CopyOnWriteArrayList<Block> blocks;
 
+	public static boolean touching = false;
+	
+	public World world = new World(gsm);
+	
+	//!!!!
+	public static int counter = 0;
+	public String[] maps = {"", "map2", "map3", "$"};
+
 	public void init(float X, float Y, int playerNum) {
 		this.X = X;
 		this.Y = Y;
-		
+
 		loadImage loader = new loadImage();
 		try {
 			spriteSheet = loader.LoadImageFrom("/SpriteSheet(3).png");
@@ -51,13 +59,25 @@ public abstract class Player extends Avatar implements KeyListener {
 		this.blocks = blocks;
 		// Check for gold collision and update score and gold.
 		checkGoldTouch(blocks);
-		// make player change its co-ordinates.
+		// make player change its Co-ordinates.
 		movePlayer(blocks);
 
 	}
 
-	public void render(Graphics g, int i) {
-
+	public void render(Graphics g) {
+		
+		int i = 0;
+		
+		if (status == "facedown") {
+			i = 3;
+		} else if (status == "faceleft") {
+			i = 0;
+		} else if (status == "faceright") {
+			i = 1;
+		} else if (status == "faceup") {
+			i = 2;
+		}
+		
 		// Draw the player to the graphics object
 		g.drawImage(this.p[i], (int) this.X, (int) this.Y, null);
 
@@ -69,20 +89,10 @@ public abstract class Player extends Avatar implements KeyListener {
 			if (i.gold && isTouching(i.x, i.y, i.width, i.height)) {
 				i.changeGoldToFloor();
 				this.score += 10;
-				try(FileWriter fw = new FileWriter("res/score.txt", true);
-					BufferedWriter bw = new BufferedWriter(fw);
-					PrintWriter out = new PrintWriter(bw))
-				{
-					out.println(this.score);
-					out.close();
-					
-				} catch (Exception e){
-					e.printStackTrace();
-				}
 			}
 		}
 	}
-	
+
 	protected void movePlayer(CopyOnWriteArrayList<Block> blocks) {
 		//Implemented in Player1 and Player2 classes.
 	}
@@ -93,11 +103,11 @@ public abstract class Player extends Avatar implements KeyListener {
 		}
 		return false;
 	}
-	
+
 	protected boolean detectTouchingDoor(CopyOnWriteArrayList<Block> blocks) {
 		for (Block i : blocks) {
 			if ((i.door) && isTouching(i.x, i.y, i.width, i.height) && i.isVisible)
-		        return true;
+				return true;
 		}
 		return false;
 	}
@@ -141,11 +151,12 @@ public abstract class Player extends Avatar implements KeyListener {
 			Y = (this.Y + distance);
 		if (direction.equals("UP"))
 			Y = (this.Y - distance);
-	}
+	}	
+	
 	public void setXDirection(String dir){
 		this.P1Xdirection = dir;
 	}
 	public void setYDirection(String dir){
 		this.P1Ydirection = dir;
-}
+	}
 }

@@ -1,14 +1,15 @@
 package main;
 
 import java.awt.event.KeyEvent;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Player2 extends Player {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		String Xdirection = "";
-		String Ydirection = "";
 		// Set player direction according to the key presses.
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_RIGHT) {
@@ -26,13 +27,6 @@ public class Player2 extends Player {
 		if (key == KeyEvent.VK_DOWN) {
 			P2Ydirection = "DOWN";
 		}
-
-		if (key == KeyEvent.VK_R) {
-			World.resetWorld();
-			gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
-			gsm.states.peek().init();
-		}
-		
 		
 		if (key == KeyEvent.VK_ESCAPE) {
 			System.exit(1);
@@ -83,9 +77,17 @@ public class Player2 extends Player {
 				this.X += this.speed;
 				this.status = "faceright";
 				if(detectTouchingDoor(blocks)){
-					World.resetWorld();
-					gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
-					gsm.states.peek().init();
+					counter ++;
+					touching = true;
+				
+					if(maps[counter].equals("$")){
+						gsm.states.push(new GameOverState(gsm));
+						gsm.states.peek().init();
+					} else {
+						World.resetWorld();
+						gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
+						gsm.states.peek().init();
+					}
 				}
 			}
 		}
@@ -97,9 +99,17 @@ public class Player2 extends Player {
 				this.X -= this.speed;
 				this.status = "faceleft";
 				if(detectTouchingDoor(blocks)){
-					World.resetWorld();
-					gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
-					gsm.states.peek().init();
+					counter ++;
+					touching = true;
+				
+					if(maps[counter].equals("$")){
+						gsm.states.push(new GameOverState(gsm));
+						gsm.states.peek().init();
+					} else {
+						World.resetWorld();
+						gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
+						gsm.states.peek().init();
+					}
 				}
 			}
 		}
@@ -111,9 +121,17 @@ public class Player2 extends Player {
 				this.Y -= this.speed;
 				this.status = "faceup";
 				if(detectTouchingDoor(blocks)){
-					World.resetWorld();
-					gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
-					gsm.states.peek().init();
+					counter ++;
+					touching = true;
+				
+					if(maps[counter].equals("$")){
+						gsm.states.push(new GameOverState(gsm));
+						gsm.states.peek().init();
+					} else {
+						World.resetWorld();
+						gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
+						gsm.states.peek().init();
+					}
 				}
 			}
 		}
@@ -125,12 +143,19 @@ public class Player2 extends Player {
 				this.Y += this.speed;
 				this.status = "facedown";
 				if(detectTouchingDoor(blocks)){
-					World.resetWorld();
-					gsm.states.push(new LevelLoader(gsm, "Not", "map2"));
-					gsm.states.peek().init();
+					counter ++;
+					touching = true;
+				
+					if(maps[counter].equals("$")){
+						gsm.states.push(new GameOverState(gsm));
+						gsm.states.peek().init();
+					} else {
+						World.resetWorld();
+						gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
+						gsm.states.peek().init();
+					}
 				}
 			}
 		}
 	}
-
 }

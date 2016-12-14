@@ -45,11 +45,11 @@ public class HighScoreState extends GameState{
 		mi = new MouseInput();
 		back = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), (Main.height - 200), new MenuState(gsm), "BACK");
 	
-		BufferedReader reader = null;
+		BufferedReader readerPlayer1 = null;
 		try {
-			reader = new BufferedReader(new FileReader("res/score.txt"));
+			readerPlayer1 = new BufferedReader(new FileReader("res/scorePlayer1.txt"));
 			String line = null;
-			while ((line = reader.readLine()) != null) {
+			while ((line = readerPlayer1.readLine()) != null) {
 				lines.add(line);
 
 			}

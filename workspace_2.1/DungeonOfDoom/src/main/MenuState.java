@@ -1,5 +1,6 @@
 package main;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -85,6 +86,10 @@ public class MenuState extends GameState {
 	 */
 	@Override
 	public void render(Graphics g) {
+		Font font1 = new Font("Bloodthirsty", Font.PLAIN, 40);
+		g.setColor(Color.pink);
+		g.setFont(font1);
+		g.drawString("kk", 100, 100);
 		g.setColor(Color.white);
 		g.drawImage(backTitle, Main.width/4, 30, null);
 		g.drawImage(logo, Main.width/4+240, Main.height-150, null);
