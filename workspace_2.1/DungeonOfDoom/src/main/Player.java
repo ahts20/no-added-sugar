@@ -145,6 +145,17 @@ public abstract class Player extends Avatar implements KeyListener {
 	}
 
 	public void render(Graphics g) {
+		/**
+		 * This method updates the game graphics with the player's
+		 * correct image (in respect to direction) at the correct 
+		 * coordinates.
+		 * 
+		 * @param g
+		 * 	The graphics object which is displayed to the screen.
+		 * 
+		 * @see World
+		 * 	Calls this method to coordinate updates the the screen.
+		 */
 		int i = 0;
 		
 		if (status == "facedown") {
@@ -159,11 +170,22 @@ public abstract class Player extends Avatar implements KeyListener {
 
 		// Draw the player to the graphics object
 		g.drawImage(this.p[i], (int) this.X, (int) this.Y, null);
-
 		g.drawString("Score: " + String.valueOf(score), (int) this.X, (int) this.Y - 30);
 	}
 
 	private void checkGoldTouch(CopyOnWriteArrayList<Block> blocks) {
+		/**
+		 * Method which coordinates the logic involved with checking if a 
+		 * player touches gold. This involves updating the player's score 
+		 * and changing that gold into a floor object.
+		 * 
+		 * @param blocks
+		 * 	A list of all block elements in the game.
+		 * @see isTouching()
+		 * 	Used to detect if the player is touching the gold object.
+		 * @see .changeGoldToFloor()
+		 * 	Used to change the gold element to a floor block.
+		 */
 		for (Block i : blocks) {
 			if (i.gold && isTouching(i.x, i.y, i.width, i.height)) {
 				i.changeGoldToFloor();
@@ -173,13 +195,34 @@ public abstract class Player extends Avatar implements KeyListener {
 	}
 
 	protected void movePlayer(CopyOnWriteArrayList<Block> blocks) {
-		//Implemented in Player1 and Player2 classes.
+		/**
+		 * A method used to move the player. It is implemented in the
+		 * children classes (Player1 and Player2).
+		 */
 	}
 
 
 
 	public void getKnocked (int distance, String direction){
-		//Break total distance down into smaller steps.
+		/**
+		 * A method to coordinate the logic when the player is hit by the
+		 * bot. The method move the player in the desired  direction by 
+		 * the desired amount and stops if a wall is enountered.
+		 * 
+		 * It does this by splitting the distence into 10 segments. At each 
+		 * segment it moves the player and checks to see if a wall is touched.
+		 * If it is, then the player is moved back one step and the process ends there.
+		 * 
+		 * @param distance
+		 * 	The distance required to move.
+		 * @param direction
+		 * 	The desired direction.
+		 * 
+		 * @see Bot.java
+		 * 	This class calls this method when it somes into contact with the
+		 * 	player.
+		 */
+		
 		int step = distance/10;
 		for (int i = 0; i <= distance; i += 10){
 			//Move if not touching a wall or door object.
@@ -210,6 +253,9 @@ public abstract class Player extends Avatar implements KeyListener {
 		}
 	}
 	public void moveCords(int distance, String direction){
+		/**
+		 * 
+		 */
 		if (direction.equals("RIGHT"))
 			X = (this.X + distance);
 		if (direction.equals("LEFT"))
