@@ -71,12 +71,12 @@ public class Player2 extends Player {
 		String Xdirection = "";
 		String Ydirection = "";
 
-		int extraPushback = 5;
+		int extraPushback = 20;
 		Xdirection = P2Xdirection;
 		Ydirection = P2Ydirection;
 
 		if (Xdirection == "RIGHT") {
-			if (detectTouchingWall(blocks)) {
+			if (detectTouchingWall(blocks) || detectTouchingHiddenDoor(blocks)) {
 				Xdirection = "LEFT";
 				this.X -= this.speed+extraPushback;
 			} else {
@@ -90,7 +90,7 @@ public class Player2 extends Player {
 			}
 		}
 		if (Xdirection.equals("LEFT")) {
-			if (detectTouchingWall(blocks)) {
+			if (detectTouchingWall(blocks) || detectTouchingHiddenDoor(blocks)) {
 				Xdirection.equals("RIGHT");
 				this.X += this.speed+extraPushback;
 			} else {
@@ -104,7 +104,7 @@ public class Player2 extends Player {
 			}
 		}
 		if (Ydirection == "UP") {
-			if (detectTouchingWall(blocks)) {
+			if (detectTouchingWall(blocks) || detectTouchingHiddenDoor(blocks)) {
 				Ydirection = "DOWN";
 				this.Y += this.speed+extraPushback;
 			} else {
@@ -118,7 +118,7 @@ public class Player2 extends Player {
 			}
 		}
 		if (Ydirection == "DOWN") {
-			if (detectTouchingWall(blocks)) {
+			if (detectTouchingWall(blocks) || detectTouchingHiddenDoor(blocks)) {
 				Ydirection = "UP";
 				this.Y -= this.speed+extraPushback;
 			} else {
