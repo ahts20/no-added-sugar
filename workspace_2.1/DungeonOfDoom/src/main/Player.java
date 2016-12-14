@@ -33,7 +33,6 @@ public abstract class Player extends Avatar implements KeyListener {
 	public void init(float X, float Y, int playerNum) {
 		this.X = X;
 		this.Y = Y;
-
 		loadImage loader = new loadImage();
 		try {
 			spriteSheet = loader.LoadImageFrom("/SpriteSheet(3).png");
@@ -84,7 +83,6 @@ public abstract class Player extends Avatar implements KeyListener {
 	}
 
 	public void render(Graphics g) {
-		
 		int i = 0;
 		
 		if (status == "facedown") {
@@ -97,9 +95,6 @@ public abstract class Player extends Avatar implements KeyListener {
 			i = 2;
 		}
 
-	}
-
-	public void render(Graphics g, int i) {
 		// Draw the player to the graphics object
 		g.drawImage(this.p[i], (int) this.X, (int) this.Y, null);
 

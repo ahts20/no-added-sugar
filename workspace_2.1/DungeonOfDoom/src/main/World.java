@@ -89,7 +89,6 @@ public class World{
 		for (Block i : blocks) {
 			i.render(g);
 		}
-		
 		player1.render(g);
 		player2.render(g);
 		
