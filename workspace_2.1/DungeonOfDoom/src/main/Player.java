@@ -207,9 +207,9 @@ public abstract class Player extends Avatar implements KeyListener {
 		/**
 		 * A method to coordinate the logic when the player is hit by the
 		 * bot. The method move the player in the desired  direction by 
-		 * the desired amount and stops if a wall is enountered.
+		 * the desired amount and stops if a wall is encountered.
 		 * 
-		 * It does this by splitting the distence into 10 segments. At each 
+		 * It does this by splitting the distance into 10 segments. At each 
 		 * segment it moves the player and checks to see if a wall is touched.
 		 * If it is, then the player is moved back one step and the process ends there.
 		 * 
