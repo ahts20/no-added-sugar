@@ -318,6 +318,21 @@ public class Bot extends Avatar {
 	}
 
 	private void makeInactive() {
+		/**
+		 * When called this method sets the bot's active attribute to false
+		 * and removes all directions so it will not move.
+		 * The attribute stays false until 3 seconds have elapsed. During this time
+		 * period the bot will not chase the players and will not attempt to hit them.
+		 * 
+		 * After this time period the bot will become active again.
+		 * 
+		 * @see tryToHitPlayer()
+		 * 	This method calls the current method.
+		 * 
+		 * @see setActive()
+		 * 	The current method uses this method to set the bot's active attribute to false.
+		 *  
+		 */
 		setActive(false);
 		BotXdirection = "";
 		BotYdirection = "";
@@ -325,6 +340,13 @@ public class Bot extends Avatar {
 	}
 
 	private void moveBot() {
+		/**
+		 * This method changes the bot's coordinates dependent
+		 * on the bot's direction variable.
+		 * 
+		 * @see update()
+		 * 	This method calls the current method.
+		 */
 		if (BotXdirection.equals("LEFT"))
 			X -= speed;
 		if (BotXdirection.equals("RIGHT"))
@@ -336,7 +358,21 @@ public class Bot extends Avatar {
 	}
 
 	public void render(Graphics g, int i) {
-		// g.drawRect((int) this.X, (int) Y, this.playerWidth, this.playerHeight);
+		/**
+		 * This method draws the bot's relevant image file and coordinates to the 
+		 * graphics screen.
+		 * 
+		 * @param g
+		 * 	This param is the graphics image which can be drawn to, to display the screen.
+		 * 
+		 * @param i
+		 * 	This variable dictates which of the bot's images to display, which is determined
+		 * 	by the bot's direction.
+		 * 	
+		 * @see World.java
+		 * 	This class calls the render function of the bot.
+		 * 
+		 */
 		g.drawImage(this.p[i], (int) this.X, (int) this.Y, null);
 	}
 		public boolean getActive() {
@@ -356,8 +392,6 @@ public class Bot extends Avatar {
 	public void setBotYdirection(String dir){
 		BotYdirection = dir;
 	}
-
-
 
 	public void setActive(boolean active) {
 		this.active = active;
