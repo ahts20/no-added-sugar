@@ -93,16 +93,18 @@ public class MenuState extends GameState {
 		
 		g.setColor(Color.pink);
 		g.setFont(font1);
-		g.drawString("Long long ago, there was a poor country.", Main.width-420, 200);
-		g.drawString("There was a dungeon outside the city. There", Main.width-420, 225);
-		g.drawString("were countless treasures.Anyone who had", Main.width-420, 250);
-		g.drawString("stolen one of them had to spend his whole", Main.width-420, 275);
-		g.drawString("life, but I heard there was a ghostly guard,", Main.width-420, 300);
-		g.drawString("and there was no one come back again. But", Main.width-420, 325);
-		g.drawString("the Yorik brothers still decided to go to", Main.width-420, 350);
-		g.drawString("this dungeon for wealth.", Main.width-420, 375);
+		g.drawString("Long long ago, there was a poor city.", Main.width-420, 200);
+		g.drawString("There was a dungeon outside the city, with", Main.width-420, 225);
+		g.drawString("countless treasures inside. Anyone who tried", Main.width-420, 250);
+		g.drawString("to steal from it were never seen again...", Main.width-420, 275);
+		//g.drawString("steal from it was never seen again...", Main.width-420, 300);
+		g.drawString("Although...", Main.width-420, 325);
+		g.drawString("The Yorik brothers decided to try their luck", Main.width-420, 350);
+		g.drawString("in this dungeon of wealth. Despite the rumours", Main.width-420, 375);
+		g.drawString("of a gostly guard.", Main.width-420, 400);
 		g.drawString("This is a cooperative game!", Main.width-420, 450);
 		g.drawString("Player1 use 'wasd' to control directions;", Main.width-420, 500);
+
 		g.drawString("Player2 uses 'arrows' to control directions;", Main.width-420, 525);
 		g.drawString("If you and your buddy collect 50% golden", Main.width-420, 550);
 		g.drawString(" sword, the stone door will be opened that", Main.width-420, 575);
