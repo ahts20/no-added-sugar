@@ -221,6 +221,9 @@ public abstract class Player extends Avatar implements KeyListener {
 		 * @see Bot.java
 		 * 	This class calls this method when it somes into contact with the
 		 * 	player.
+		 * 
+		 * @see moveCords()
+		 * 	Uses this method to move the player.
 		 */
 		
 		int step = 5;
@@ -262,6 +265,10 @@ public abstract class Player extends Avatar implements KeyListener {
 		 * 
 		 * @param direction
 		 * 	The direction to move the player.
+		 * 
+		 * @see getKnocked()
+		 * 	Called by this method when the player is knocked by 
+		 * the bot.
 		 */
 		if (direction.equals("RIGHT"))
 			X = (this.X + distance);

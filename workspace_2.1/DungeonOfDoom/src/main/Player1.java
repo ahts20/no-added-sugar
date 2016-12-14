@@ -5,10 +5,41 @@ import java.awt.event.KeyListener;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Player1 extends Player implements KeyListener {
+	/**
+	 * This class inherits method from the player class, and implements
+	 * methods specific to the player1 instance (i.e. specific 
+	 * key events).
+	 * Ideally both player1 and player2 would be instances of 
+	 * the player class, although java displayed a large bug when
+	 * trying to make the Xdirection and Ydirection variables 
+	 * non-static.
+	 *  
+	 * @author James
+	 * 
+	 * @see Player
+	 * 	This class inherits from Player.
+	 * @see Bot
+	 * 	This class interacts with the Bot class.
+	 * @see Block
+	 * 	This class interacts with the Bot class to determine
+	 * 	whether it is touching objects in game (e.g. gold or
+	 * 	walls).
+	 * @see World
+	 * 	This class is coordinated by the World class,
+	 * 	which determines when to update the player's logic and
+	 * 	add itself to the graphics screen.
+	 */
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// Set player direction according to the key presses.
+		/**
+		 * This method is called when a keyboard key is pressed.
+		 * This method sets the player's direction variables to
+		 * the appropriate direction.
+		 * 
+		 * @param e
+		 * 	e is a KeyEvent variable.
+		 */
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_D) {
 			P1Xdirection = "RIGHT";
@@ -30,11 +61,18 @@ public class Player1 extends Player implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// Stop moving when player stops pressing the button.
+		/**
+		 * This method is called when a key is released.
+		 * It changes the player's direction variables from
+		 * the movement coordinating values (e.g. "UP", "DOWN")
+		 * so the player stops moving when the button is released.
+		 * 
+		 * @param e
+		 * 	e is a KeyEvent variable.
+		 */
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_D) {
 			this.P1Xdirection = "faceright";
-			// System.out.println("Facing right");
 		}
 		if (key == KeyEvent.VK_A) {
 			this.P1Xdirection = "faceleft";
@@ -45,7 +83,6 @@ public class Player1 extends Player implements KeyListener {
 		if (key == KeyEvent.VK_S) {
 			this.P1Ydirection = "facedown";
 		}
-		//Overwrite to prevent constant walking.
 	}
 
 	@Override
