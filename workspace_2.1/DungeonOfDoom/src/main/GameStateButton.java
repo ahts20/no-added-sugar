@@ -8,7 +8,7 @@ import java.awt.Rectangle;
 import GameStates.GameState;
 import GameStates.GameStateManager;
 /**
-* GameStateButton called when the buttons are clicked on in the MenuState, HighScoreState, QuitState, CreditsState and HowToStates.
+* GameStateButton called when the buttons are clicked on in the MenuState, HighScoreState, QuitState and GameOverState.
 * Uses GameState class to specify the new Game State when clicked on the button.
 * (Extends Rectangle to use the setBound() function to see if the mouse position is over the button).
 *
@@ -23,7 +23,7 @@ public class GameStateButton extends Rectangle{
 	serialisation will stop working.
 	*/
 	private static final long serialVersionUID = 1L;
-	
+	//
 	private GameState gs;
 	//Integer variables, made final to ensure they won't changes.
 	private final int xPos;
@@ -97,7 +97,7 @@ public class GameStateButton extends Rectangle{
 	 * Draws the buttons on the screen.
 	 * @see GameStates.GameState#render(java.awt.Graphics)
 	 * @param g
-		 * 	The graphics object which is displayed to the screen.
+	 * The graphics object which is displayed to the screen.
 	 */
 	public void render(Graphics g){
 		Font font = new Font("8BIT WONDER", Font.PLAIN, 20);

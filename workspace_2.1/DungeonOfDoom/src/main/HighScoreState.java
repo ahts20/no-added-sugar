@@ -69,6 +69,7 @@ public class HighScoreState extends GameState{
 	}
 	/**
 	 * Part of GameLoop, Updates the declared classes and fields (60 FPS)
+	 * Updates the mouse position and keep track of the GameStateButton
 	 * @see GameStates.GameState#update()
 	 */
 	@Override
@@ -82,6 +83,7 @@ public class HighScoreState extends GameState{
 	 * Part of GameLoop, Sets the graphics for JFrame.
 	 * Draws the buttons on the Screen.
 	 * Draws the highest score on the Screen. 
+	 * Draws the mouse on the screen.
 	 * @see GameStates.GameState#render(java.awt.Graphics)
 	 * @param g
 		 * 	The graphics object which is displayed to the screen.
