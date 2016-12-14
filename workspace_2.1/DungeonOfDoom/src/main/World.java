@@ -55,7 +55,7 @@ public class World{
 		player1.update(blocks);
 		player2.update(blocks);
 		checkGoldTakenAndOpenDoor();
-//		bot.update(blocks);
+		bot.update(blocks);
 		savePlayer1Score();
 		savePlayer2Score();
 		player1.touching = false;
