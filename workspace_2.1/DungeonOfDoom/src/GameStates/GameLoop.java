@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 * (Extends JPanel container and Implements Runnable)
 *
 * @version 1.0
-* @release 13/12/2016
+* @release 14/12/2016
 * @See GameLoop.java
 */
 public class GameLoop extends JPanel implements Runnable {
@@ -31,11 +31,12 @@ public class GameLoop extends JPanel implements Runnable {
 	public Graphics g2;
 	//Declaring Image to draw graphics on 
 	public BufferedImage off_screen_gr_img;
-	//Declaring the class used
+	//Declared classes
 	public GameStateManager gsm;
 	//Declared integers
 	public int width;
 	public int height;
+	//Variables used for JUnit for testing to see the amount of fps and tps match
 	public int updates = 0;
 	public int frames = 0;
 	public int fps;
@@ -67,6 +68,18 @@ public class GameLoop extends JPanel implements Runnable {
 	}
 	/**
 	 * Runs when the thread is started. The method that updates the program (60 FPS)
+	 * @param lastTime
+	 * 		Keeps track of time in nanoseconds
+	 * @param amountOfTicks
+	 * 		Specifies the frames per second (60)
+	 * @param ns
+	 * 		Divides the amountOfTicks by the amount of nanoseconds in a second
+	 * @param delta
+	 * 		Threshold to use to update the method 60 times a second
+	 * @param timer
+	 * 		Used for JUnit to keep track of frames per second 
+	 * @param now 
+	 * 		Keeps track of nanoseconds after the infinite loop starts
 	 */
 	public void run() {
 		init();
@@ -78,7 +91,6 @@ public class GameLoop extends JPanel implements Runnable {
 		long timer = System.currentTimeMillis();
 
 		while (running) {
-
 			//It takes time to get from lastTime to now
 			long now = System.nanoTime();
 			//Sets delta to be the ratio between right now and the total number
@@ -116,40 +128,50 @@ public class GameLoop extends JPanel implements Runnable {
 			}
 		}
 	}
-
+	/**
+	 * Initialises the off_screen_gr_img used for graphics
+	 * Initialises Graphics function 
+	 * Called when the run method is ran
+	 */
 	public void init() {
 		// Making the off_screen_gr_img into a canvas to draw graphics on
 		off_screen_gr_img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		// Setting graphics variable to allow the canvas to be an image
-		// This STOPS the flicker as well as allows for lesser lag (Memory
-		// Management)
+		// This STOPS the flicker as well as allows for lesser lag (Memory Management)
 		graphics = off_screen_gr_img.createGraphics();
-
+		// Starts the infinite loop
 		running = true;
 		// Initialising GameStateManager
 		gsm = new GameStateManager();
 		gsm.init();
 
 	}
-
+	/**
+	 * GameStateManager allowing to update methods from other classes
+	 */
 	public void update() {
-		// Ticking the GameStateManager
 		gsm.update();
 	}
-
+	/**
+	 * GameStateManager allowing to input graphics from other classes
+	 * Clears the canvas for further drawing
+	 * @see drawImage(); 
+	 * 		Draws the graphics and disposes of them for continuous drawing 
+	 */
 	public void render() {
 		// Clearing the canvas for further drawing
 		graphics.clearRect(0, 0, width, height);
 		
-		// GameStateManager allowing to input graphics from other
-
+		// GameStateManager allowing to input graphics from other classes
 		gsm.render(graphics);
 		
-		// Drawing and disposing of the image by using the loop
-		// This is where the graphics are drawn on the screen
+		
 		drawImage();
 	}
-
+	/**
+	 * Drawing and disposing the image for continuous drawing
+	 * This is where the graphics are drawn on the screen
+	 */
 	public void drawImage() {
 		// Initialising new graphics
 		g2 = getGraphics();

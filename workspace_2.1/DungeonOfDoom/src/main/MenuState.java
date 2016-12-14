@@ -9,7 +9,7 @@ import GameStates.GameState;
 import GameStates.GameStateManager;
 /**
 * MenuState class, called when the game is started.
-* Uses HighScoreState, CreditsState, HowToState and QuitState classes to give user further interaction.
+* Uses HighScoreState and QuitState classes to give user further interaction.
 * Uses GameStateButton class to allow the user to change the game states when clicked on the buttons.
 * Uses MouseInput class to allow user to use the mouse for interaction.
 * (Extends GameState to use the init(), update() and render() functions which connect to the GameLoop and JFrame respectively.)
@@ -29,7 +29,7 @@ public class MenuState extends GameState {
 	BufferedImage backTitle,logo;
 	/**
 	 * Constructor. Sets the field values.
-	 * @param GameStateManager
+	 * @param gsm
 	 * 		calls the GameStateManager class
 	 */
 	public MenuState(GameStateManager gsm) {
@@ -82,6 +82,7 @@ public class MenuState extends GameState {
 	/**
 	 * Part of GameLoop, Sets the graphics for JFrame
 	 * Draws the buttons on the Screen and sets their colour
+	 * Draws the mouse on the screen.
 	 * @see GameStates.GameState#render(java.awt.Graphics)
 	 * @param g
 		 * 	The graphics object which is displayed to the screen.
