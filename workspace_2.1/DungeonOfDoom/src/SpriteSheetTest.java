@@ -13,12 +13,18 @@ import main.loadImage;
 public class SpriteSheetTest {
 
 	private BufferedImage image;
+	private loadImage loader;
+	private SpriteSheet spriteSheet;
+
+	@Before
+	public void before() throws IOException {
+		loader = new loadImage();
+		image = loader.LoadImageFrom("/SpriteSheet(3).png");
+		spriteSheet = new SpriteSheet(image);
+	}
 
 	@Test
-	public void testGrabImage() throws IOException {
-		loadImage loader = new loadImage();
-		image = loader.LoadImageFrom("/SpriteSheet(3).png");
-		SpriteSheet spriteSheet = new SpriteSheet(image);
+	public void testGrabImage() {
 		BufferedImage temp = spriteSheet.grabImage(0, 0, 45, 45);
 		assertNotNull(spriteSheet);
 		assertNotNull(temp);
