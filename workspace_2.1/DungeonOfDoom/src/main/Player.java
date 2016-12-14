@@ -16,6 +16,18 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import GameStates.GameStateManager;
 
 public abstract class Player extends Avatar implements KeyListener {
+	/**
+	 * This class inherits from Avatar. It contains all methods
+	 * shared between the players. Class Player1 and Player2 inherit from this class.
+	 * Ideally both player would be instances of this class, but there was a bug from java.
+	 * 
+	 * @author James
+	 * 
+	 * @see Avatar
+	 * @see Player1
+	 * @see Player2
+	 * 
+	 */
 	protected static String P1Xdirection = "";
 	protected static String P1Ydirection = "";
 	protected static String P2Xdirection = "";
@@ -31,6 +43,18 @@ public abstract class Player extends Avatar implements KeyListener {
 	public String[] maps = {"", "map2", "map3", "map4"};
 
 	public void init(float X, float Y, int playerNum) {
+		/**
+		 * This method initialises the attributes for the player class.
+		 * 
+		 * @param X
+		 * 	The starting X coordinate.
+		 * @param Y
+		 * 	The starting Y coordinate.
+		 * 
+		 * @param playerNum
+		 * 	Not needed any more, was used for identifying player number.
+		 * 	Only here to help with merging.
+		 */
 		this.X = X;
 		this.Y = Y;
 		loadImage loader = new loadImage();
@@ -53,31 +77,69 @@ public abstract class Player extends Avatar implements KeyListener {
 	}
 
 	public void update(CopyOnWriteArrayList<Block> blocks) {
-		//update pointer to blocks, so it can be used in the push to 
+		/**
+		 * Method. Coordinates the player's logic and updates the player's interpretation of block
+		 * locations. Checks if the player touches gold moves the player in the desired direction 
+		 * and checks if the player is out of bounds.
+		 * 
+		 * @param blocks
+		 * 	A list of all blocks in the game.
+		 * 
+		 * @see World
+		 * 	Calls this method to update all logic in the game on each frame.
+		 * 
+		 * @see checkGoldTouch()
+		 * 	Coordinates all logic for when the player touches gold.
+		 * 
+		 * @see movePlayer()
+		 * 	moves the player in the desired location.
+		 * 
+		 * @see checkIfOutside()
+		 * 	Checks if the player is out of bounds (i.e. off the map).
+		 * 
+		 * @see resetPosition()
+		 * 	Moves the player back to a location on the map.
+		 */
+		
+		//update pointer to blocks, so it can be used when the player gets pushed 
 		//know where walls are. 
+		
 		this.blocks = blocks;
-		// Check for gold collision and update score and gold.
 		checkGoldTouch(blocks);
-		// make player change its Co-ordinates.
 		movePlayer(blocks);
-
-
 		if (checkIfOutside(blocks))
 			resetPosition();
 
 	}
 
 	private void resetPosition() {
+		/**
+		 * Resets the player's location.
+		 * 
+		 * @see update()
+		 * 	Calls this method.
+		 */
+		
 		this.X = 300;
 		this.Y = 300;
 		
 	}
 
-	private boolean checkIfOutside(CopyOnWriteArrayList<Block> blockss) {
+	private boolean checkIfOutside(CopyOnWriteArrayList<Block> blocks) {
+		/**
+		 * This method checks to see if the player is out of bounds.
+		 * It does this by checking all blocks to see if the player is in contact with 
+		 * any that it should be in contact with.
+		 * 
+		 * @param blocks
+		 */
 		boolean outSide = true;
 		for (Block i : blocks){
-			if (isTouching(i.x, i.y, i.width, i.height) && (i.rectangle || i.gold || (i.door && i.isVisible)) )
+			if (isTouching(i.x, i.y, i.width, i.height) && (i.rectangle || i.gold || i.wall || (i.door && i.isVisible)) ){
 				outSide = false;
+				break;
+			}
+				
 		}
 		return outSide;
 	}
@@ -113,13 +175,7 @@ public abstract class Player extends Avatar implements KeyListener {
 	protected void movePlayer(CopyOnWriteArrayList<Block> blocks) {
 		//Implemented in Player1 and Player2 classes.
 	}
-	protected boolean detectTouchingWall(CopyOnWriteArrayList<Block> blocks) {
-		for (Block i : blocks) {
-			if ((i.wall) && isTouching(i.x, i.y, i.width, i.height))
-				return true;
-		}
-		return false;
-	}
+
 
 	protected boolean detectTouchingDoor(CopyOnWriteArrayList<Block> blocks) {
 		for (Block i : blocks) {
