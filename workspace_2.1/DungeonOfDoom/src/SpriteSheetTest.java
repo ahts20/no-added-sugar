@@ -1,30 +1,27 @@
+
 import static org.junit.Assert.*;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import main.SpriteSheet;
+import main.loadImage;
 
 public class SpriteSheetTest {
-	
-	private BufferedImage image=null;
 
-	@Before
-	public void setUp() throws Exception {
+	private BufferedImage image;
+
+	@Test
+	public void testGrabImage() throws IOException {
+		loadImage loader = new loadImage();
+		image = loader.LoadImageFrom("/SpriteSheet(3).png");
 		SpriteSheet spriteSheet = new SpriteSheet(image);
-	}
-
-	@Test
-	public void testSpriteSheet(SpriteSheet spriteSheet) {		
-		assertEquals(null, spriteSheet);
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGrabImage() {
-		fail("Not yet implemented");
+		BufferedImage temp = spriteSheet.grabImage(0, 0, 45, 45);
+		assertNotNull(spriteSheet);
+		assertNotNull(temp);
 	}
 
 }
