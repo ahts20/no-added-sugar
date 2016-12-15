@@ -116,8 +116,13 @@ public abstract class Player extends Avatar implements KeyListener {
 
 	private void resetPosition(CopyOnWriteArrayList<Block> blocks) {
 		/**
-		 * Resets the player's location.
+		 * Resets the player's location back onto the map.
+		 * It works by finding the closest rectangle (floor) 
+		 * block to the player's location and setting the player's
+		 * coordinates to this block.
 		 * 
+		 * @param blocks
+		 * 	A list of all blocks in the game.
 		 * @see update()
 		 * 	Calls this method.
 		 */
@@ -132,8 +137,8 @@ public abstract class Player extends Avatar implements KeyListener {
 				closest = i;
 			}
 		}
-		
-		this.X = closest.x;
+		//x-40 because players are twice the width of blocks.
+		this.X = closest.x-40;
 		this.Y = closest.y;
 		
 	}

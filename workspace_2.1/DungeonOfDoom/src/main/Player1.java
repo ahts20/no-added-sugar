@@ -87,11 +87,28 @@ public class Player1 extends Player implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent k) {
+		/**
+		 * An unused method from the KeyListener class.
+		 */
 
 	}
 	
 	protected void movePlayer(CopyOnWriteArrayList<Block> blocks) {
-		// Make player move in desired direction.
+		/**
+		 *  This method makes the player move in desired direction,
+		 *  as dictated by the player's direction variable values.
+		 *  The method also takes into account wall collisions and 
+		 *  closed/hidden door collisions, and moves the player backward
+		 *  when this occurs - to prevent players from walking out of the 
+		 *  map.
+		 *  
+		 *  If the player walks into an open door (which is opened once enough
+		 *  gold in the room has been collected) then the next game state is 
+		 *  pushed to the stack.
+		 *  
+		 * @param blocks 
+		 *  This ArrayList contains all block instances in the game.
+		 */
 		String Xdirection = "";
 		String Ydirection = "";
 

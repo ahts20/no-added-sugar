@@ -153,8 +153,12 @@ public abstract class Avatar {
 		 * This method calculates the distance between the coordinates passed in.
 		 * It is based on the mathematical formula c^2 = a^2 + b^2.
 		 * 
-		 * @see findClosestPlayer()
-		 * 	The current method is called by this method.
+		 * @see Bot
+		 * 	The current method is called by this class to find the closest player
+		 * to the bot's location.
+		 * @see Player
+		 * 	This method is called by this class to find the closest block to the player
+		 * 	so the player can be repositioned on the map if he escapes.
 		 * 
 		 * @return
 		 * 	The current method returns the distance between the two variables.
