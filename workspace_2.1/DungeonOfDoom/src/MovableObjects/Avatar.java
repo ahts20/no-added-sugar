@@ -230,7 +230,7 @@ public abstract class Avatar {
 		return isChanging;
 	}
 	public void setIsChanging(boolean isChanging){
-		this.isChanging = isChanging;
+		this.isChanging = isChanging; 
 	}
 	
 }
