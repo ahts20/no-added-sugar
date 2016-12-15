@@ -42,7 +42,7 @@ public abstract class Player extends Avatar implements KeyListener {
 	public String[] maps = {"", "map2", "map3", "map4", "$"};
 
 
-	public void init(float X, float Y, int playerNum) {
+	public void init(float X, float Y) {
 		/**
 		 * This method initialises the attributes for the player class.
 		 * 
@@ -51,9 +51,6 @@ public abstract class Player extends Avatar implements KeyListener {
 		 * @param Y
 		 * 	The starting Y coordinate.
 		 * 
-		 * @param playerNum
-		 * 	Not needed any more, was used for identifying player number.
-		 * 	Only here to help with merging.
 		 */
 		this.X = X;
 		this.Y = Y;
