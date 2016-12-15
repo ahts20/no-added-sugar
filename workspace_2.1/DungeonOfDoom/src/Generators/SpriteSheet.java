@@ -2,6 +2,13 @@ package Generators;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * SpriteSheet is a combination of images and it can be grabbed to sub-images
+ * 
+ * @version 1.0
+ * @release 15/12/2016
+ * @see SpriteSheet.java
+ */
 public class SpriteSheet {
 	private BufferedImage image;
 
