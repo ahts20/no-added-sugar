@@ -89,7 +89,7 @@ public abstract class Player extends Avatar implements KeyListener {
 		 * @see World
 		 * 	Calls this method to update all logic in the game on each frame.
 		 * 
-		 * @see checkGoldTouch()
+		 * @see checkGoldTouch() 
 		 * 	Coordinates all logic for when the player touches gold.
 		 * 
 		 * @see movePlayer()
