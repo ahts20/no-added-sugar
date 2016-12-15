@@ -56,15 +56,15 @@ public class TestBot {
 
 	@Test
 	public void testMoveToPlayerRight() {
-		bot.setX(10);
+		bot.setX(1);
 		bot.setY(10);
-		p.setX(500);
+		p.setX(100);
 		p.setY(10);
-		p2.setX(500);
+		p2.setX(100);
 		p2.setY(10);
 
 		world.update();
-
+		
 		assertEquals("RIGHT", bot.getBotXdirection());
 	}
 	@Test
@@ -82,14 +82,17 @@ public class TestBot {
 	}
 	@Test
 	public void testMoveToPlayerDown() {
-		bot.setX(10);
-		bot.setY(100);
-		p.setX(10);
+		bot.setX(500);
+		bot.setY(10);
+		p.setX(500);
 		p.setY(500);
-		p2.setX(10);
+		p2.setX(500);
 		p2.setY(500);
+		bot.setBotYdirection("DOWN");
 
 		world.update();
+		
+		System.out.println(bot.getBotYdirection());
 
 		assertEquals("DOWN", bot.getBotYdirection());
 	}
@@ -129,14 +132,15 @@ public class TestBot {
 	public void testBotPushesPlayerDown() {
 		bot.setX(10);
 		bot.setY(10);
+		bot.setBotYdirection("DOWN");
 		p.setX(10);
-		p.setY(13);
-		p2.setX(50);
-		p2.setY(50);
+		p.setY(10);
+		p2.setX(500);
+		p2.setY(500);
 		//Run logic
 		world.update();
 		//Becomes inactive.
-		assertEquals(true, p.getY() > 10);
+		assertEquals(true, p.getY() > 15);
 	}
 	@Test
 	public void testBotPushesPlayerUp() {
