@@ -4,6 +4,14 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+/**
+ * loadImage called to get the image with the configure path by using ImageIO
+ * 
+ * @see ImageIO
+ * @version 1.0
+ * @release 15/12/2016
+ * @see loadImage.java
+ */
 public class loadImage {
 
 	private BufferedImage image;
