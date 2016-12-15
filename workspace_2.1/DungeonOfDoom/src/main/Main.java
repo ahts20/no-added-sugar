@@ -15,7 +15,7 @@ import java.io.File;
  * @See GameOverState.java
  */
 public class Main {
-	//Declares and initialises teh Graphics Environment to be used acroos different platforms
+	//Declares and initialises the Graphics Environment to be used across different platforms
 	private static GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 	public static int width = gd.getDisplayMode().getWidth();
 	public static int height = gd.getDisplayMode().getHeight();
@@ -32,16 +32,17 @@ public class Main {
 	 * 		prints error if no font found
 	 */
 	public static void main(String[] args) {
+		gw = new GameWindow("Dungeon", width, height);
+		fontLoader("res/8BIT");
+	}
+	
+	private static void fontLoader(String fontNamePath){
 		try {
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/8BIT.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(fontNamePath+".ttf")));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		gw = new GameWindow("Dungeon", width, height);
-
 	}
 
 }
