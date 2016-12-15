@@ -7,7 +7,7 @@ import java.awt.Graphics;
 
 import Generators.GameStateButton;
 import Generators.MouseInput;
-import Main.Main;
+import main.Main;
 import Managers.GameState;
 import Managers.GameStateManager;
 /**
@@ -45,7 +45,7 @@ public class GameOverState extends GameState {
 	@Override
 	public void init() {
 		mi = new MouseInput();
-		quit = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), Main.height - 150, new QuitState(gsm), "QUIT");
+		quit = new GameStateButton((main.Main.width / 2) - (GameStateButton.width / 2), main.Main.height - 150, new QuitState(gsm), "QUIT");
 		
 	}
 	/**
@@ -78,14 +78,14 @@ public class GameOverState extends GameState {
 		int x2 = (500 - metrics.stringWidth(message2)) / 2;
 		int x3 = (200 - metrics.stringWidth(message3)) / 2;
 		g.setColor(Color.RED);
-		g.drawString(message, x1 + (Main.width / 2) - 300, 200);
+		g.drawString(message, x1 + (main.Main.width / 2) - 300, 200);
 		g.setColor(Color.ORANGE);
-		g.drawString(message2, x2 + (Main.width / 2) - 250, 350);
+		g.drawString(message2, x2 + (main.Main.width / 2) - 250, 350);
 		g.setColor(Color.WHITE);
-		g.drawString(message3, x3 + (Main.width / 2) - 100, 500);
+		g.drawString(message3, x3 + (main.Main.width / 2) - 100, 500);
 		
 		quit.render(g);
-		g.clipRect(0,  0, Main.width, Main.height);
+		g.clipRect(0,  0, main.Main.width, main.Main.height);
 		
 	}
 

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import Generators.GameStateButton;
 import Generators.MouseInput;
-import Main.Main;
+import main.Main;
 import Managers.GameState;
 import Managers.GameStateManager;
 /**
@@ -50,7 +50,7 @@ public class HighScoreState extends GameState{
 	@Override
 	public void init() {
 		mi = new MouseInput();
-		back = new GameStateButton((Main.width / 2) - (GameStateButton.width / 2), (Main.height - 200), new MenuState(gsm), "BACK");
+		back = new GameStateButton((main.Main.width / 2) - (GameStateButton.width / 2), (main.Main.height - 200), new MenuState(gsm), "BACK");
 	
 		BufferedReader readerPlayer1 = null;
 		BufferedReader readerPlayer2 = null;
@@ -127,7 +127,7 @@ public class HighScoreState extends GameState{
 		}
 		
 		
-		g.clipRect(0,  0, Main.width, Main.height);
+		g.clipRect(0,  0, main.Main.width, main.Main.height);
 		
 		mi.render(g);
 		back.render(g);
