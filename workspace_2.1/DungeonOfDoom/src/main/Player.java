@@ -37,10 +37,10 @@ public abstract class Player extends Avatar implements KeyListener {
 	public static boolean touching = false;
 	
 	public World world = new World(gsm);
-	
-	//!!!!
+
 	public static int counter = 0;
-	public String[] maps = {"", "map2", "map3", "map4"};
+	public String[] maps = {"", "map2", "map3", "map4", "$"};
+
 
 	public void init(float X, float Y, int playerNum) {
 		/**
@@ -57,6 +57,7 @@ public abstract class Player extends Avatar implements KeyListener {
 		 */
 		this.X = X;
 		this.Y = Y;
+
 		loadImage loader = new loadImage();
 		try {
 			spriteSheet = loader.LoadImageFrom("/SpriteSheet(3).png");
@@ -111,6 +112,7 @@ public abstract class Player extends Avatar implements KeyListener {
 			resetPosition();
 
 	}
+
 
 	private void resetPosition() {
 		/**

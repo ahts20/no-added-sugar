@@ -56,6 +56,7 @@ public class QuitState extends GameState{
 	/**
 	 * Part of GameLoop, Sets the graphics for JFrame.
 	 * Draws the buttons on the Screen.
+ 	 * Draws the mouse on the screen.
 	 * @see GameStates.GameState#render(java.awt.Graphics)
 	 */
 	@Override
