@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import org.junit.After;
 import org.junit.Test;
 
-import Main.Main;
+import main.Main;
 import Managers.GameLoop;
 import Managers.GameStateManager;
 
@@ -16,7 +16,7 @@ public class JUnitGameLoopTest extends JFrame{
 	
 	public JUnitGameLoopTest() {
 		//JFrame
-		add(gl = new GameLoop(Main.width, Main.height));
+		add(gl = new GameLoop(main.Main.width, main.Main.height));
 		setTitle("JUNIT");
 		setSize(Main.width, Main.height);
 		setLocationRelativeTo(null);

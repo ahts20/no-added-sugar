@@ -130,9 +130,9 @@ public class TestBot {
 		bot.setX(10);
 		bot.setY(10);
 		p.setX(10);
-		p.setY(11);
-		p2.setX(10);
-		p2.setY(11);
+		p.setY(13);
+		p2.setX(50);
+		p2.setY(50);
 		//Run logic
 		world.update();
 		//Becomes inactive.
