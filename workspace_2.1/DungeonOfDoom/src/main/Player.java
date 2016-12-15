@@ -109,21 +109,32 @@ public abstract class Player extends Avatar implements KeyListener {
 		checkGoldTouch(blocks);
 		movePlayer(blocks);
 		if (checkIfOutside(blocks))
-			resetPosition();
+			resetPosition(blocks);
 
 	}
 
 
-	private void resetPosition() {
+	private void resetPosition(CopyOnWriteArrayList<Block> blocks) {
 		/**
 		 * Resets the player's location.
 		 * 
 		 * @see update()
 		 * 	Calls this method.
 		 */
+		Block first = blocks.get(0);
+		double temp;
+		double closestDist = calculateDist(first.x, first.y, this.X, this.Y);
+		Block closest = blocks.get(0);
+		for (Block i : blocks){
+			temp = calculateDist(i.x, i.y, this.X, this.Y);
+			if (i.rectangle && (temp < closestDist)){
+				closestDist = temp;
+				closest = i;
+			}
+		}
 		
-		this.X = 300;
-		this.Y = 300;
+		this.X = closest.x;
+		this.Y = closest.y;
 		
 	}
 

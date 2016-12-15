@@ -178,25 +178,6 @@ public class Bot extends Avatar {
 		return player2;
 	}
 
-	private double calculateDist(double x, double y, float x2, float y2) {
-		/**
-		 * This method calculates the distance between the coordinates passed in.
-		 * It is based on the mathematical formula c^2 = a^2 + b^2.
-		 * 
-		 * @see findClosestPlayer()
-		 * 	The current method is called by this method.
-		 * 
-		 * @return
-		 * 	The current method returns the distance between the two variables.
-		 */
-
-		double X = Math.abs(x - x2);
-		double Y = Math.abs(y - y2);
-		double dist = Math.pow(X, 2);
-		dist += Math.pow(Y, 2);
-		return dist;
-	}
-
 	private void tryToHitPlayer(Player closest) {
 		/**
 		 * This method coordinates the bot's hit functionality.
