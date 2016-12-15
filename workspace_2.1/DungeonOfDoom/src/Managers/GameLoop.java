@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 /**
-* GameLoop is the most important function of the game , called when the game is started. 
+* GameLoop is the most important function of the game , called when the game is started and the JFrame is extended. 
 * Creates an infinite loop updating the update() and render() function 60 times a second (60 FPS).
 * Uses GameStateManager class in order to connect to all the other declared states (LevelLoader, MenuState).
 * Runs on a separate Thread.
@@ -111,6 +111,11 @@ public class GameLoop extends JPanel implements Runnable {
 				render();
 			}
 
+			/*
+			 * Keeps the amount of time between frames roughly constant by delaying
+			 * so that the animations don't run faster or slower depending on how fast the
+			 * computer processor is running.
+			 */
 			//Sleepy
 			try {
 				Thread.sleep(2);
@@ -147,6 +152,7 @@ public class GameLoop extends JPanel implements Runnable {
 
 	}
 	/**
+	 * Updates all the declared states which are on top of the stack in the GameStateManager
 	 * GameStateManager allowing to update methods from other classes
 	 */
 	public void update() {
