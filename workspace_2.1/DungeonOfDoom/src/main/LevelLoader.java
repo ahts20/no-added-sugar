@@ -19,7 +19,7 @@ public class LevelLoader extends GameState{
 	private String worldName;
 	private String map_name;
 	/**
-	 * Constructor 1. Sets the field values.
+	 * Constructor 1. Sets the field values. Used when play is pressed in MenuState
 	 * @param GameStateManager
 	 * 		calls the GameStateManager class
 	 */
@@ -39,18 +39,16 @@ public class LevelLoader extends GameState{
 		super(gsm);
 		this.worldName = worldName;
 		this.map_name = map_name;
-	}
-	
+	}	
 	/**
 	 * Part of GameLoop, Initialises the declared classes and fields.
 	 * Initialises the World class and generates the map 
 	 * @see GameStates.GameState#init()
+	 * @see World.generate()
 	 */
 	@Override
 	public void init() {
-
-		world = new World(worldName, gsm);
-		world.addPlayer(player);
+		world = new World(gsm);
 		world.init();
 		
 		if(worldName == null){
@@ -58,9 +56,7 @@ public class LevelLoader extends GameState{
 			map_name = "map";
 		} 
 		world.generate(map_name);
-		
 	}
-	
 	/** 
 	 * Part of GameLoop, Updates the declared classes and fields (60 FPS).
 	 * @see GameStates.GameState#update()
@@ -80,6 +76,4 @@ public class LevelLoader extends GameState{
 	public void render(Graphics g) {
 		world.render(g);
 	}
-
-	
 }

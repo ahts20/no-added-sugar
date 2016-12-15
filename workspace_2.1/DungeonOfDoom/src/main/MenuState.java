@@ -85,7 +85,7 @@ public class MenuState extends GameState {
 	 * Draws the mouse on the screen.
 	 * @see GameStates.GameState#render(java.awt.Graphics)
 	 * @param g
-		 * 	The graphics object which is displayed to the screen.
+	 * 		The graphics object which is displayed to the screen.
 	 */
 	@Override
 	public void render(Graphics g) {

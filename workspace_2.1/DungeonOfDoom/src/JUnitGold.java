@@ -50,7 +50,7 @@ public class JUnitGold {
 		assertEquals(false, d.isVisible);
 
 		// Create Level loader object and add player and blocks.
-		World world = new World("testWorld", new GameStateManager());
+		World world = new World(new GameStateManager());
 		world.player1 = p;
 		world.player2 = p2;
 		world.blocks = blocks;
