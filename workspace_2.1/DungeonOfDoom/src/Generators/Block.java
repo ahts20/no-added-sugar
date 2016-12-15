@@ -29,7 +29,10 @@ public class Block extends Rectangle {
 	public int height;
 	//Declared booleans
 	public boolean isVisible;
-	public boolean rectangle, wall, gold, door;
+	public boolean rectangle;
+	public boolean wall;
+	public boolean gold;
+	public boolean door;
 	private boolean isSolid;
 	/**
 	 * Constructor. Sets the field values. Used to specify the position of blocks
@@ -153,6 +156,5 @@ public class Block extends Rectangle {
 		this.isSolid = isSolid;
 		return this;
 	}
-	
 
 }

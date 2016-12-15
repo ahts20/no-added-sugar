@@ -304,4 +304,5 @@ public abstract class Player extends Avatar implements KeyListener {
 	public void setYDirection(String dir){
 		this.P1Ydirection = dir;
 	}
+	
 }
