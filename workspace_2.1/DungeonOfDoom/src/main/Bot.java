@@ -357,7 +357,7 @@ public class Bot extends Avatar {
 			Y += speed;
 	}
 
-	public void render(Graphics g, int i) {
+	public void render(Graphics g) {
 		/**
 		 * This method draws the bot's relevant image file and coordinates to the 
 		 * graphics screen.
@@ -373,6 +373,16 @@ public class Bot extends Avatar {
 		 * 	This class calls the render function of the bot.
 		 * 
 		 */
+		int i = 0;
+		if (botState == "facedown") {
+			i = 6;
+		} else if (botState == "faceleft") {
+			i = 4;
+		} else if (botState == "faceright") {
+			i = 5;
+		} else if (botState == "faceup") {
+			i = 7;
+		}
 		g.drawImage(this.p[i], (int) this.X, (int) this.Y, null);
 	}
 		public boolean getActive() {
