@@ -270,30 +270,6 @@ public abstract class Player extends Avatar implements KeyListener {
 			}
 		}
 	}
-//	public void moveCords(int distance, String direction){
-//		/**
-//		 * This method moves the player coordinates by the 
-//		 * specified amount in the correct direction.
-//		 * 
-//		 * @param distance
-//		 * 	The distance to move the player.
-//		 * 
-//		 * @param direction
-//		 * 	The direction to move the player.
-//		 * 
-//		 * @see getKnocked()
-//		 * 	Called by this method when the player is knocked by 
-//		 * the bot.
-//		 */
-//		if (direction.equals("RIGHT"))
-//			X = (this.X + distance);
-//		if (direction.equals("LEFT"))
-//			X = (this.X - distance);
-//		if (direction.equals("DOWN"))
-//			Y = (this.Y + distance);
-//		if (direction.equals("UP"))
-//			Y = (this.Y - distance);
-//	}	
 	
 	public void setXDirection(String dir){
 		this.P1Xdirection = dir;
