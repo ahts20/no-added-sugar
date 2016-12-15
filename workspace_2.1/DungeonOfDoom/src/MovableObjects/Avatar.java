@@ -1,5 +1,4 @@
 package MovableObjects;
-
 import java.awt.Checkbox;
 import java.awt.Graphics;
 import java.awt.Point;
