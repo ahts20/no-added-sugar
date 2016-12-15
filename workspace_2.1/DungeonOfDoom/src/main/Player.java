@@ -109,21 +109,37 @@ public abstract class Player extends Avatar implements KeyListener {
 		checkGoldTouch(blocks);
 		movePlayer(blocks);
 		if (checkIfOutside(blocks))
-			resetPosition();
+			resetPosition(blocks);
 
 	}
 
 
-	private void resetPosition() {
+	private void resetPosition(CopyOnWriteArrayList<Block> blocks) {
 		/**
-		 * Resets the player's location.
+		 * Resets the player's location back onto the map.
+		 * It works by finding the closest rectangle (floor) 
+		 * block to the player's location and setting the player's
+		 * coordinates to this block.
 		 * 
+		 * @param blocks
+		 * 	A list of all blocks in the game.
 		 * @see update()
 		 * 	Calls this method.
 		 */
-		
-		this.X = 300;
-		this.Y = 300;
+		Block first = blocks.get(0);
+		double temp;
+		double closestDist = calculateDist(first.x, first.y, this.X, this.Y);
+		Block closest = blocks.get(0);
+		for (Block i : blocks){
+			temp = calculateDist(i.x, i.y, this.X, this.Y);
+			if (i.rectangle && (temp < closestDist)){
+				closestDist = temp;
+				closest = i;
+			}
+		}
+		//x-40 because players are twice the width of blocks.
+		this.X = closest.x-40;
+		this.Y = closest.y;
 		
 	}
 
@@ -223,6 +239,9 @@ public abstract class Player extends Avatar implements KeyListener {
 		 * @see Bot.java
 		 * 	This class calls this method when it somes into contact with the
 		 * 	player.
+		 * 
+		 * @see moveCords()
+		 * 	Uses this method to move the player.
 		 */
 		
 		int step = 5;
@@ -264,6 +283,10 @@ public abstract class Player extends Avatar implements KeyListener {
 		 * 
 		 * @param direction
 		 * 	The direction to move the player.
+		 * 
+		 * @see getKnocked()
+		 * 	Called by this method when the player is knocked by 
+		 * the bot.
 		 */
 		if (direction.equals("RIGHT"))
 			X = (this.X + distance);
