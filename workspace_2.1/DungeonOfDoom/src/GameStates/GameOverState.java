@@ -1,12 +1,15 @@
-package main;
+package GameStates;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 
-import GameStates.GameState;
-import GameStates.GameStateManager;
+import Generators.GameStateButton;
+import Generators.MouseInput;
+import main.Main;
+import Managers.GameState;
+import Managers.GameStateManager;
 /**
 * GameOverState class called when the game is started.
 * Uses QuitState classes to give user further interaction.
@@ -37,7 +40,7 @@ public class GameOverState extends GameState {
 	/**
 	 * Part of GameLoop, Initialises the declared classes and fields.
 	 * Specifies the GameStates to change to, for the quit GameStateButton.
-	 * @see GameStates.GameState#init()
+	 * @see Managers.GameState#init()
 	 */
 	@Override
 	public void init() {
@@ -48,7 +51,7 @@ public class GameOverState extends GameState {
 	/**
 	 * Part of GameLoop, Updates the declared classes and fields (60 FPS)
 	 * Updates the mouse position and keep track of the GameStateButton
-	 * @see GameStates.GameState#update()
+	 * @see Managers.GameState#update()
 	 */
 	@Override
 	public void update() {
@@ -60,7 +63,7 @@ public class GameOverState extends GameState {
 	 * Part of GameLoop, Sets the graphics for JFrame.
 	 * Draws the buttons on the Screen.
 	 * Draws the mouse on the screen.
-	 * @see GameStates.GameState#render(java.awt.Graphics)
+	 * @see Managers.GameState#render(java.awt.Graphics)
 	 * @param g
 		 * 	The graphics object which is displayed to the screen.
 	 */

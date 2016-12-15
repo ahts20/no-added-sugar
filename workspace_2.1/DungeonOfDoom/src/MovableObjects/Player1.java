@@ -1,15 +1,18 @@
-package main;
+package MovableObjects;
 
 import java.awt.event.KeyEvent;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.awt.event.KeyListener;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Player2 extends Player {
+import GameStates.GameOverState;
+import GameStates.LevelLoader;
+import Generators.Block;
+import Generators.World;
+
+public class Player1 extends Player implements KeyListener {
 	/**
 	 * This class inherits method from the player class, and implements
-	 * methods specific to the player2 instance (i.e. specific 
+	 * methods specific to the player1 instance (i.e. specific 
 	 * key events).
 	 * Ideally both player1 and player2 would be instances of 
 	 * the player class, although java displayed a large bug when
@@ -31,6 +34,7 @@ public class Player2 extends Player {
 	 * 	which determines when to update the player's logic and
 	 * 	add itself to the graphics screen.
 	 */
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		/**
@@ -42,18 +46,18 @@ public class Player2 extends Player {
 		 * 	e is a KeyEvent variable.
 		 */
 		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_RIGHT) {
-			P2Xdirection = "RIGHT";
+		if (key == KeyEvent.VK_D) {
+			P1Xdirection = "RIGHT";
 		}
-		if (key == KeyEvent.VK_LEFT) {
-			P2Xdirection = "LEFT";
+		if (key == KeyEvent.VK_A) {
+			P1Xdirection = "LEFT";
 		}
-		if (key == KeyEvent.VK_UP) {
-			P2Ydirection = "UP";
+		if (key == KeyEvent.VK_W) {
+			P1Ydirection = "UP";
 		}
-		if (key == KeyEvent.VK_DOWN) {
-			P2Ydirection = "DOWN";
-		}		
+		if (key == KeyEvent.VK_S) {
+			P1Ydirection = "DOWN";
+		}
 		if (key == KeyEvent.VK_ESCAPE) {
 			System.exit(1);
 		}
@@ -72,17 +76,17 @@ public class Player2 extends Player {
 		 * 	e is a KeyEvent variable.
 		 */
 		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_RIGHT) {
-			this.P2Xdirection = "faceright";
+		if (key == KeyEvent.VK_D) {
+			this.P1Xdirection = "faceright";
 		}
-		if (key == KeyEvent.VK_LEFT) {
-			this.P2Xdirection = "faceleft";
+		if (key == KeyEvent.VK_A) {
+			this.P1Xdirection = "faceleft";
 		}
-		if (key == KeyEvent.VK_UP) {
-			this.P2Ydirection = "faceup";
+		if (key == KeyEvent.VK_W) {
+			this.P1Ydirection = "faceup";
 		}
-		if (key == KeyEvent.VK_DOWN) {
-			this.P2Ydirection = "facedown";
+		if (key == KeyEvent.VK_S) {
+			this.P1Ydirection = "facedown";
 		}
 	}
 
@@ -91,8 +95,9 @@ public class Player2 extends Player {
 		/**
 		 * An unused method from the KeyListener class.
 		 */
-	}
 
+	}
+	
 	protected void movePlayer(CopyOnWriteArrayList<Block> blocks) {
 		/**
 		 *  This method makes the player move in desired direction,
@@ -112,12 +117,12 @@ public class Player2 extends Player {
 		String Xdirection = "";
 		String Ydirection = "";
 
+		Xdirection = P1Xdirection;
+		Ydirection = P1Ydirection;
 		int extraPushback = 15;
-		Xdirection = P2Xdirection;
-		Ydirection = P2Ydirection;
-
+		
 		if (Xdirection == "RIGHT") {
-			if (detectTouchingWall(blocks)|| detectTouchingHiddenDoor(blocks)) {
+			if (detectTouchingWall(blocks) || detectTouchingHiddenDoor(blocks)) {
 				Xdirection = "LEFT";
 				this.X -= this.speed+extraPushback;
 			} else {
@@ -126,7 +131,8 @@ public class Player2 extends Player {
 				if(detectTouchingDoor(blocks)){
 					counter ++;
 					touching = true;
-	
+
+				
 					if(maps[counter].equals("$")){
 						gsm.states.push(new GameOverState(gsm));
 						gsm.states.peek().init();
@@ -135,6 +141,7 @@ public class Player2 extends Player {
 						gsm.states.push(new LevelLoader(gsm, "Not", maps[counter]));
 						gsm.states.peek().init();
 					}
+
 
 				}
 			}
@@ -149,7 +156,7 @@ public class Player2 extends Player {
 				if(detectTouchingDoor(blocks)){
 					counter ++;
 					touching = true;
-			
+	
 					if(maps[counter].equals("$")){
 						gsm.states.push(new GameOverState(gsm));
 						gsm.states.peek().init();
@@ -172,7 +179,7 @@ public class Player2 extends Player {
 				if(detectTouchingDoor(blocks)){
 					counter ++;
 					touching = true;
-	
+				
 					if(maps[counter].equals("$")){
 						gsm.states.push(new GameOverState(gsm));
 						gsm.states.peek().init();
@@ -190,12 +197,12 @@ public class Player2 extends Player {
 				Ydirection = "UP";
 				this.Y -= this.speed+extraPushback;
 			} else {
-				this.Y += this.speed;
+				this.Y += this.speed; 
 				this.status = "facedown";
 				if(detectTouchingDoor(blocks)){
 					counter ++;
 					touching = true;
-	
+				
 					if(maps[counter].equals("$")){
 						gsm.states.push(new GameOverState(gsm));
 						gsm.states.peek().init();

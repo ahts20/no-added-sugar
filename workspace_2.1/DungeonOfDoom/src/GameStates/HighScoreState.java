@@ -1,4 +1,4 @@
-package main;
+package GameStates;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -7,8 +7,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import GameStates.GameState;
-import GameStates.GameStateManager;
+import Generators.GameStateButton;
+import Generators.MouseInput;
+import main.Main;
+import Managers.GameState;
+import Managers.GameStateManager;
 /**
 * HighScoreState called when the High Score button is clicked in the Menu State.
 * Uses MenuState class to allow the user further interaction
@@ -42,7 +45,7 @@ public class HighScoreState extends GameState{
 	 * Adds score to the array.
 	 * @exception IOException
 	 * 		calls the exception when the text file is not found
-	 * @see GameStates.GameState#init()
+	 * @see Managers.GameState#init()
 	 */
 	@Override
 	public void init() {
@@ -70,7 +73,7 @@ public class HighScoreState extends GameState{
 	/**
 	 * Part of GameLoop, Updates the declared classes and fields (60 FPS)
 	 * Updates the mouse position and keep track of the GameStateButton
-	 * @see GameStates.GameState#update()
+	 * @see Managers.GameState#update()
 	 */
 	@Override
 	public void update() {
@@ -84,7 +87,7 @@ public class HighScoreState extends GameState{
 	 * Draws the buttons on the Screen.
 	 * Draws the highest score on the Screen. 
 	 * Draws the mouse on the screen.
-	 * @see GameStates.GameState#render(java.awt.Graphics)
+	 * @see Managers.GameState#render(java.awt.Graphics)
 	 * @param g
 		 * 	The graphics object which is displayed to the screen.
 	 */

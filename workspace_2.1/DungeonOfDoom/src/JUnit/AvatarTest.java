@@ -1,3 +1,4 @@
+package JUnit;
 import static org.junit.Assert.*;
 
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -5,14 +6,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import GameStates.GameStateManager;
-import main.Block;
-import main.Bot;
-import main.Player;
-import main.Player1;
-import main.Player2;
-import main.World;
-import main.Block.BlockType;
+import Generators.Block;
+import Generators.World;
+import Generators.Block.BlockType;
+import Managers.GameStateManager;
+import MovableObjects.Bot;
+import MovableObjects.Player;
+import MovableObjects.Player1;
+import MovableObjects.Player2;
 
 public class AvatarTest {
 	Bot bot;

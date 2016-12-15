@@ -1,11 +1,14 @@
+package JUnit;
 import static org.junit.Assert.*;
+
 import javax.swing.JFrame;
-import main.Main;
+
 import org.junit.After;
 import org.junit.Test;
 
-import GameStates.GameLoop;
-import GameStates.GameStateManager;
+import main.Main;
+import Managers.GameLoop;
+import Managers.GameStateManager;
 
 public class JUnitGameLoopTest extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -13,7 +16,7 @@ public class JUnitGameLoopTest extends JFrame{
 	
 	public JUnitGameLoopTest() {
 		//JFrame
-		add(gl = new GameLoop(Main.width, Main.height));
+		add(gl = new GameLoop(main.Main.width, main.Main.height));
 		setTitle("JUNIT");
 		setSize(Main.width, Main.height);
 		setLocationRelativeTo(null);

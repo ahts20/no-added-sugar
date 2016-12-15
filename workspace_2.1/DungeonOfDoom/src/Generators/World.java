@@ -1,4 +1,4 @@
-package main;
+package Generators;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
@@ -7,8 +7,10 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import main.Block.BlockType;
-import GameStates.GameStateManager;
+import Generators.Block.BlockType;
+import Managers.GameStateManager;
+import MovableObjects.Bot;
+import MovableObjects.Player;
 /**
  * World class is called in the LevelLoader when the LevelLoader state is pushed on top of the stack
  * Uses Player, Bot class to render and update the movable objects. Bot uses Player class to use its position 
@@ -57,8 +59,8 @@ public class World{
 	public void init() {
 		loader = new loadImage();	
 
-		player2 = new Player2();
-		player1 = new Player1();
+		player2 = new MovableObjects.Player2();
+		player1 = new MovableObjects.Player1();
 		
 		
 		player2.init(500,600);

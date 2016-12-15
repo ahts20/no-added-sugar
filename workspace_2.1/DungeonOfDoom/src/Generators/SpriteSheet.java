@@ -1,4 +1,4 @@
-package main;
+package Generators;
 
 import java.awt.image.BufferedImage;
 

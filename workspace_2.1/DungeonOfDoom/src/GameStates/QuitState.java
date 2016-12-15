@@ -1,7 +1,11 @@
-package main;
+package GameStates;
 import java.awt.Graphics;
-import GameStates.GameState;
-import GameStates.GameStateManager;
+
+import Generators.GameStateButton;
+import Generators.MouseInput;
+import main.Main;
+import Managers.GameState;
+import Managers.GameStateManager;
 /**
 * QuitState called when the Quit button is clicked on in the MenuState.
 * Uses GameStateButton class to allow the user to change the game states when clicked on the buttons.
@@ -28,7 +32,7 @@ public class QuitState extends GameState{
 	/**
 	 * Part of GameLoop, Initialises the declared classes and fields.
 	 * Specifies the GameStates to change to, for each GameStateButton.
-	 * @see GameStates.GameState#init()
+	 * @see Managers.GameState#init()
 	 */
 	@Override
 	public void init() {
@@ -39,7 +43,7 @@ public class QuitState extends GameState{
 	/**
 	 * Part of GameLoop, Updates the declared classes and fields (60 FPS).
 	 * Keeps track of mouse position.
-	 * @see GameStates.GameState#update()
+	 * @see Managers.GameState#update()
 	 */
 	@Override
 	public void update() {
@@ -57,7 +61,7 @@ public class QuitState extends GameState{
 	 * Part of GameLoop, Sets the graphics for JFrame.
 	 * Draws the buttons on the Screen.
  	 * Draws the mouse on the screen.
-	 * @see GameStates.GameState#render(java.awt.Graphics)
+	 * @see Managers.GameState#render(java.awt.Graphics)
 	 */
 	@Override
 	public void render(Graphics g) {
