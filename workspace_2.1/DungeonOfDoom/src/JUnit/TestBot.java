@@ -31,6 +31,8 @@ public class TestBot {
 		bot.init(p, p2, 100, 100);
 		
 		blocks.add(new Block(0,0,10,BlockType.RECTANGLE));
+		blocks.add(new Block(0,0,10,BlockType.RECTANGLE));
+		blocks.add(new Block(0,0,10,BlockType.RECTANGLE));
 		// Create Level loader object and add player and blocks.
 		world = new World(new GameStateManager());
 		world.player1 = p;
@@ -42,12 +44,22 @@ public class TestBot {
 
 	@Test
 	public void testMoveToPlayerLeft() {
-		bot.setX(500);
-		bot.setY(10);
+		//Set bot location
+		bot.setX(100);
+		bot.setY(100);
+		//Set player location (must be touching floor object)
 		p.setX(10);
 		p.setY(10);
 		p2.setX(10);
 		p2.setY(10);
+		
+		//Set a strip of floor objects for player.
+		blocks.get(0).x = 10;
+		blocks.get(0).y = 10;
+		blocks.get(1).x = 40;
+		blocks.get(1).y = 10;
+		blocks.get(2).x = 60;
+		blocks.get(2).y = 10;
 				
 		world.update();
 
@@ -56,12 +68,21 @@ public class TestBot {
 
 	@Test
 	public void testMoveToPlayerRight() {
-		bot.setX(1);
+		bot.setX(10);
 		bot.setY(10);
+
 		p.setX(100);
 		p.setY(10);
+		
 		p2.setX(100);
 		p2.setY(10);
+		
+		blocks.get(0).x = 10;
+		blocks.get(0).y = 10;
+		blocks.get(1).x = 40;
+		blocks.get(1).y = 10;
+		blocks.get(2).x = 100;
+		blocks.get(2).y = 10;
 
 		world.update();
 		
@@ -70,30 +91,44 @@ public class TestBot {
 	@Test
 	public void testMoveToPlayerUp() {
 		bot.setX(10);
-		bot.setY(500);
+		bot.setY(100);
+		
 		p.setX(10);
 		p.setY(10);
 		p2.setX(10);
 		p2.setY(10);
+		
+		blocks.get(0).x = 10;
+		blocks.get(0).y = 20;
+		blocks.get(1).x = 10;
+		blocks.get(1).y = 40;
+		blocks.get(2).x = 10;
+		blocks.get(2).y = 60;
 
 		world.update();
-
+		
 		assertEquals("UP", bot.getBotYdirection());
 	}
 	@Test
 	public void testMoveToPlayerDown() {
-		bot.setX(500);
+
+		bot.setX(10);
 		bot.setY(10);
-		p.setX(500);
-		p.setY(500);
-		p2.setX(500);
-		p2.setY(500);
-		bot.setBotYdirection("DOWN");
+		
+		p.setX(10);
+		p.setY(60);
+		p2.setX(10);
+		p2.setY(60);
+		
+		blocks.get(0).x = 10;
+		blocks.get(0).y = 20;
+		blocks.get(1).x = 10;
+		blocks.get(1).y = 40;
+		blocks.get(2).x = 10;
+		blocks.get(2).y = 60;
 
 		world.update();
 		
-		System.out.println(bot.getBotYdirection());
-
 		assertEquals("DOWN", bot.getBotYdirection());
 	}
 	@Test
@@ -103,6 +138,10 @@ public class TestBot {
 		
 		bot.setX(10);
 		bot.setY(10);
+		
+		blocks.get(0).x = 10;
+		blocks.get(0).y = 10;
+		
 		p.setX(10);
 		p.setY(10);
 		p2.setX(100);
@@ -117,6 +156,10 @@ public class TestBot {
 		
 		bot.setX(10);
 		bot.setY(10);
+
+		blocks.get(0).x = 10;
+		blocks.get(0).y = 10;
+		
 		p.setX(10);
 		p.setY(10);
 		p2.setX(10);
@@ -132,53 +175,93 @@ public class TestBot {
 	public void testBotPushesPlayerDown() {
 		bot.setX(10);
 		bot.setY(10);
-		bot.setBotYdirection("DOWN");
+		
 		p.setX(10);
-		p.setY(10);
-		p2.setX(500);
-		p2.setY(500);
+		p.setY(15);
+		p2.setX(10);
+		p2.setY(60);
+		
+		blocks.get(0).x = 10;
+		blocks.get(0).y = 20;
+		blocks.get(1).x = 10;
+		blocks.get(1).y = 40;
+		blocks.get(2).x = 10;
+		blocks.get(2).y = 60;
+	
 		//Run logic
 		world.update();
-		//Becomes inactive.
-		assertEquals(true, p.getY() > 15);
+
+		assertEquals(true, (p.getY() > 20.0));
+
 	}
 	@Test
 	public void testBotPushesPlayerUp() {
 		bot.setX(10);
-		bot.setY(10);
+		bot.setY(60);
+		
 		p.setX(10);
-		p.setY(9);
+		p.setY(55);
 		p2.setX(10);
-		p2.setY(9);
+		p2.setY(10);
+		
+		//Make a strip for player to walk on.
+		blocks.get(0).x = 10;
+		blocks.get(0).y = 20;
+		blocks.get(1).x = 10;
+		blocks.get(1).y = 40;
+		blocks.get(2).x = 10;
+		blocks.get(2).y = 60;
+	
 		//Run logic
 		world.update();
-		//Becomes inactive.
-		assertEquals(true, p.getY() < 10);
+
+		assertEquals(true, p.getY() < 50);
 	}
 	@Test
 	public void testBotPushesPlayerRight() {
 		bot.setX(10);
 		bot.setY(10);
-		p.setX(11);
+		
+		p.setX(15);
 		p.setY(10);
-		p2.setX(11);
+		p2.setX(60);
 		p2.setY(10);
+		
+		blocks.get(0).x = 10;
+		blocks.get(0).y = 10;
+		blocks.get(1).x = 40;
+		blocks.get(1).y = 10;
+		blocks.get(2).x = 60;
+		blocks.get(2).y = 10;
+	
 		//Run logic
 		world.update();
+
+		//world.update();
 		//Becomes inactive.
-		assertEquals(true, p.getX() > 10);
+		//Becomes inactive.
+		assertEquals(true, p.getX() > 20);
 	}
 	@Test
 	public void testBotPushesPlayerLeft() {
-		bot.setX(10);
+		bot.setX(60);
 		bot.setY(10);
-		p.setX(9);
+		
+		p.setX(55);
 		p.setY(10);
-		p2.setX(9);
+		p2.setX(10);
 		p2.setY(10);
+		
+		blocks.get(0).x = 10;
+		blocks.get(0).y = 10;
+		blocks.get(1).x = 40;
+		blocks.get(1).y = 10;
+		blocks.get(2).x = 60;
+		blocks.get(2).y = 10;
+	
 		//Run logic
 		world.update();
 		//Becomes inactive.
-		assertEquals(true, p.getX() < 10);
+		assertEquals(true, p.getX() < 50);
 	}
 }
