@@ -3,7 +3,7 @@ import java.awt.Graphics;
 
 import Generators.GameStateButton;
 import Generators.MouseInput;
-import Main.Main;
+import main.Main;
 import Managers.GameState;
 import Managers.GameStateManager;
 /**

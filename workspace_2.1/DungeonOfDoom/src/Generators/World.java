@@ -62,8 +62,10 @@ public class World{
 		player2 = new MovableObjects.Player2();
 		player1 = new MovableObjects.Player1();
 		
-		player2.init(500,600,2);
-		player1.init(300, 600, 1);
+		
+		player2.init(500,600);
+		player1.init(300, 600);
+
 
 		bot = new Bot();
 		bot.init(player1, player2, 400, 200);

@@ -8,7 +8,7 @@ import java.io.IOException;
 import Generators.GameStateButton;
 import Generators.MouseInput;
 import Generators.loadImage;
-import Main.Main;
+import main.Main;
 import Managers.GameState;
 import Managers.GameStateManager;
 /**
