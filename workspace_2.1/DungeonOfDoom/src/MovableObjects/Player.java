@@ -89,7 +89,7 @@ public abstract class Player extends Avatar implements KeyListener {
 		 * @see World
 		 * 	Calls this method to update all logic in the game on each frame.
 		 * 
-		 * @see checkGoldTouch()
+		 * @see checkGoldTouch() 
 		 * 	Coordinates all logic for when the player touches gold.
 		 * 
 		 * @see movePlayer()
@@ -245,7 +245,7 @@ public abstract class Player extends Avatar implements KeyListener {
 		 */
 		
 		int step = 5;
-		for (int i = 0; i <= distance; i += 5){
+		for (int i = 0; i <= distance; i += step){
 			//Move if not touching a wall or door object.
 			if(!detectTouchingWall(blocks) && !detectTouchingDoor(blocks)){
 				moveCords(step, direction);
@@ -304,4 +304,5 @@ public abstract class Player extends Avatar implements KeyListener {
 	public void setYDirection(String dir){
 		this.P1Ydirection = dir;
 	}
+	
 }
