@@ -1,4 +1,4 @@
-package main;
+package MovableObjects;
 
 import java.awt.Checkbox;
 import java.awt.Graphics;
@@ -10,7 +10,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import GameStates.GameStateManager;
+import Generators.Block;
+import Managers.GameStateManager;
 
 public abstract class Avatar {
 	/**
@@ -41,7 +42,7 @@ public abstract class Avatar {
 	protected float Y;
 	protected float speed = 5;
 	public String status = "facedown";
-	protected int score;
+	public int score;
 	
 	protected GameStateManager gsm;
 

@@ -1,10 +1,11 @@
+package JUnit;
 import java.awt.Graphics;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import GameStates.GameStateManager;
-import main.MenuState;
+import GameStates.MenuState;
+import Managers.GameStateManager;
 
 public class MenuStateTest {
 	

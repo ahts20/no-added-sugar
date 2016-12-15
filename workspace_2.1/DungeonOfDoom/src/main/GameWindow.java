@@ -1,8 +1,11 @@
-package main;
+package Main;
 
 import javax.swing.JFrame;
 
-import GameStates.GameLoop;
+import Generators.MouseInput;
+import Managers.GameLoop;
+import MovableObjects.Player1;
+import MovableObjects.Player2;
 
 public class GameWindow extends JFrame{
 	/*

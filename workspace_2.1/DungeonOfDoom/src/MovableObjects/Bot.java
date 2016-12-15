@@ -1,7 +1,9 @@
-package main;
+package MovableObjects;
 
 import java.awt.Graphics;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import Generators.Block;
 
 public class Bot extends Avatar {
 	/**
