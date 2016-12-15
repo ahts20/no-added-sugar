@@ -1,4 +1,4 @@
-package main;
+package Main;
 import java.awt.Font;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;

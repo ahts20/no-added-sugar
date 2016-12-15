@@ -1,12 +1,12 @@
-package main;
+package Generators;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import GameStates.GameState;
-import GameStates.GameStateManager;
+import Managers.GameState;
+import Managers.GameStateManager;
 /**
 * GameStateButton called when the buttons are clicked on in the MenuState, HighScoreState, QuitState and GameOverState.
 * Uses GameState class to specify the new Game State when clicked on the button.
@@ -70,7 +70,7 @@ public class GameStateButton extends Rectangle{
 	/**
 	 * Part of GameLoop, Updates the declared classes and fields (60 FPS).
 	 * Checks the mouse position and checks if it is over the button and whether it is pressed or not.
-	 * @see GameStates.GameState#update()
+	 * @see Managers.GameState#update()
 	 */
 	public void update(){
 		if(MouseInput.mouse != null){
@@ -95,7 +95,7 @@ public class GameStateButton extends Rectangle{
 	 * Sets the colour of the button for when the mouse is over the button.
 	 * Sets the colour of the button for when the mouse is not over the button.
 	 * Draws the buttons on the screen.
-	 * @see GameStates.GameState#render(java.awt.Graphics)
+	 * @see Managers.GameState#render(java.awt.Graphics)
 	 * @param g
 	 * The graphics object which is displayed to the screen.
 	 */

@@ -1,3 +1,4 @@
+package JUnit;
 import static org.junit.Assert.*;
 
 import java.awt.image.BufferedImage;
@@ -6,7 +7,7 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.loadImage;
+import Generators.loadImage;
 
 public class loadImageTest {
 

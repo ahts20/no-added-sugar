@@ -1,18 +1,19 @@
+package JUnit;
 import static org.junit.Assert.*;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.junit.Test;
 
-import GameStates.GameStateManager;
-import main.Block;
-import main.Block.BlockType;
-import main.Bot;
-import main.LevelLoader;
-import main.Player;
-import main.Player1;
-import main.Player2;
-import main.World;
+import GameStates.LevelLoader;
+import Generators.Block;
+import Generators.World;
+import Generators.Block.BlockType;
+import Managers.GameStateManager;
+import MovableObjects.Bot;
+import MovableObjects.Player;
+import MovableObjects.Player1;
+import MovableObjects.Player2;
 
 public class JUnitGold {
 

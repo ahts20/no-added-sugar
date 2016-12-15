@@ -1,11 +1,14 @@
+package JUnit;
 import static org.junit.Assert.*;
+
 import javax.swing.JFrame;
-import main.Main;
+
 import org.junit.After;
 import org.junit.Test;
 
-import GameStates.GameLoop;
-import GameStates.GameStateManager;
+import Main.Main;
+import Managers.GameLoop;
+import Managers.GameStateManager;
 
 public class JUnitGameLoopTest extends JFrame{
 	private static final long serialVersionUID = 1L;
