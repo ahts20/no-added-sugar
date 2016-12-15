@@ -6,6 +6,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+/**
+ * MouseInput is going to monitor the mouse actions and update it
+ * 
+ * @version 1.0
+ * @release 15/12/2016
+ * @see MouseInput.java
+ */
 public class MouseInput implements MouseListener, MouseMotionListener {
 	// Declared mouse coordinates
 	public static int mouseMovedX, mouseMovedY;
