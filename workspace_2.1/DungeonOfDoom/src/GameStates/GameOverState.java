@@ -1,13 +1,10 @@
 package GameStates;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
-
 import Generators.GameStateButton;
 import Generators.MouseInput;
-import main.Main;
 import Managers.GameState;
 import Managers.GameStateManager;
 /**
@@ -16,7 +13,8 @@ import Managers.GameStateManager;
 * Uses GameStateButton class to allow the user to change the game states when clicked on the buttons.
 * Uses MouseInput class to allow user to use the mouse for interaction.
 * (Extends GameState to use the init(), update() and render() functions which connect to the GameLoop and JFrame respectively.)
-*
+* 
+* @author anonymous
 * @version 1.0
 * @release 14/12/2016
 * @See GameOverState.java

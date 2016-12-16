@@ -1,13 +1,14 @@
 package Generators;
-
 import java.awt.image.BufferedImage;
-
 /**
- * SpriteSheet is a combination of images and it can be grabbed to sub-images
- * 
+ * Loads the image using the loadImageFrom() class.
+ * and subsequently splits the image into required parts in order to create a matrix like layout to be used for animations.
+ * Helps to store the parts in the BufferedImageArray in the Player class to be called when needed. 
+ *
+ * @author anonymous
  * @version 1.0
- * @release 15/12/2016
- * @see SpriteSheet.java
+ * @release 16/12/2016
+ * @See SpriteSheet.java
  */
 public class SpriteSheet {
 	private BufferedImage image;

@@ -5,11 +5,12 @@ import java.awt.Rectangle;
 
 import MovableObjects.Player;
 /**
-* Block class draws the graphics on blocks wherever specified 
-* Uses GameState class to use the implemented methods init(), update(), render()
-* Is called in World which contains the generate() method to draw the blocks depending on the RGB values
+* Block class draws initialised graphics on the screen taking the RGB values of the map images imported into the World class
+* Uses init(), update() and render() to be initialised in the world class to connect with GaneLoop
+* Is called in World class which contains the generate() method to draw the blocks depending on the RGB values of the map images imported
 * (Extends Rectangle to use the setBound() function to keep track of the each individual block position).
-*
+* 
+* @author anonymous
 * @version 1.0
 * @release 14/12/2016
 * @See Block.java
@@ -33,19 +34,7 @@ public class Block extends Rectangle {
 	public boolean wall;
 	public boolean gold;
 	public boolean door;
-	private boolean isSolid;
-	/**
-	 * Constructor. Sets the field values. Used to specify the position of blocks
-	 * @param x
-	 * 		Specifies the x position of the block
-	 * @param y
-	 * 		Specifies the y position of the block
-	 */
-	public Block(int x, int y) {
-		setBounds((int) x, (int) y, width, height);
-		this.x = x;
-		this.y = y;
-	}
+
 	/**
 	 * Constructor. Sets the field values. 
 	 * Used to specify the position of blocks, the size of blocks and the object type
@@ -139,22 +128,4 @@ public class Block extends Rectangle {
 	public enum BlockType {
 		RECTANGLE, WALL, GOLD, DOOR
 	}
-	/**
-	 * Getter for isSolid boolean 
-	 */
-	public boolean isSolid() {
-		return isSolid;
-	}
-	/**
-	 * Setter for isSolid boolean
-	 * @param isSolid
-	 * 		the boolean to change
-	 * @return
-	 * 		returns the isSolid boolean
-	 */
-	public Block isSolid(boolean isSolid){
-		this.isSolid = isSolid;
-		return this;
-	}
-
 }

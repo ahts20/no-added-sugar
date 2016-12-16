@@ -18,6 +18,7 @@ import Managers.GameStateManager;
 * Uses MouseInput class to allow user to use the mouse for interaction.
 * (Extends GameState to use the init(), update() and render() functions which connect to the GameLoop and JFrame respectively.)
 *
+* @author anonymous
 * @version 1.0
 * @release 13/12/2016
 * @See MenuState.java

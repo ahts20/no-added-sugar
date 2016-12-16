@@ -12,11 +12,12 @@ import Managers.GameStateManager;
 import MovableObjects.Bot;
 import MovableObjects.Player;
 /**
- * World class is called in the LevelLoader when the LevelLoader state is pushed on top of the stack
- * Uses Player, Bot class to render and update the movable objects. Bot uses Player class to use its position 
+ * World class is called in the LevelLoader when the LevelLoader state is pushed on top of the stack.
+ * Uses Player, Bot class to render and update the movable objects.
  * Uses Block class to create new Array to store the blocks and to call them in generate() function. 
- * Uses loadImage class to load the map images to be used in generate() method to load Block images on specific RGB values
+ * Uses loadImage class to load the map images to be used in generate() method.
  * 
+ * @author anonymous
  * @version 1.0
  * @release 15/12/2016
  * @See World.java
@@ -54,7 +55,7 @@ public class World{
 	}
 	/**
 	 * Initialises loadImage, Player and Bot
-	 * Used in LevelLoader to be initialised when LevelLoader is called
+	 * Used in LevelLoader to be initialised when LevelLoader is pushed on top of the stack in GameStateManager
 	 */
 	public void init() {
 		loader = new loadImage();	
@@ -102,7 +103,7 @@ public class World{
 		}
 	}
 	/**
-	 * Checks if enough gold has been picked up (50%) and opens the door to next Map
+	 * Checks if enough gold has been picked up (50%) and opens the door to the next Map
 	 * Uses Block class to check for the Block objects
 	 * @see enoughGoldPickedUp()
 	 * 		Checks how much gold has been collected, if more than 50% has been collected returns true
@@ -145,7 +146,7 @@ public class World{
 	/**
 	 * Renders Player, Bot and Block on the screen
 	 * Used in LevelLoader to be rendered when LevelLoader is called
-	 * Uses the array holding the blocks loaded in generate() function
+	 * Uses the array holding the blocks loaded in generate() method
 	 * @param g
 	 * 		The graphics object which is displayed to the screen.
 	 */
@@ -189,7 +190,7 @@ public class World{
 					break;
 				// If Black set as Wall.
 				case 0x000000:
-					blocks.add(new Block(x * blockSize, y * blockSize, blockSize, BlockType.WALL).isSolid(true));
+					blocks.add(new Block(x * blockSize, y * blockSize, blockSize, BlockType.WALL));
 					break;
 				// If Yellow set as Gold.
 				case 0xffff00:
@@ -207,7 +208,7 @@ public class World{
 		this.totalGold = returnCurrentGold();
 	}
 	/**
-	 * Used when the next Map is loaded to clear the array holding the blocks loaded in generate() function
+	 * Used when the next Map is loaded to clear the array holding the blocks loaded in generate() method
 	 */
 	public static void resetWorld(){
 		blocks.clear();		
