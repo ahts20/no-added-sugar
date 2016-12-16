@@ -68,21 +68,22 @@ public class Player1 extends Player implements KeyListener {
 	 * @param e
 	 * 		e is a KeyEvent variable.
 	 */
+	@SuppressWarnings("static-access")
 	@Override
 	public void keyReleased(KeyEvent e) {
 
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_D) {
-			Player.P1Xdirection = "faceright";
+			this.P1Xdirection = "faceright";
 		}
 		if (key == KeyEvent.VK_A) {
-			Player.P1Xdirection = "faceleft";
+			this.P1Xdirection = "faceleft";
 		}
 		if (key == KeyEvent.VK_W) {
-			Player.P1Ydirection = "faceup";
+			this.P1Ydirection = "faceup";
 		}
 		if (key == KeyEvent.VK_S) {
-			Player.P1Ydirection = "facedown";
+			this.P1Ydirection = "facedown";
 		}
 	}
 	/**
