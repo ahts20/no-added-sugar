@@ -12,6 +12,7 @@ import Managers.GameStateManager;
 * Uses GameState class to specify the new Game State when clicked on the button.
 * (Extends Rectangle to use the setBound() function to see if the mouse position is over the button).
 *
+* @author anonymous
 * @version 1.0
 * @release 13/12/2016
 * @See GameStateButton.java

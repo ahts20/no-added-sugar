@@ -12,7 +12,7 @@ import java.io.File;
  * @author anonymous
  * @version 1.0
  * @release 14/12/2016
- * @See GameOverState.java
+ * @See Main.java
  */
 public class Main {
 	//Declares and initialises the Graphics Environment to be used across different platforms

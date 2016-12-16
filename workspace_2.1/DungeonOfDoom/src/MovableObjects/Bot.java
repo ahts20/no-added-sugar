@@ -4,22 +4,20 @@ import java.awt.Graphics;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import Generators.Block;
-
+/**
+ * In game an instance of this class will work as an NPC.
+ * It chases after the closest player, pushes them and reduces 
+ * their score by 20.
+ * 
+ * @author anonymous
+ * @see Avatar.
+ * @see Player1.
+ * @see Player2.
+ * 
+ * Called by:
+ * @see World.java.
+ */
 public class Bot extends Avatar {
-	/**
-	 * In game an instance of this class will work as an NPC.
-	 * It chases after the closest player, pushes them and reduces 
-	 * their score by 20.
-	 * 
-	 * @author James
-	 * @see Avatar.
-	 * @see Player1.
-	 * @see Player2.
-	 * 
-	 * Called by:
-	 * @see World.java.
-	 */
-	
 	
 	Player player1 = new Player1();
 	Player player2 = new Player1();
@@ -366,7 +364,7 @@ public class Bot extends Avatar {
 		} else if (botState == "faceup") {
 			i = 7;
 		}
-		g.drawImage(this.p[i], (int) this.X, (int) this.Y, null);
+		g.drawImage(Avatar.p[i], (int) this.X, (int) this.Y, null);
 	}
 		public boolean getActive() {
 		return active;

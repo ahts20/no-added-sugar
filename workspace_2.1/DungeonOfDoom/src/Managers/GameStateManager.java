@@ -3,9 +3,10 @@ import java.awt.Graphics;
 import java.util.Stack;
 /**
 * GameStateManager uses stack to push the desired game state to the top of the stack to be used
-* Uses GameState class to the implemented methods init(), update(), render()
+* Uses GameState class for the implemented methods init(), update(), render()
 * GameStateManager is used in the GameLoop for the implemented GameState methods to be updated in the Loop
 *
+* @author anonymous
 * @version 1.0
 * @release 14/12/2016
 * @See GameStateManager.java

@@ -10,6 +10,7 @@ import MovableObjects.Player;
 * Uses the World class to initialise all the methods needed to play the game
 * (Extends GameState to use the init(), update() and render() functions which connect to the GameLoop and JFrame respectively.)
 *
+* @author anonymous
 * @version 1.0
 * @release 13/12/2016
 * @See LevelLoader.java
