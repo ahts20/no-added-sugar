@@ -364,7 +364,7 @@ public class Bot extends Avatar {
 		} else if (botState == "faceup") {
 			i = 7;
 		}
-		g.drawImage(this.p[i], (int) this.X, (int) this.Y, null);
+		g.drawImage(Avatar.p[i], (int) this.X, (int) this.Y, null);
 	}
 		public boolean getActive() {
 		return active;
