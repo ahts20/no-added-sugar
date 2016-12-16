@@ -11,26 +11,24 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import Generators.Block;
 import Managers.GameStateManager;
-
+/**
+ * This class is the parent class to the Bot and the Player class.
+ * It contains all shared methods and attributes.
+ * 
+ * The Xdirection and Ydirection attributes are static because java
+ * displayed a strange bug, where there attributes would reset to 
+ * default values if they were non static, despite accessing them in a
+ * non static way.
+ * 
+ * @author anonymous
+ * @see Bot.java
+ * 		Bot class is child of Avatar.
+ * @see Player.java
+ * 		Player class is child of Avatar.
+ * 
+*/
 public abstract class Avatar {
-	/**
-	 * This class is the parent class to the Bot and the Player class.
-	 * It contains all shared methods and attributes.
-	 * 
-	 * The Xdirection and Ydirection attributes are static because java
-	 * displayed a strange bug, where there attributes would reset to 
-	 * default values if they were non static, despite accessing them in a
-	 * non static way.
-	 * 
-	 * @author James
-	 *  
-	 * @see Bot.java
-	 * 	Bot class is child of Avatar.
-	 * 
-	 * @see Player.jva
-	 * 	Player class is child of Avatar.
-	 * 
-	*/
+
 	private static final long serialVersionUID = 1L;
 	
 	public static int playerWidth = 40;
@@ -52,24 +50,23 @@ public abstract class Avatar {
 	protected BufferedImage spriteSheet = null;
 	public static BufferedImage[] p = new BufferedImage[16];
 
-	public void init() {	
-		/**
-		 * Init method which can be used to initialise variables, child classes override this.
-		 */
-//		this.Xdirection = "";
-//		this.Ydirection = "";
-	}
+//	public void init() {	
+//		/**
+//		 * Init method which can be used to initialise variables, child classes override this.
+//		 */
+////		this.Xdirection = "";
+////		this.Ydirection = "";
+//	}
 
-
+	/**
+	 * Method which detects whether an object represented by the parameters
+	 * overlaps with the current object's space.
+	 * 
+	 * @return true/false
+	 * 	Returns true if the objects overlap.
+	 * 	Returns false if the objects do not overlap.
+	 */
 	protected boolean isTouching(int x, int y, int width, int height) {
-		/**
-		 * Method which detects whether an object represented by the parameters
-		 * overlaps with the current object's space.
-		 * 
-		 * @return true/false
-		 * 	Returns true if the objects overlap.
-		 * 	Returns false if the objects do not overlap.
-		 */
 		//Checking current in target space
 		if (this.X >= x && this.X <= x + width) {
 			if (this.Y >= y && this.Y <= y + height) {

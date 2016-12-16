@@ -25,7 +25,7 @@ public abstract class Player extends Avatar implements KeyListener {
 	 * shared between the players. Class Player1 and Player2 inherit from this class.
 	 * Ideally both player would be instances of this class, but there was a bug from java.
 	 * 
-	 * @author James
+	 * @author anonymous
 	 * 
 	 * @see Avatar
 	 * @see Player1

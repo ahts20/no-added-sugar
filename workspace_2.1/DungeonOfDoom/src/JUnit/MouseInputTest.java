@@ -18,7 +18,7 @@ import Generators.MouseInput;
 public class MouseInputTest extends JFrame implements MouseListener{
 	
 	private MouseInput mi;
-	private GameWindow gw;
+	private main.GameWindow gw;
 	private static final long serialVersionUID = 1L;
 	private GameLoop gl;
 
@@ -26,7 +26,7 @@ public class MouseInputTest extends JFrame implements MouseListener{
 		//JFrame
 		add(gl = new GameLoop(main.Main.width, main.Main.height));
 		setTitle("JUNIT");
-		setSize(Main.width, Main.height);
+		setSize(main.Main.width, main.Main.height);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);

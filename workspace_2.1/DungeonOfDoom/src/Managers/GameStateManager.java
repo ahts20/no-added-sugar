@@ -6,6 +6,7 @@ import java.util.Stack;
 * Uses GameState class for the implemented methods init(), update(), render()
 * GameStateManager is used in the GameLoop for the implemented GameState methods to be updated in the Loop
 *
+* @author anonymous
 * @version 1.0
 * @release 14/12/2016
 * @See GameStateManager.java

@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 * Runs on a separate Thread.
 * (Extends JPanel container and Implements Runnable)
 *
+* @author anonymous
 * @version 1.0
 * @release 14/12/2016
 * @See GameLoop.java

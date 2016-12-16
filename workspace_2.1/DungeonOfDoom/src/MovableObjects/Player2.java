@@ -21,7 +21,7 @@ public class Player2 extends Player {
 	 * trying to make the Xdirection and Ydirection variables 
 	 * non-static.
 	 *  
-	 * @author James
+	 * @author anonymous
 	 * 
 	 * @see Player
 	 * 	This class inherits from Player.
