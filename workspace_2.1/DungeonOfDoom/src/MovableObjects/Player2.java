@@ -1,6 +1,7 @@
 package MovableObjects;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.CopyOnWriteArrayList;
+
 import GameStates.GameOverState;
 import GameStates.LevelLoader;
 import Generators.Block;
@@ -65,20 +66,21 @@ public class Player2 extends Player {
 	 * @param e
 	 * 		e is a KeyEvent variable.
 	 */
+	@SuppressWarnings("static-access")
 	@Override
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_RIGHT) {
-			Player.P2Xdirection = "faceright";
+			this.P2Xdirection = "faceright";
 		}
 		if (key == KeyEvent.VK_LEFT) {
-			Player.P2Xdirection = "faceleft";
+			this.P2Xdirection = "faceleft";
 		}
 		if (key == KeyEvent.VK_UP) {
-			Player.P2Ydirection = "faceup";
+			this.P2Ydirection = "faceup";
 		}
 		if (key == KeyEvent.VK_DOWN) {
-			Player.P2Ydirection = "facedown";
+			this.P2Ydirection = "facedown";
 		}
 	}
 	/**

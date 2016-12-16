@@ -221,7 +221,7 @@ public class World{
 	@SuppressWarnings("static-access")
 	public void savePlayer1Score(){
 		if(player1.touching == true){
-			try(FileWriter fw = new FileWriter("res/scorePlayer1.txt", true);
+			try(FileWriter fw = new FileWriter("scorePlayer1.txt", true);
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter out = new PrintWriter(bw))
 			{
@@ -244,7 +244,7 @@ public class World{
 	@SuppressWarnings("static-access")
 	public void savePlayer2Score(){
 		if(player2.touching == true){
-			try(FileWriter fw = new FileWriter("res/scorePlayer2.txt", true);
+			try(FileWriter fw = new FileWriter("scorePlayer2.txt", true);
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter out = new PrintWriter(bw))
 			{

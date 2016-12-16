@@ -54,8 +54,8 @@ public class HighScoreState extends GameState{
 		BufferedReader readerPlayer1 = null;
 		BufferedReader readerPlayer2 = null;
 		try {
-			readerPlayer1 = new BufferedReader(new FileReader("res/scorePlayer1.txt"));
-			readerPlayer2 = new BufferedReader(new FileReader("res/scorePlayer2.txt"));
+			readerPlayer1 = new BufferedReader(new FileReader("scorePlayer1.txt"));
+			readerPlayer2 = new BufferedReader(new FileReader("scorePlayer2.txt"));
 			String lineP1 = null;
 			String lineP2 = null;
 			while ((lineP1 = readerPlayer1.readLine()) != null) {
