@@ -2,11 +2,11 @@ package Generators;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
-
 import Generators.Block.BlockType;
 import Managers.GameStateManager;
 import MovableObjects.Bot;
@@ -221,16 +221,17 @@ public class World{
 	@SuppressWarnings("static-access")
 	public void savePlayer1Score(){
 		if(player1.touching == true){
-			try(FileWriter fw = new FileWriter("scorePlayer1.txt", true);
-			BufferedWriter bw = new BufferedWriter(fw);
-			PrintWriter out = new PrintWriter(bw))
-			{
-		out.println(player1.score);
+			
 
-		linesP1.add(player1.score);
-		change = false;
-		
-		out.close();
+			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+					             new FileOutputStream("scorePlayer1.java"), "utf-8"))) {
+			
+				writer.write(player1.score);
+			
+				linesP1.add(player1.score);
+				change = false;
+
+				
 			} catch (Exception e){
 				e.printStackTrace();
 			}			
@@ -244,16 +245,15 @@ public class World{
 	@SuppressWarnings("static-access")
 	public void savePlayer2Score(){
 		if(player2.touching == true){
-			try(FileWriter fw = new FileWriter("scorePlayer2.txt", true);
-			BufferedWriter bw = new BufferedWriter(fw);
-			PrintWriter out = new PrintWriter(bw))
-			{
-		out.println(player2.score);
+			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+					new FileOutputStream("scorePlayer2.java"), "utf-8"))) {
 
-		linesP2.add(player2.score);
-		changeP2 = false;
-		
-		out.close();
+				writer.write(player2.score);
+
+				linesP2.add(player2.score);
+				changeP2 = false;
+
+
 			} catch (Exception e){
 				e.printStackTrace();
 			}
